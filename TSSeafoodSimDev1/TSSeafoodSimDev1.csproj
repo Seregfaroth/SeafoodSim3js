@@ -33,6 +33,7 @@
     <TypeScriptCompile Include="ts\declarations\three.d.ts" />
     <TypeScriptCompile Include="ts\init.ts" />
     <TypeScriptCompile Include="ts\test.ts" />
+    <TypeScriptCompile Include="ts\TKN_PathFinding.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="web.Debug.config">
