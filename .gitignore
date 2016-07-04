@@ -8,9 +8,11 @@
 *.sln.docstates
 *.js
 *.map
-Mareframe-BBN/ts/*.js
-Mareframe-BBN/ts/*.map
-!Mareframe-BBN/js/*
+TSSeafoodSimDev1/ts/*.js
+TSSeafoodSimDev1/ts/*.map
+ts/*.map
+ts/*.js
+
 
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
