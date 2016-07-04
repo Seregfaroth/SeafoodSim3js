@@ -1,0 +1,6 @@
+c:\users\bl_000\documents\visual studio 2015\Projects\TSSeafoodSimDev1\TSSeafoodSimDev1\bin\TSSeafoodSimDev1.dll.config
+c:\users\bl_000\documents\visual studio 2015\Projects\TSSeafoodSimDev1\TSSeafoodSimDev1\bin\TSSeafoodSimDev1.dll
+c:\users\bl_000\documents\visual studio 2015\Projects\TSSeafoodSimDev1\TSSeafoodSimDev1\bin\TSSeafoodSimDev1.pdb
+c:\users\bl_000\documents\visual studio 2015\Projects\TSSeafoodSimDev1\TSSeafoodSimDev1\obj\Debug\TSSeafoodSimDev1.csprojResolveAssemblyReference.cache
+c:\users\bl_000\documents\visual studio 2015\Projects\TSSeafoodSimDev1\TSSeafoodSimDev1\obj\Debug\TSSeafoodSimDev1.dll
+c:\users\bl_000\documents\visual studio 2015\Projects\TSSeafoodSimDev1\TSSeafoodSimDev1\obj\Debug\TSSeafoodSimDev1.pdb
