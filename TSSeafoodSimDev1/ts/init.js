@@ -8,7 +8,7 @@ var Init = (function () {
         this.m_camera.lookAt(new THREE.Vector3(0, 0, 0));
         this.m_camera.position.z = 24;
         var tm = new THREE.Vector3(0, 30, -25);
-        this.m_camera.position.set(0., 0., -25.);
+        //
         tm = this.m_camera.position;
         //this.m_camera.upda
         this.m_scene = new THREE.Scene();
@@ -25,7 +25,7 @@ var Init = (function () {
         this.m_renderer.render(this.m_scene, this.m_camera);
     }
     return Init;
-})();
+}());
 ;
 window.onload = function () {
     console.log("window loaded");

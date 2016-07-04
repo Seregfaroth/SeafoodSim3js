@@ -29,8 +29,10 @@
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="ts\declarations\qunit.d.ts" />
     <TypeScriptCompile Include="ts\declarations\three.d.ts" />
     <TypeScriptCompile Include="ts\init.ts" />
+    <TypeScriptCompile Include="ts\test.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="web.Debug.config">
