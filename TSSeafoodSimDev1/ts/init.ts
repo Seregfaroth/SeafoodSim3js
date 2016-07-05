@@ -9,7 +9,9 @@ class Init {
         console.log("construct init");
         var nav = [[1, 0, 0], [0, 1, 0]];
         var tt = new TKN_PathFinding(nav);
-        var ttt = tt.findPath(0, 0, 2, 1);
+        var ttt = tt.findPath(0, 0, 2, 0);
+        console.log(ttt);
+        ttt = tt.findPath(-5, -10, 12, 11);
         console.log(ttt);
         this.m_renderer = new THREE.WebGLRenderer({ alpha: true });
         this.m_renderer.setSize(800, 800);
@@ -23,7 +25,7 @@ class Init {
         this.m_scene = new THREE.Scene();
         this.m_renderer.setClearColor(0x000000, 1);
 
-        document.body.appendChild(this.m_renderer.domElement);
+        document.body.insertBefore(this.m_renderer.domElement, document.body.firstChild);
 
         var sG = new THREE.SphereGeometry(20,80,24);
         var sM = new THREE.MeshBasicMaterial({
