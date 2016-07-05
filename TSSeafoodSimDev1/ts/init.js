@@ -1,6 +1,8 @@
 /// <reference path = "Declarations/three.d.ts"/>
+/// <reference path = "../../TSSeafoodSimDevModel/app.ts"/>
 var Init = (function () {
     function Init() {
+        var t5 = new Greeter();
         console.log("construct init");
         var nav = [[1, 0, 0], [0, 1, 0]];
         var tt = new TKN_PathFinding(nav);

@@ -1,4 +1,5 @@
 ﻿/// <reference path = "Declarations/three.d.ts"/>
+/// <reference path = "../../TSSeafoodSimDev1/externals/model.d.ts"/>
 
 class Init {
     private m_renderer: THREE.WebGLRenderer;
@@ -6,6 +7,8 @@ class Init {
     private m_scene: THREE.Scene;
     
     constructor() {
+        var t5 = new Greeter();
+        
         console.log("construct init");
         var nav = [[1, 0, 0], [0, 1, 0]];
         var tt = new TKN_PathFinding(nav);
