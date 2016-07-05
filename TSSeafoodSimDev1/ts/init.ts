@@ -6,7 +6,11 @@ class Init {
     private m_scene: THREE.Scene;
     
     constructor() {
-        console.log("constuct init");
+        console.log("construct init");
+        var nav = [[1, 0, 0], [0, 1, 0]];
+        var tt = new TKN_PathFinding(nav);
+        var ttt = tt.findPath(0, 0, 2, 1);
+        console.log(ttt);
         this.m_renderer = new THREE.WebGLRenderer({ alpha: true });
         this.m_renderer.setSize(800, 800);
         this.m_camera = new THREE.PerspectiveCamera(154, 1, 0.3, 1000);
