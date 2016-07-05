@@ -31,6 +31,8 @@
   <ItemGroup>
     <TypeScriptCompile Include="ts\declarations\qunit.d.ts" />
     <TypeScriptCompile Include="ts\declarations\three.d.ts" />
+    <TypeScriptCompile Include="ts\Government.ts" />
+    <TypeScriptCompile Include="ts\Restrictions.ts" />
     <TypeScriptCompile Include="ts\init.ts" />
     <TypeScriptCompile Include="ts\test.ts" />
     <TypeScriptCompile Include="ts\TKN_PathFinding.ts" />
@@ -43,7 +45,6 @@
       <DependentUpon>web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
   </PropertyGroup>
