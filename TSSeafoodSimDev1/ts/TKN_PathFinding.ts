@@ -18,6 +18,6 @@ class TKN_PathFinding {
         var navBackup = this.m_navGrid.clone();
         var ret = this.m_finder.findPath(p_xStart, p_yStart, p_xEnd, p_yEnd, this.m_navGrid);
         this.m_navGrid = navBackup;
-        return ret;
+        return ret;//
     }
 }
