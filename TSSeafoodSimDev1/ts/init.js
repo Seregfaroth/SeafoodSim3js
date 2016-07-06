@@ -1,5 +1,5 @@
 /// <reference path = "Declarations/three.d.ts"/>
-/// <reference path = "../../TSSeafoodSimDevModel/app.ts"/>
+/// <reference path = "../../TSSeafoodSimDev1/externals/model.d.ts"/>
 var Init = (function () {
     function Init() {
         var t5 = new Greeter();
@@ -8,6 +8,7 @@ var Init = (function () {
         var tt = new TKN_PathFinding(nav);
         var ttt = tt.findPath(0, 0, 2, 0);
         console.log(ttt);
+        console.log("here");
         ttt = tt.findPath(-5, -10, 12, 11);
         console.log(ttt);
         this.m_renderer = new THREE.WebGLRenderer({ alpha: true });

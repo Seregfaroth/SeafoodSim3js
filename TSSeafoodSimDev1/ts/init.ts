@@ -11,9 +11,10 @@ class Init {
         
         console.log("construct init");
         var nav = [[1, 0, 0], [0, 1, 0]];
-        var tt = new TKN_PathFinding(nav);
+       var tt = new TKN_PathFinding(nav);
         var ttt = tt.findPath(0, 0, 2, 0);
         console.log(ttt);
+        console.log("here");
         ttt = tt.findPath(-5, -10, 12, 11);
         console.log(ttt);
         this.m_renderer = new THREE.WebGLRenderer({ alpha: true });

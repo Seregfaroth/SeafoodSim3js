@@ -4,15 +4,17 @@ c:\users\bl_000\documents\visual studio 2015\Projects\TSSeafoodSimDev1\TSSeafood
 c:\users\bl_000\documents\visual studio 2015\Projects\TSSeafoodSimDev1\TSSeafoodSimDev1\obj\Debug\TSSeafoodSimDev1.csprojResolveAssemblyReference.cache
 c:\users\bl_000\documents\visual studio 2015\Projects\TSSeafoodSimDev1\TSSeafoodSimDev1\obj\Debug\TSSeafoodSimDev1.dll
 c:\users\bl_000\documents\visual studio 2015\Projects\TSSeafoodSimDev1\TSSeafoodSimDev1\obj\Debug\TSSeafoodSimDev1.pdb
-C:\Users\Marita\Source\Repos\SeafoodSim3js2\TSSeafoodSimDev1\bin\TSSeafoodSimDev1.dll.config
-C:\Users\Marita\Source\Repos\SeafoodSim3js2\TSSeafoodSimDev1\bin\TSSeafoodSimDev1.dll
-C:\Users\Marita\Source\Repos\SeafoodSim3js2\TSSeafoodSimDev1\bin\TSSeafoodSimDev1.pdb
-C:\Users\Marita\Source\Repos\SeafoodSim3js2\TSSeafoodSimDev1\obj\Debug\TSSeafoodSimDev1.csprojResolveAssemblyReference.cache
-C:\Users\Marita\Source\Repos\SeafoodSim3js2\TSSeafoodSimDev1\obj\Debug\TSSeafoodSimDev1.dll
-C:\Users\Marita\Source\Repos\SeafoodSim3js2\TSSeafoodSimDev1\obj\Debug\TSSeafoodSimDev1.pdb
 C:\Users\bl_000\Documents\Visual Studio 2015\Projects\gitplaceholder\TSSeafoodSimDev1\bin\TSSeafoodSimDev1.dll.config
 C:\Users\bl_000\Documents\Visual Studio 2015\Projects\gitplaceholder\TSSeafoodSimDev1\bin\TSSeafoodSimDev1.dll
 C:\Users\bl_000\Documents\Visual Studio 2015\Projects\gitplaceholder\TSSeafoodSimDev1\bin\TSSeafoodSimDev1.pdb
 C:\Users\bl_000\Documents\Visual Studio 2015\Projects\gitplaceholder\TSSeafoodSimDev1\obj\Debug\TSSeafoodSimDev1.csprojResolveAssemblyReference.cache
 C:\Users\bl_000\Documents\Visual Studio 2015\Projects\gitplaceholder\TSSeafoodSimDev1\obj\Debug\TSSeafoodSimDev1.dll
 C:\Users\bl_000\Documents\Visual Studio 2015\Projects\gitplaceholder\TSSeafoodSimDev1\obj\Debug\TSSeafoodSimDev1.pdb
+C:\Users\Marita\Source\Repos\SeafoodSim3js2\TSSeafoodSimDev1\obj\Debug\TSSeafoodSimDev1.csprojResolveAssemblyReference.cache
+C:\Users\Marita\Source\Repos\SeafoodSim3js2\TSSeafoodSimDev1\bin\TSSeafoodSimDev1.dll.config
+C:\Users\Marita\Source\Repos\SeafoodSim3js2\TSSeafoodSimDev1\bin\TSSeafoodSimDev1.dll
+C:\Users\Marita\Source\Repos\SeafoodSim3js2\TSSeafoodSimDev1\bin\TSSeafoodSimDev1.pdb
+C:\Users\Marita\Source\Repos\SeafoodSim3js2\TSSeafoodSimDev1\bin\TSSeafoodSimDevModel.dll
+C:\Users\Marita\Source\Repos\SeafoodSim3js2\TSSeafoodSimDev1\bin\TSSeafoodSimDevModel.pdb
+C:\Users\Marita\Source\Repos\SeafoodSim3js2\TSSeafoodSimDev1\obj\Debug\TSSeafoodSimDev1.dll
+C:\Users\Marita\Source\Repos\SeafoodSim3js2\TSSeafoodSimDev1\obj\Debug\TSSeafoodSimDev1.pdb

@@ -29,12 +29,27 @@
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="ts\AI.ts" />
+    <TypeScriptCompile Include="ts\Cod.ts" />
     <TypeScriptCompile Include="ts\declarations\qunit.d.ts" />
     <TypeScriptCompile Include="ts\declarations\three.d.ts" />
+    <TypeScriptCompile Include="ts\Fish.ts" />
+    <TypeScriptCompile Include="ts\FuelSite.ts" />
     <TypeScriptCompile Include="ts\Government.ts" />
+    <TypeScriptCompile Include="ts\Land.ts" />
+    <TypeScriptCompile Include="ts\LandingSite.ts" />
+    <TypeScriptCompile Include="ts\Mackerel.ts" />
+    <TypeScriptCompile Include="ts\Map.ts" />
+    <TypeScriptCompile Include="ts\Ocean.ts" />
+    <TypeScriptCompile Include="ts\Point.ts" />
     <TypeScriptCompile Include="ts\Restrictions.ts" />
     <TypeScriptCompile Include="ts\init.ts" />
+    <TypeScriptCompile Include="ts\School.ts" />
+    <TypeScriptCompile Include="ts\Ship.ts" />
+    <TypeScriptCompile Include="ts\ShipOwner.ts" />
+    <TypeScriptCompile Include="ts\Site.ts" />
     <TypeScriptCompile Include="ts\test.ts" />
+    <TypeScriptCompile Include="ts\Tile.ts" />
     <TypeScriptCompile Include="ts\TKN_PathFinding.ts" />
   </ItemGroup>
   <ItemGroup>
@@ -66,7 +81,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>50665</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
@@ -87,11 +102,12 @@
     <TypeScriptJSXEmit>None</TypeScriptJSXEmit>
     <TypeScriptCompileOnSaveEnabled>True</TypeScriptCompileOnSaveEnabled>
     <TypeScriptNoImplicitAny>False</TypeScriptNoImplicitAny>
-    <TypeScriptModuleKind>CommonJS</TypeScriptModuleKind>
-    <TypeScriptOutFile>$(solutionDir)/TSSeafoodSimDev1/external/comp.js</TypeScriptOutFile>
+    <TypeScriptModuleKind>AMD</TypeScriptModuleKind>
+    <TypeScriptOutFile>
+    </TypeScriptOutFile>
     <TypeScriptOutDir />
     <TypeScriptGeneratesDeclarations>False</TypeScriptGeneratesDeclarations>
-    <TypeScriptNoEmitOnError>True</TypeScriptNoEmitOnError>
+    <TypeScriptNoEmitOnError>False</TypeScriptNoEmitOnError>
     <TypeScriptMapRoot />
     <TypeScriptSourceRoot />
   </PropertyGroup>

@@ -3,8 +3,9 @@ class TKN_PathFinding {
     private m_finder;
     private m_navGrid;
     constructor(p_navMatrix) {
-        this.m_finder = new PF.AStarFinder();
-        this.m_navGrid = new PF.Grid(p_navMatrix);
+      this.m_finder = new PF.AStarFinder();
+       this.m_navGrid = new PF.Grid(p_navMatrix);
+   
     }
     //input: start and end points 
     //output: the best path from start to end, with A*
@@ -16,6 +17,7 @@ class TKN_PathFinding {
         //if (p_xEnd > this.m_navGrid.height) p_xEnd = this.m_navGrid.height - 1;
         //if (p_yEnd > this.m_navGrid.width) p_yEnd = this.m_navGrid.width - 1;
         var navBackup = this.m_navGrid.clone();
+        console.log("p_xStart: " + p_xStart + " p_yStart: " + p_yStart);
         var ret = this.m_finder.findPath(p_xStart, p_yStart, p_xEnd, p_yEnd, this.m_navGrid);
         this.m_navGrid = navBackup;
         return ret;
