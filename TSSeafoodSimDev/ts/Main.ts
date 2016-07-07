@@ -2,7 +2,7 @@
 /// <reference path = "../externals/test.d.ts"/>
 
 class Main {
-    private m_controller;
+    private m_controller: Controller;
 
     constructor() {
         console.log("loading Game");
@@ -17,5 +17,5 @@ class Main {
 
 window.onload = () => {
     console.log("window loaded");
-    var t = new Main();    
+    var main = new Main();    
 }

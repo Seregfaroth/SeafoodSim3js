@@ -25,7 +25,9 @@
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
-    <TypeScriptCompile Include="ts\View.ts" />
+    <TypeScriptCompile Include="ts\MainView.ts" />
+    <TypeScriptCompile Include="ts\MapMenu.ts" />
+    <TypeScriptCompile Include="ts\MapView.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="web.Debug.config">
