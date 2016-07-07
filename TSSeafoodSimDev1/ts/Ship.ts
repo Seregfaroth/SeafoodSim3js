@@ -61,6 +61,7 @@
     }
     
     public land(p_landingSite: LandingSite): void {
+        this.shuffleFish();
         var returnedFromLandingSite: [Fish[], number] = p_landingSite.receiveFish(this.m_cargo);
         this.m_owner.financialTransaction(returnedFromLandingSite[1]);
         this.m_cargo = returnedFromLandingSite[0];
@@ -72,4 +73,15 @@
         this.m_fuel += fuelAmount;
     } 
 
+    private shuffleFish(): void {
+        var i: number;
+        var j: number;
+        var fishPlaceholder: Fish;
+        for (i = this.m_cargo.length; i; i--) {
+            j = Math.floor(Math.random() * i);
+            fishPlaceholder = this.m_cargo[i - 1];
+            this.m_cargo[i - 1] = this.m_cargo[j];
+            this.m_cargo[j] = fishPlaceholder;
+        }
+    }
 }

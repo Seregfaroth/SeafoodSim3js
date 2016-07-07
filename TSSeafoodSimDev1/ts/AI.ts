@@ -14,7 +14,9 @@
             p_map.addShip(p_shipOwner.buyShip());
         }
         else if (p_shipOwner.getShips().length > 0 && p_shipOwner.getBalance() < this.m_balanceToSellShip) {
-            p_shipOwner.sellShip(p_shipOwner.getShips()[0]);
+            var ship: Ship = p_shipOwner.getShips()[0];
+            p_shipOwner.sellShip(ship);
+            p_map.removeShip(ship);
         }
     }
 

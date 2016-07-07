@@ -35,7 +35,7 @@
         return ship;
     }
 
-    public sellShip(ship: Ship) {
+    public sellShip(ship: Ship): void {
         if (this.m_ships.indexOf(ship) === -1) {
             throw "Ship owner does not own this ship";
         }

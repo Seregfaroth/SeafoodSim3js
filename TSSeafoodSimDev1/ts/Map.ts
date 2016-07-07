@@ -16,7 +16,7 @@
     }
 
     private placeSchools(p_n) {
-
+        //Todo implement this
     }
 
     private generateMap(p_size: number) {
@@ -40,6 +40,10 @@
 
     public addShip(ship: Ship) {
         this.m_ships.push(ship);
+    }
+
+    public removeShip(ship: Ship): void {
+        this.m_ships.splice(this.m_ships.indexOf(ship), 1);
     }
 
     public getNoOfShips(): number {
@@ -80,5 +84,25 @@
            num += s.getSize();
         });
         return num;
+    }
+
+    public getTile(p_position: Point): Tile {
+        return this.m_grid[p_position.row][p_position.col];
+    }
+
+    public getPathFindingMap(): number[][] {
+        var map: number[][] = [];
+        for (var row = 0; row < this.m_grid.length; row++) {
+            var newRow: number[] = [];
+            for (var col = 0; col < this.m_grid[0].length; col++) {
+                if (this.m_grid[row][col] instanceof Land) {
+                    newRow.push(1);
+                } else {
+                    newRow.push(0);
+                }
+            }
+            map.push(newRow);
+        }
+        return map;
     }
 }
