@@ -1,4 +1,5 @@
-﻿class Ocean extends Tile {
+﻿/// <reference path="Tile.ts"/>
+class Ocean extends Tile {
     private m_fishCapacity: number;
     private m_shipCapacity: number;
 

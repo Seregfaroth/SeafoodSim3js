@@ -5,6 +5,7 @@
    private m_landingDistrubutions: { [Site: string]: number } = {};
    private m_maxShips: number;
 
+
     public restrictArea(p_tile: Tile): void {
         this.m_restrictedAreas.push(p_tile);
     }

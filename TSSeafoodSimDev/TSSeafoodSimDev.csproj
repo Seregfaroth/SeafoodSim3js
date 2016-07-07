@@ -25,6 +25,7 @@
     <Content Include="js\pathfinding-browser.js" />
     <Content Include="js\three.js" />
     <Content Include="main.html" />
+    <Content Include="test.html" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>

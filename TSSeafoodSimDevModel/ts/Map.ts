@@ -32,9 +32,9 @@
         for (var col = 0; col < p_size / 2; col++) {
             this.m_grid[0][col] = new Land();
         }
-        this.m_grid[p_size / 2][p_size / 2] = new Land();
-        this.m_grid[p_size / 2][p_size / 2 + 1] = new LandingSite(1, 5, 20, 10);
-        this.m_grid[p_size / 2][p_size / 2 - 1] = new FuelSite(1, 300, 20, 10);
+        this.m_grid[Math.floor(p_size / 2)][Math.floor(p_size / 2)] = new Land();
+        this.m_grid[Math.floor(p_size / 2)][Math.floor(p_size / 2) + 1] = new LandingSite(1, 5, 20, 10);
+        this.m_grid[Math.floor(p_size / 2)][Math.floor(p_size / 2) - 1] = new FuelSite(1, 300, 20, 10);
 
     }
 
