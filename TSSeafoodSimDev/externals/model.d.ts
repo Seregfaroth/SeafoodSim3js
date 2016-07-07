@@ -6,6 +6,22 @@ declare class AI {
     private moveShips(p_shipOwner, p_map);
     private findGoal(p_ship, p_map);
 }
+declare abstract class School {
+    protected m_position: Point;
+    protected m_fish: Fish[];
+    protected m_maxAge: number;
+    protected m_typeNumber: number;
+    constructor(p_size: number, p_position: Point);
+    getSize(): number;
+    getPosition(): Point;
+    getFish(): Fish[];
+    shuffleFish(): void;
+    live(p_map: Map): void;
+    private age();
+    getMaxAge(): number;
+    protected abstract recruit(): void;
+    protected abstract move(p_map: Map): void;
+}
 declare class Cod extends School {
     constructor(p_size: number, p_position: Point);
     protected move(p_map: Map): void;
@@ -19,6 +35,21 @@ declare class Fish {
     getType(): number;
     getAge(): number;
     age(): void;
+}
+declare class Tile {
+}
+declare class Site extends Tile {
+    protected m_shipCapacity: number;
+    protected m_resourceCapacity: number;
+    protected m_resourceAtSite: number;
+    protected m_processPerDay: number;
+    protected m_price: number;
+    constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_price: number);
+    getShipCapacity(): number;
+    getResourceCapacity(): number;
+    getResourceAtSite(): number;
+    getProcessPerDay(): number;
+    getPrice(): number;
 }
 declare class FuelSite extends Site {
     provideFuel(p_desiredAmount: number): number;
@@ -65,27 +96,6 @@ declare class Map {
     getTile(p_position: Point): Tile;
     getPathFindingMap(): number[][];
 }
-declare class ShipOwner {
-    private m_ships;
-    private m_balance;
-    private m_license;
-    private m_shipPrice;
-    getShips(): Ship[];
-    getBalance(): number;
-    hasLicense(): boolean;
-    obtainLisence(): void;
-    looseLisence(): void;
-    financialTransaction(p_amount: number): void;
-    buyShip(): Ship;
-    sellShip(ship: Ship): void;
-}
-declare class Model {
-    private m_map;
-    private m_shipOwner;
-    private m_goverment;
-    constructor();
-    run(): void;
-}
 declare class Ocean extends Tile {
     private m_fishCapacity;
     private m_shipCapacity;
@@ -120,21 +130,6 @@ declare class Restrictions {
     setMaxShips(p_n: any, number: any): void;
     getMaxShips(): number;
 }
-declare abstract class School {
-    protected m_position: Point;
-    protected m_fish: Fish[];
-    protected m_maxAge: number;
-    protected m_typeNumber: number;
-    constructor(p_size: number, p_position: Point);
-    getSize(): number;
-    getPosition(): Point;
-    getFish(): Fish[];
-    shuffleFish(): void;
-    live(p_map: Map): void;
-    private age();
-    protected abstract recruit(): void;
-    protected abstract move(p_map: Map): void;
-}
 declare class Ship {
     private m_fuel;
     private m_cargo;
@@ -159,18 +154,17 @@ declare class Ship {
     refuel(p_fuelSite: FuelSite): void;
     private shuffleFish();
 }
-declare class Site extends Tile {
-    protected m_shipCapacity: number;
-    protected m_resourceCapacity: number;
-    protected m_resourceAtSite: number;
-    protected m_processPerDay: number;
-    protected m_price: number;
-    constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_price: number);
-    getShipCapacity(): number;
-    getResourceCapacity(): number;
-    getResourceAtSite(): number;
-    getProcessPerDay(): number;
-    getPrice(): number;
-}
-declare class Tile {
+declare class ShipOwner {
+    private m_ships;
+    private m_balance;
+    private m_license;
+    private m_shipPrice;
+    getShips(): Ship[];
+    getBalance(): number;
+    hasLicense(): boolean;
+    obtainLisence(): void;
+    looseLisence(): void;
+    financialTransaction(p_amount: number): void;
+    buyShip(): Ship;
+    sellShip(ship: Ship): void;
 }

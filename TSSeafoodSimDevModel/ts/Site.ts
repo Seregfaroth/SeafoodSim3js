@@ -1,4 +1,5 @@
-﻿class Site extends Tile {
+﻿/// <reference path="Tile.ts"/>
+class Site extends Tile {
     protected m_shipCapacity: number;
     protected m_resourceCapacity: number;
     protected m_resourceAtSite: number;

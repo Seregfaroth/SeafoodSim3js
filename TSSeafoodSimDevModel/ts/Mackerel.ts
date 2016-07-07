@@ -1,4 +1,6 @@
-﻿class Mackerel extends School {
+﻿/// <reference path="School.ts"/>
+
+class Mackerel extends School {
 
     public constructor(p_size: number, p_position: Point) {
         super(p_size, p_position);

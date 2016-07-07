@@ -1,4 +1,5 @@
-﻿class LandingSite extends Site {
+﻿/// <reference path="Site.ts"/>
+class LandingSite extends Site {
     private m_prices: { [fishType: number]: number } = {};
 
 

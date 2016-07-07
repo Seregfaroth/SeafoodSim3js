@@ -1,3 +1,4 @@
-﻿class Land extends Tile {
+﻿/// <reference path="Tile.ts"/>
+class Land extends Tile {
 
 }

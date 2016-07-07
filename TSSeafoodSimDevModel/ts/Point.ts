@@ -6,3 +6,4 @@
         this.row = p_row;
         this.col = p_col;
     }
+}

@@ -26,7 +26,7 @@
             if (ship.hasReachedGoal()) {
                 //Fish/land/refuel and find new path to new goal
             }
-            else if (/*goal is still valid*/){
+            else if (/*goal is still valid*/true){
                 ship.followPath();
             }
 
@@ -34,6 +34,7 @@
     }
 
     private findGoal(p_ship: Ship, p_map: Map): Point {
-
+        //TODO implement this
+        return new Point(0, 0);
     }
 }

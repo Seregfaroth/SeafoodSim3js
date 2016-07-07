@@ -1,6 +1,6 @@
-﻿class Cod extends School{
-  
+﻿/// <reference path="School.ts"/>
 
+class Cod extends School{
     public constructor(p_size: number, p_position: Point) {
         super(p_size, p_position);
         this.m_maxAge = 10;
@@ -11,8 +11,9 @@
     }
    
     //Move with a probability of 25% with a random direction
+    ///OBS need to check if index is inside map
     protected move(p_map: Map): void {
-        var move: boolean = Math.random() < 0.25;
+        /*var move: boolean = Math.random() < 0.25;
         if (move) {
             var direction: number = Math.floor((Math.random() * 5));
             switch (direction) {
@@ -39,7 +40,7 @@
                 default:
                     break;
             }
-        }
+        }*/
     }
 
     protected recruit(): void {

@@ -1,4 +1,5 @@
-﻿class FuelSite extends Site {
+﻿/// <reference path="Site.ts"/>
+class FuelSite extends Site {
 
     //Returns the actual amount of fuel that the site was able to provide 
     public provideFuel(p_desiredAmount: number): number {

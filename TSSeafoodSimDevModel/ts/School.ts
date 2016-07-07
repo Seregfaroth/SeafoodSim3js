@@ -7,6 +7,7 @@
 
     public constructor(p_size: number, p_position: Point) {
         this.m_position = p_position;
+        this.m_fish = [];
     }
 
     public getSize(): number {
@@ -51,7 +52,9 @@
             }
         });
     }
-
+    public getMaxAge(): number {
+        return this.m_maxAge;
+    }
     protected abstract recruit(): void
     protected abstract move(p_map: Map): void;
 }
