@@ -1,15 +1,38 @@
-﻿// <reference path = "../../TSSeafoodSimDev/externals/model.d.ts"/>
-// <reference path = "../../TSSeafoodSimDev/externals/view.d.ts"/>
+﻿/// <reference path = "../../TSSeafoodSimDev/externals/model.d.ts"/>
+/// <reference path = "../../TSSeafoodSimDev/externals/view.d.ts"/>
 /// <reference path = "../../TSSeafoodSimDev/externals/wrappers.d.ts"/>
 
 class Controller {
-
+    private m_view: MainView;
+    private m_model: Model;
     constructor() {
         console.log("Controller loading");
-        //var t= new 
+        this.m_model = new Model();
+        this.m_view = new MainView();
+
+        if (this.m_model != undefined && this.m_view != undefined) {
+            this.runSimulation(10);
+        }
+    }
+
+    simulationTick() {
+        console.log("Controller running simulation");
+        this.m_model.run();
+        this.m_view.updateMainView();
     }
 
 
+    runSimulation(p_ticks?: number) {
+        var ticksLeft;
+        if (p_ticks != undefined)
+            ticksLeft = p_ticks;
+        else
+            ticksLeft = 100;
+
+        while (ticksLeft < 0) {
+            this.simulationTick();
+        }
+        
 }
 
 
