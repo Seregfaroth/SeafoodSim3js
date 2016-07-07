@@ -1,3 +1,3 @@
-declare class Test {
+declare class View {
     constructor();
 }

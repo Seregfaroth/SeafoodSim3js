@@ -8,10 +8,11 @@
 *.sln.docstates
 *.js
 *.map
-TSSeafoodSimDev1/ts/*.js
-TSSeafoodSimDev1/ts/*.map
+TSSeafoodSimDev/ts/*.js
+TSSeafoodSimDev/ts/*.map
 ts/*.map
 ts/*.js
+!TSSeafoodSimDev/js/*.js
 
 
 # User-specific files (MonoDevelop/Xamarin Studio)

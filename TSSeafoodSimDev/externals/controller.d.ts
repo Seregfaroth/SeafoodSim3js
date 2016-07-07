@@ -1,4 +1,4 @@
-/// <reference path="test.d.ts" />
+/// <reference path="wrappers.d.ts" />
 declare class Controller {
     constructor();
 }
@@ -9,4 +9,5 @@ declare class Init1 {
     private m_mesh;
     constructor();
     renderLoop: () => void;
+    rl(): void;
 }
