@@ -4,9 +4,12 @@
 class TestSchool {
     constructor() {
         var singleCod: Cod = new Cod(1, new Point(5, 5));
-        var singleMackerel: Mackerel = new Mackerel(1, new Point(5, 5);
+        var singleMackerel: Mackerel = new Mackerel(1, new Point(5, 5));
         var map: Map = new Map(5, 5, new Restrictions());
 
+        QUnit.test("Cod constructor", function (assert) {
+
+        });
         QUnit.test("Cod age function", function (assert) {
             var age: number = singleCod.getFish()[0].getAge();
             if (age < singleCod.getMaxAge()) {
@@ -24,7 +27,7 @@ class TestSchool {
                 singleCod.live(map);
             }
             //Check that fish is old
-            assert.equal(testingFish.getAge(), singleCod.getMaxAge());
+            assert.deepEqual(testingFish.getAge(), singleCod.getMaxAge());
 
             singleCod.live(map);
 
@@ -49,7 +52,7 @@ class TestSchool {
                 singleMackerel.live(map);
             }
             //Check that fish is old
-            assert.equal(testingFish.getAge(), singleMackerel.getMaxAge());
+            assert.deepEqual(testingFish.getAge(), singleMackerel.getMaxAge());
 
             singleMackerel.live(map);
 
