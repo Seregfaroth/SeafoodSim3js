@@ -34,7 +34,7 @@ class Map {
 
         for (var i = 0; i < 5; i++) {
             var row: Tile[] = [];
-            for (var j = 0; j < p_size; j++) {
+            for (var j = 0; j < 5; j++) {
                 row.push(new Ocean(1000, 2));
             }
             this.m_grid.push(row);
