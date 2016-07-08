@@ -9,6 +9,9 @@ declare class TestFuelSite {
 declare class TestLandingSite {
     constructor();
 }
+declare class TestMap {
+    constructor();
+}
 declare class TestSchool {
     constructor();
 }

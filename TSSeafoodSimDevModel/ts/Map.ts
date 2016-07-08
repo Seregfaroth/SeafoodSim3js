@@ -7,6 +7,7 @@
 
     public constructor(p_size: number, p_noOfSchools: number, p_restrictions: Restrictions) {
         this.m_restrictions = p_restrictions;
+        ///OBS size and no of schools is not being used at the moment
         this.generateMap(p_size);
         this.placeSchools(p_noOfSchools);
     }
@@ -15,13 +16,22 @@
         return this.m_restrictions;
     }
 
-    private placeSchools(p_n) {
-        //Todo implement this
+    public getGrid(): Tile[][] {
+        return this.m_grid;
     }
-
+    public getShips(): Ship[] {
+        return this.m_ships;
+    }
+    private placeSchools(p_n) {
+        this.addSchool(new Cod(100, new Point(1, 1)));
+        this.addSchool(new Cod(100, new Point(4, 4)));
+    }
+    public addSchool(p_school: School): void {
+        this.m_schools.push(p_school);
+    }
     private generateMap(p_size: number) {
 
-        for (var i = 0; i < p_size; i++) {
+        for (var i = 0; i < 5; i++) {
             var row: Tile[] = [];
             for (var j = 0; j < p_size; j++) {
                 row.push(new Ocean(1000, 2));
@@ -29,12 +39,17 @@
             this.m_grid.push(row);
         }
 
-        for (var col = 0; col < p_size / 2; col++) {
+        for (var col = 0; col < 4; col++) {
             this.m_grid[0][col] = new Land();
         }
-        this.m_grid[Math.floor(p_size / 2)][Math.floor(p_size / 2)] = new Land();
-        this.m_grid[Math.floor(p_size / 2)][Math.floor(p_size / 2) + 1] = new LandingSite(1, 5, 20, 10);
-        this.m_grid[Math.floor(p_size / 2)][Math.floor(p_size / 2) - 1] = new FuelSite(1, 300, 20, 10);
+        this.m_grid[2][2] = new Land();
+        
+        var prices: { [fishType: number]: number } = {}
+        prices[0] = 10;
+        prices[1] = 5;
+
+        this.m_grid[2][3] = new LandingSite(1, 5, 20,prices );
+        this.m_grid[2][1] = new FuelSite(1, 300, 20, 10);
 
     }
 
@@ -49,6 +64,9 @@
     public getNoOfShips(): number {
         return this.m_ships.length;
     }
+    public getFishingPercentage(): number {
+        return this.m_fishingPercentage;
+    }
 
     public fish(p_position: Point, p_capacity: number): Fish[] {
         var percentage: number = this.m_fishingPercentage;
@@ -62,9 +80,9 @@
         this.getSchoolsInTile(p_position).forEach(function (s) {
             s.shuffleFish(); //May not be necessary to shuffle every time
             var fishInSchool: Fish[] = s.getFish();
-            //Take a percentage of fish out of the school and adds it to the fish list
-            fish.concat(fishInSchool.splice(0, noOfFishInTile * percentage));
-
+            //Take a percentage of fish out of the school and add it to the fish list
+            var fishToAdd: Fish[] = fishInSchool.splice(0, fishInSchool.length * percentage);
+            fish = fish.concat(fishToAdd);
         });
         return fish;
     }
@@ -78,7 +96,7 @@
         });
         return list;
     }
-    private getNoOfFishInTile(p_position: Point): number {
+    public getNoOfFishInTile(p_position: Point): number {
         var num: number = 0;
         this.getSchoolsInTile(p_position).forEach(function (s) {
            num += s.getSize();
@@ -105,4 +123,5 @@
         }
         return map;
     }
+
 }

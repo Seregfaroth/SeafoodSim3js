@@ -5,5 +5,6 @@
         new TestShipOwner();
         new TestFuelSite();
         new TestLandingSite();
+        new TestMap();
     }
 }

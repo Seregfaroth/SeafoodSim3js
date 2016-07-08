@@ -92,14 +92,18 @@ declare class Map {
     private m_ships;
     constructor(p_size: number, p_noOfSchools: number, p_restrictions: Restrictions);
     getRestrictions(): Restrictions;
+    getGrid(): Tile[][];
+    getShips(): Ship[];
     private placeSchools(p_n);
+    addSchool(p_school: School): void;
     private generateMap(p_size);
     addShip(ship: Ship): void;
     removeShip(ship: Ship): void;
     getNoOfShips(): number;
+    getFishingPercentage(): number;
     fish(p_position: Point, p_capacity: number): Fish[];
     private getSchoolsInTile(p_position);
-    private getNoOfFishInTile(p_position);
+    getNoOfFishInTile(p_position: Point): number;
     getTile(p_position: Point): Tile;
     getPathFindingMap(): number[][];
 }
