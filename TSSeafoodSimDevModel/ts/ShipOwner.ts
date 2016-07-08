@@ -1,6 +1,6 @@
 ﻿class ShipOwner {
     private m_ships: Ship[] = [];
-    private m_balance: number = 0;
+    private m_balance: number = 10001;
     private m_license: boolean = true;
     private m_shipPrice: number = 100; // Should maybe be stored in map?
     private m_shipStartPosition: Point;

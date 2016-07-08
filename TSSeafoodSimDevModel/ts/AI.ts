@@ -1,11 +1,12 @@
 ﻿ class AI {
-    private m_balanceToBuyShip: number;
-    private m_balanceToSellShip: number;
-    
+     private m_balanceToBuyShip: number = 10000;
+     private m_balanceToSellShip: number = 0;
+    private m_fishingPath: Point[] = [new Point(1, 0), new Point(1, 1), new Point(1, 2), new Point(1, 3), new Point(1, 4), new Point(2, 4),
+        new Point(3, 4), new Point(3, 3), new Point(3, 2), new Point(3, 1), new Point(3, 0), new Point(2, 0)];
 
     public run(p_shipOwner: ShipOwner, p_map: Map): void {
         this.buyOrSellShip(p_shipOwner, p_map);
-        this.moveShips(p_shipOwner, p_map);
+        this.runShips(p_shipOwner, p_map);
     }
 
     private buyOrSellShip(p_shipOwner: ShipOwner, p_map: Map): void {
@@ -20,21 +21,36 @@
         }
     }
 
-    private moveShips(p_shipOwner: ShipOwner, p_map: Map): void {
+    private runShips(p_shipOwner: ShipOwner, p_map: Map): void {
+        var ai: AI = this;
         p_shipOwner.getShips().forEach(function (ship) {
-            var goal: Point = ship.getPath()[ship.getPath().length - 1];
-            if (ship.hasReachedGoal()) {
-                //Fish/land/refuel and find new path to new goal
+            if (ship.getPath().length > 1) {
+                ship.fish(p_map);
+                ship.followPath();
             }
-            //else if (/*goal is still valid*/true){
-            //    ship.followPath();
-            //}
-
+            else {
+                ship.setPath(ai.m_fishingPath);
+            }
         });
     }
 
-    private findGoal(p_ship: Ship, p_map: Map): Point {
-        //TODO implement this
-        return new Point(0, 0);
+    private findLandingSite(p_map: Map): Point {
+        for (var row = 0; row < p_map.getMapHeight(); row++) {
+            for (var col = 0; col < p_map.getMapWidth(); col++) {
+                if (p_map.getTile(new Point(row, col)) instanceof LandingSite) {
+                    return new Point(row, col);
+                }
+            }
+        }
+    }
+
+    private findFuelSite(p_map: Map): Point {
+        for (var row = 0; row < p_map.getMapHeight(); row++) {
+            for (var col = 0; col < p_map.getMapWidth(); col++) {
+                if (p_map.getTile(new Point(row, col)) instanceof FuelSite) {
+                    return new Point(row, col);
+                }
+            }
+        }
     }
 }
