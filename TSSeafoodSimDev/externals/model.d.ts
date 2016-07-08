@@ -2,10 +2,12 @@
 declare class AI {
     private m_balanceToBuyShip;
     private m_balanceToSellShip;
+    private m_fishingPath;
     run(p_shipOwner: ShipOwner, p_map: Map): void;
     private buyOrSellShip(p_shipOwner, p_map);
-    private moveShips(p_shipOwner, p_map);
-    private findGoal(p_ship, p_map);
+    private runShips(p_shipOwner, p_map);
+    private findLandingSite(p_map);
+    private findFuelSite(p_map);
 }
 declare abstract class School {
     protected m_position: Point;
@@ -133,6 +135,7 @@ declare class Model {
     private m_map;
     private m_shipOwner;
     private m_goverment;
+    private m_ai;
     constructor();
     run(): void;
     getMap(): Map;
@@ -185,6 +188,7 @@ declare class Ship {
     getPosition(): Point;
     getFuelPerMove(): number;
     getOwner(): ShipOwner;
+    getCargoSize(): number;
     followPath(): void;
     hasReachedGoal(): boolean;
     private moveTo(p_position);

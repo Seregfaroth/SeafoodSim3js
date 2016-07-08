@@ -48,7 +48,9 @@
     public getOwner(): ShipOwner {
         return this.m_owner;
     }
-
+    public getCargoSize(): number {
+        return this.m_cargo.length;
+    }
     //Throws an exception if path is empty, moves to last point in array otherwise
     public followPath(): void {
         if (this.m_path.length < 2) {

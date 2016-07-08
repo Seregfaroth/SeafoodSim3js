@@ -3,7 +3,7 @@
     private m_effortLimits: { [shipOwner: string]: number } = {};
    private m_restrictedAreas: Tile[] = [];
    private m_landingDistrubutions: { [Site: string]: number } = {};
-   private m_maxShips: number;
+   private m_maxShips: number = 1;
 
 
     public restrictArea(p_tile: Tile): void {
