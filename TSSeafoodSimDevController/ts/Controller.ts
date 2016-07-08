@@ -37,7 +37,7 @@ class Controller {
             this.simulationTick();
             ticksLeft--;
             console.log("ticksleft: " + ticksLeft);
-            debugger;
+            //debugger;
         }
     }  
 }

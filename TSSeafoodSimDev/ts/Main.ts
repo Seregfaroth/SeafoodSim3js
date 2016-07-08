@@ -11,7 +11,7 @@ class Main {
         //this.m_controller.renderLoop();
         //this.m_controller.rl();
         if (p_test) 
-            new TestSchool();
+            new Test();
     }
 
 }

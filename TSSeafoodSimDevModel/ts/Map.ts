@@ -133,8 +133,9 @@ class Map {
     }
 
     public run(): void {
+        var map: Map = this;
         this.m_schools.forEach(function (s) {
-            s.live(this);
+            s.live(map);
         });
     }
 }
