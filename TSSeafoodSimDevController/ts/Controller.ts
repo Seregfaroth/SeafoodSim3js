@@ -19,6 +19,7 @@ class Controller {
 
     simulationTick() {
         console.log("Controller running simulation");
+        
         this.m_model.run();
         this.m_view.updateMainView(this.m_model.getMap());
         
