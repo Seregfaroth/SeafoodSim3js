@@ -3,6 +3,12 @@
 declare class Test {
     constructor();
 }
+declare class TestFuelSite {
+    constructor();
+}
+declare class TestLandingSite {
+    constructor();
+}
 declare class TestSchool {
     constructor();
 }

@@ -73,10 +73,8 @@
     }
     
     public land(p_landingSite: LandingSite): void {
-        this.shuffleFish();
-        var returnedFromLandingSite: [Fish[], number] = p_landingSite.receiveFish(this.m_cargo);
-        this.m_owner.financialTransaction(returnedFromLandingSite[1]);
-        this.m_cargo = returnedFromLandingSite[0];
+        this.shuffleFish();//Might not be necessary every time
+        this.m_owner.financialTransaction(p_landingSite.receiveFish(this.m_cargo));
     }
     
     public refuel(p_fuelSite: FuelSite): void {

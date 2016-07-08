@@ -43,16 +43,16 @@ declare class Site extends Tile {
     protected m_resourceCapacity: number;
     protected m_resourceAtSite: number;
     protected m_processPerDay: number;
-    protected m_price: number;
-    constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_price: number);
+    constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number);
     getShipCapacity(): number;
     getResourceCapacity(): number;
     getResourceAtSite(): number;
     getProcessPerDay(): number;
-    getPrice(): number;
 }
 declare class FuelSite extends Site {
+    private m_price;
     constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_price: number);
+    getPrice(): number;
     provideFuel(p_desiredAmount: number): number;
     restock(): void;
 }
@@ -70,8 +70,13 @@ declare class Land extends Tile {
 }
 declare class LandingSite extends Site {
     private m_prices;
-    constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_price: number);
-    receiveFish(p_fish: Fish[]): [Fish[], number];
+    constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_prices: {
+        [fishType: number]: number;
+    });
+    getPrices(): {
+        [fishType: number]: number;
+    };
+    receiveFish(p_fish: Fish[]): number;
     processFish(): void;
 }
 declare class Mackerel extends School {

@@ -1,9 +1,14 @@
 ﻿/// <reference path="Site.ts"/>
 class FuelSite extends Site {
-
+    private m_price: number;
     public constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_price: number) {
-        super(p_shipCapacity, p_resourceCapacity, p_processPerDay, p_price);
+        super(p_shipCapacity, p_resourceCapacity, p_processPerDay);
         this.m_resourceAtSite = this.m_resourceCapacity;
+        this.m_price = p_price;
+    }
+
+    public getPrice(): number {
+        return this.m_price;
     }
     //Returns the actual amount of fuel that the site was able to provide 
     public provideFuel(p_desiredAmount: number): number {

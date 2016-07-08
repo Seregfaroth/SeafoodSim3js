@@ -2,19 +2,23 @@
 class LandingSite extends Site {
     private m_prices: { [fishType: number]: number } = {};
 
-    public constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_price: number) {
-        super(p_shipCapacity, p_resourceCapacity, p_processPerDay, p_price);
+    public constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_prices: { [fishType: number]: number }) {
+        super(p_shipCapacity, p_resourceCapacity, p_processPerDay);
         this.m_resourceAtSite = 0;
+        this.m_prices = p_prices;
+    }
+    public getPrices(): { [fishType: number]: number } {
+        return this.m_prices;
     }
 
     //Returns a list of fish that were not taken in and a price
-    public receiveFish(p_fish: Fish[]): [Fish[], number] {
+    public receiveFish(p_fish: Fish[]): number {
         var price: number = 0;
-        for (var i = 0; i < this.m_resourceCapacity - this.m_resourceAtSite; i++) {
-            price += this.m_prices[p_fish[i].getType()];
+        while (p_fish.length > 0 && this.m_resourceAtSite < this.m_resourceCapacity ) {
+            price += this.m_prices[p_fish.shift().getType()]; //OBS should be affected by age too
             this.m_resourceAtSite++;
         }
-        return [p_fish.slice(i, p_fish.length - 1), price];
+        return price
     }
 
     public processFish(): void {
