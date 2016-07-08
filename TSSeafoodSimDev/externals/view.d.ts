@@ -19,7 +19,11 @@ declare class MapView {
     private m_greenMaterial;
     private m_blueMaterial;
     private m_yellowMaterial;
+    private m_whiteMaterial;
+    private m_blackMaterial;
+    private m_fishMat;
     private m_noM;
+    private m_schools;
     constructor(p_map: Map);
     updateMapView(p_map: Map): void;
 }

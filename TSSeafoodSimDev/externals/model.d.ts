@@ -87,7 +87,7 @@ declare class Mackerel extends School {
 }
 declare class Map {
     private m_grid;
-    private m_schools;
+    m_schools: School[];
     private m_restrictions;
     private m_fishingPercentage;
     private m_ships;

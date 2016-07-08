@@ -29,12 +29,12 @@ class TKN_Renderer {
 
 class TKN_Geometry {
     public m_geometry: THREE.Geometry;
-    constructor() {
+    constructor(p_size: number = 0.8) {
         //this.m_geometry = new THREE.SphereGeometry(1, 24, 24);
-        this.m_geometry = new THREE.PlaneGeometry(0.8, 0.8);
+        this.m_geometry = new THREE.PlaneGeometry(p_size, p_size);
     }
 }
-enum e_color { Green, Blue, Red, Yellow }; 
+enum e_color { Green, Blue, Red, Yellow, White, Black }; 
 
 class TKN_material {
     public m_material: THREE.MeshBasicMaterial;
@@ -45,6 +45,8 @@ class TKN_material {
             case e_color.Blue: this.m_material.color.setHex(0x0000ff); break;
             case e_color.Red: this.m_material.color.setHex(0xff0000); break;
             case e_color.Yellow: this.m_material.color.setHex(0xffff00); break;
+            case e_color.White: this.m_material.color.setHex(0xffffff); break;
+            case e_color.Black: this.m_material.color.setHex(0x000000); break;
             default: this.m_material.color.setHex(0xff00ff); break;
         }
     }
@@ -61,8 +63,9 @@ class TKN_Mesh {
     setPosition(p_row, p_col) {
         this.m_position.row = p_row;
         this.m_position.col = p_col;
-        this.m_mesh.position.x = p_col;
-        this.m_mesh.position.y = p_row;
+        this.m_mesh.position.x = p_col-4;
+        this.m_mesh.position.y = 4-p_row;
+        //this.m_mesh.position.y = p_z;
     }
 }
 

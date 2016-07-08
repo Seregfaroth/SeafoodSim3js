@@ -18,13 +18,15 @@ declare class TKN_Renderer {
 }
 declare class TKN_Geometry {
     m_geometry: THREE.Geometry;
-    constructor();
+    constructor(p_size?: number);
 }
 declare enum e_color {
     Green = 0,
     Blue = 1,
     Red = 2,
     Yellow = 3,
+    White = 4,
+    Black = 5,
 }
 declare class TKN_material {
     m_material: THREE.MeshBasicMaterial;

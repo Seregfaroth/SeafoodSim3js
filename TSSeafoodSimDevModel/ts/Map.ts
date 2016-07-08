@@ -1,7 +1,7 @@
 ﻿/// <reference path = "../../TSSeafoodSimDev/externals/wrappers.d.ts"/>
 class Map {
     private m_grid: Tile[][] = [];
-    private m_schools: School[] = [];
+    public m_schools: School[] = [];
     private m_restrictions: Restrictions;
     private m_fishingPercentage: number = 0.01;
     private m_ships: Ship[] = [];
