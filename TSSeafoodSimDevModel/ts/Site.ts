@@ -10,7 +10,6 @@ class Site extends Tile {
         super();
         this.m_shipCapacity = p_shipCapacity;
         this.m_resourceCapacity = p_resourceCapacity;
-        this.m_resourceAtSite = 0;
         this.m_processPerDay = p_processPerDay;
         this.m_price = p_price;
     }

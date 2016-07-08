@@ -6,11 +6,8 @@ class Main {
 
     constructor() {
         console.log("loading Game");
-        //this.m_controller = new Controller();
-        this.m_controller = new Init1();
-        this.m_controller.renderLoop();
-        //this.m_controller.rl();
-        new TestSchool();
+      
+        new Test();
     }
 
 }

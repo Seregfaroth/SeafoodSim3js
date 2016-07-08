@@ -6,3 +6,6 @@ declare class Test {
 declare class TestSchool {
     constructor();
 }
+declare class TestShip {
+    constructor();
+}

@@ -3,14 +3,22 @@
 
 class TestSchool {
     constructor() {
-        var singleCod: Cod = new Cod(1, new Point(5, 5));
-        var singleMackerel: Mackerel = new Mackerel(1, new Point(5, 5));
+        var startPosition: Point = new Point(0, 0);
+        var singleCod: Cod;
+        var singleMackerel: Mackerel;
         var map: Map = new Map(5, 5, new Restrictions());
 
-        QUnit.test("Cod constructor", function (assert) {
+        QUnit.test("Cod: constructor", function (assert) {
+            //Check that singleCod is undefined
+            assert.equal(singleCod, undefined);
 
+            //Create cod and check members
+            singleCod = new Cod(1, startPosition);
+            assert.ok(singleCod);
+            assert.deepEqual(singleCod.getSize(), 1);
+            assert.deepEqual(singleCod.getPosition(), startPosition);
         });
-        QUnit.test("Cod age function", function (assert) {
+        QUnit.test("Cod: age function", function (assert) {
             var age: number = singleCod.getFish()[0].getAge();
             if (age < singleCod.getMaxAge()) {
                 singleCod.live(map);
@@ -19,7 +27,7 @@ class TestSchool {
             }
         });
 
-        QUnit.test("Cod natural death", function (assert) {
+        QUnit.test("Cod: natural death", function (assert) {
             var testingFish: Fish = singleCod.getFish()[0];
             var age: number = testingFish.getAge();
             //Make cod grow old
@@ -34,8 +42,17 @@ class TestSchool {
             //Check that fish is removed from school
             assert.deepEqual(singleCod.getFish().indexOf(testingFish), -1);
         });
+        QUnit.test("Mackerel: constructor", function (assert) {
+            //Check that singleMackerel is undefined
+            assert.equal(singleMackerel, undefined);
 
-        QUnit.test("Mackerel age function", function (assert) {
+            //Create mackerel and check members
+            singleMackerel = new Mackerel(1, startPosition);
+            assert.ok(singleMackerel);
+            assert.deepEqual(singleMackerel.getSize(), 1);
+            assert.deepEqual(singleMackerel.getPosition(), startPosition);
+        });
+        QUnit.test("Mackerel: age function", function (assert) {
             var age: number = singleMackerel.getFish()[0].getAge();
             if (age < singleMackerel.getMaxAge()) {
                 singleMackerel.live(map);
@@ -44,7 +61,7 @@ class TestSchool {
             }
         });
 
-        QUnit.test("Cod natural death", function (assert) {
+        QUnit.test("Mackerel: natural death", function (assert) {
             var testingFish: Fish = singleMackerel.getFish()[0];
             var age: number = testingFish.getAge();
             //Make cod grow old

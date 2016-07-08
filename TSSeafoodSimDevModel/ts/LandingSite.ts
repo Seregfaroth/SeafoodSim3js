@@ -2,6 +2,10 @@
 class LandingSite extends Site {
     private m_prices: { [fishType: number]: number } = {};
 
+    public constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_price: number) {
+        super(p_shipCapacity, p_resourceCapacity, p_processPerDay, p_price);
+        this.m_resourceAtSite = 0;
+    }
 
     //Returns a list of fish that were not taken in and a price
     public receiveFish(p_fish: Fish[]): [Fish[], number] {

@@ -52,6 +52,7 @@ declare class Site extends Tile {
     getPrice(): number;
 }
 declare class FuelSite extends Site {
+    constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_price: number);
     provideFuel(p_desiredAmount: number): number;
     restock(): void;
 }
@@ -69,6 +70,7 @@ declare class Land extends Tile {
 }
 declare class LandingSite extends Site {
     private m_prices;
+    constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_price: number);
     receiveFish(p_fish: Fish[]): [Fish[], number];
     processFish(): void;
 }
@@ -95,6 +97,30 @@ declare class Map {
     private getNoOfFishInTile(p_position);
     getTile(p_position: Point): Tile;
     getPathFindingMap(): number[][];
+}
+declare class ShipOwner {
+    private m_ships;
+    private m_balance;
+    private m_license;
+    private m_shipPrice;
+    private m_shipStartPosition;
+    constructor(p_shipStartPosition: Point);
+    getShips(): Ship[];
+    getBalance(): number;
+    getShipStartPosition(): Point;
+    hasLicense(): boolean;
+    obtainLisence(): void;
+    looseLisence(): void;
+    financialTransaction(p_amount: number): void;
+    buyShip(): Ship;
+    sellShip(ship: Ship): void;
+}
+declare class Model {
+    private m_map;
+    private m_shipOwner;
+    private m_goverment;
+    constructor();
+    run(): void;
 }
 declare class Ocean extends Tile {
     private m_fishCapacity;
@@ -146,6 +172,9 @@ declare class Ship {
     getCargoCapacity(): number;
     getPath(): Point[];
     setPath(p_path: Point[]): void;
+    getPosition(): Point;
+    getFuelPerMove(): number;
+    getOwner(): ShipOwner;
     followPath(): void;
     hasReachedGoal(): boolean;
     private moveTo(p_position);
@@ -153,18 +182,4 @@ declare class Ship {
     land(p_landingSite: LandingSite): void;
     refuel(p_fuelSite: FuelSite): void;
     private shuffleFish();
-}
-declare class ShipOwner {
-    private m_ships;
-    private m_balance;
-    private m_license;
-    private m_shipPrice;
-    getShips(): Ship[];
-    getBalance(): number;
-    hasLicense(): boolean;
-    obtainLisence(): void;
-    looseLisence(): void;
-    financialTransaction(p_amount: number): void;
-    buyShip(): Ship;
-    sellShip(ship: Ship): void;
 }

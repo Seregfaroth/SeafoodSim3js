@@ -9,7 +9,9 @@
     private m_owner: ShipOwner;
 
     public constructor(p_owner: ShipOwner) {
-        this.m_position = new Point(0, 0);
+        this.m_position = p_owner.getShipStartPosition();
+        this.m_cargo = [];
+        this.m_fuel = this.m_fuelCapacity;
         this.m_owner = p_owner;
     }
 
@@ -37,10 +39,20 @@
         this.m_path = p_path;
     }
 
+    public getPosition(): Point {
+        return this.m_position;
+    }
+    public getFuelPerMove(): number {
+        return this.m_fuelPerMove;
+    }
+    public getOwner(): ShipOwner {
+        return this.m_owner;
+    }
+
     //Throws an exception if path is empty, moves to last point in array otherwise
     public followPath(): void {
         if (this.m_path.length < 2) {
-            throw "Path is empty";
+            throw new Error("Path is empty");
         }
         else {
             this.m_path.shift();
@@ -84,4 +96,5 @@
             this.m_cargo[j] = fishPlaceholder;
         }
     }
+
 }

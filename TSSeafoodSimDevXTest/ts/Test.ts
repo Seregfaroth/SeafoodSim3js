@@ -1,5 +1,7 @@
 ﻿class Test {
     constructor(){
-        console.log("Ready to Test");
+        new TestSchool();
+        new TestShip();
+        new TestShipOwner();
     }
 }

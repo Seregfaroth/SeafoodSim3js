@@ -1,8 +1,13 @@
 ﻿class ShipOwner {
     private m_ships: Ship[];
-    private m_balance: number;
+    private m_balance: number = 0;
     private m_license: boolean;
     private m_shipPrice: number = 100;
+    private m_shipStartPosition: Point;
+
+    public constructor(p_shipStartPosition: Point) {
+        this.m_shipStartPosition = p_shipStartPosition;
+    }
 
     public getShips(): Ship[] {
         return this.m_ships;
@@ -12,6 +17,9 @@
         return this.m_balance;
     }
 
+    public getShipStartPosition(): Point {
+        return this.m_shipStartPosition;
+    }
     public hasLicense(): boolean {
         return this.m_license;
     }
