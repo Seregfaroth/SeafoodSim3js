@@ -1,3 +1,4 @@
+/// <reference path="wrappers.d.ts" />
 declare class AI {
     private m_balanceToBuyShip;
     private m_balanceToSellShip;
@@ -95,16 +96,35 @@ declare class Map {
     private getNoOfFishInTile(p_position);
     getTile(p_position: Point): Tile;
     getPathFindingMap(): number[][];
+    getMapWidth(): number;
+    getMapHeight(): number;
+}
+declare class ShipOwner {
+    private m_ships;
+    private m_balance;
+    private m_license;
+    private m_shipPrice;
+    getShips(): Ship[];
+    getBalance(): number;
+    hasLicense(): boolean;
+    obtainLisence(): void;
+    looseLisence(): void;
+    financialTransaction(p_amount: number): void;
+    buyShip(): Ship;
+    sellShip(ship: Ship): void;
+}
+declare class Model {
+    private m_map;
+    private m_shipOwner;
+    private m_goverment;
+    constructor();
+    run(): void;
+    getMap(): Map;
 }
 declare class Ocean extends Tile {
     private m_fishCapacity;
     private m_shipCapacity;
     constructor(p_fishCapacity: number, p_shipCapacity: number);
-}
-declare class Point {
-    row: number;
-    col: number;
-    constructor(p_row: number, p_col: number);
 }
 declare class Restrictions {
     private m_quotes;
@@ -127,7 +147,7 @@ declare class Restrictions {
     getLandingDistrubutions(): {
         [Site: string]: number;
     };
-    setMaxShips(p_n: any, number: any): void;
+    setMaxShips(p_n: number): void;
     getMaxShips(): number;
 }
 declare class Ship {
@@ -153,18 +173,4 @@ declare class Ship {
     land(p_landingSite: LandingSite): void;
     refuel(p_fuelSite: FuelSite): void;
     private shuffleFish();
-}
-declare class ShipOwner {
-    private m_ships;
-    private m_balance;
-    private m_license;
-    private m_shipPrice;
-    getShips(): Ship[];
-    getBalance(): number;
-    hasLicense(): boolean;
-    obtainLisence(): void;
-    looseLisence(): void;
-    financialTransaction(p_amount: number): void;
-    buyShip(): Ship;
-    sellShip(ship: Ship): void;
 }

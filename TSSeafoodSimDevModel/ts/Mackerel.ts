@@ -18,6 +18,6 @@ class Mackerel extends School {
         var noOfNewFish: number = Math.random() * this.m_fish.length;
         for (var i = 0; i < noOfNewFish; i++) {
             this.m_fish.push(new Fish(this.m_typeNumber));
-
+        }
     }
 }

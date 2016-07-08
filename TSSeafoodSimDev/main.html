@@ -4,8 +4,6 @@
 <head>
     <meta charset="utf-8" />
     <title>ThreeJS Test</title>
-    <!--<link rel="stylesheet" href="https://code.jquery.com/qunit/qunit-2.0.0.css">
-    <script src="https://code.jquery.com/qunit/qunit-2.0.0.js"></script>-->
 
     <script src="js/three.js"></script>
     <script src="js/pathfinding-browser.js"></script>
@@ -19,11 +17,11 @@
 
     <script src="ts/main.js"></script>
 </head>
-<body>
-    <!--<div id="qunit"></div>
-    <div id="qunit-fixture"></div>-->
-    
-
-
+<body>   
+    <script>
+        window.onload = () => {
+        var main = new Main(false);
+        }
+    </script>
 </body>
 </html>

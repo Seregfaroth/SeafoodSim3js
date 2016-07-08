@@ -1,3 +1,4 @@
+/// <reference path="wrappers.d.ts" />
 /// <reference path="../../TSSeafoodSimDevXTest/ts/declarations/qunit.d.ts" />
 /// <reference path="model.d.ts" />
 declare class Test {

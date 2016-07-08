@@ -1,4 +1,5 @@
-﻿class Map {
+﻿/// <reference path = "../../TSSeafoodSimDev/externals/wrappers.d.ts"/>
+class Map {
     private m_grid: Tile[][] = [];
     private m_schools: School[] = [];
     private m_restrictions: Restrictions;
@@ -104,5 +105,12 @@
             map.push(newRow);
         }
         return map;
+    }
+
+    public getMapWidth(): number {
+        return this.m_grid[0].length;
+    }
+    public getMapHeight(): number {
+        return this.m_grid.length;
     }
 }

@@ -1,4 +1,6 @@
-﻿/// <reference path = "../../TSSeafoodSimDevXTest/ts/declarations/qunit.d.ts"/>
+﻿
+/// <reference path = "../../TSSeafoodSimDev/externals/wrappers.d.ts"/>
+/// <reference path = "../../TSSeafoodSimDevXTest/ts/declarations/qunit.d.ts"/>
 /// <reference path = "../../TSSeafoodSimDev/externals/model.d.ts"/>
 
 class TestSchool {
@@ -8,7 +10,7 @@ class TestSchool {
         var map: Map = new Map(5, 5, new Restrictions());
 
         QUnit.test("Cod constructor", function (assert) {
-
+            assert.ok(true, "okok");
         });
         QUnit.test("Cod age function", function (assert) {
             var age: number = singleCod.getFish()[0].getAge();

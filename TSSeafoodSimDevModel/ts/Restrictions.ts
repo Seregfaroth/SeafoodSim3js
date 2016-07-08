@@ -42,7 +42,7 @@
         return this.m_landingDistrubutions;
     }
 
-    public setMaxShips(p_n; number): void {
+    public setMaxShips(p_n: number): void {
         this.m_maxShips = p_n;
     }
 

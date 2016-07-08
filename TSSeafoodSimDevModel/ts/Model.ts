@@ -16,6 +16,9 @@ class Model {
 
     run() {
         console.log("running model");
+    }
 
+    getMap(): Map {
+        return this.m_map;
     }
 }

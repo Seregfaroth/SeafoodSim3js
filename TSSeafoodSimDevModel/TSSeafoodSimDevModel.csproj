@@ -44,7 +44,6 @@
     <TypeScriptCompile Include="ts\Map.ts" />
     <TypeScriptCompile Include="ts\Model.ts" />
     <TypeScriptCompile Include="ts\Ocean.ts" />
-    <TypeScriptCompile Include="ts\Point.ts" />
     <TypeScriptCompile Include="ts\Restrictions.ts" />
     <TypeScriptCompile Include="ts\School.ts" />
     <TypeScriptCompile Include="ts\Ship.ts" />

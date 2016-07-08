@@ -26,6 +26,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="ts\Declarations\three.d.ts" />
+    <TypeScriptCompile Include="ts\Point.ts" />
     <TypeScriptCompile Include="ts\Test1.ts" />
   </ItemGroup>
   <ItemGroup>

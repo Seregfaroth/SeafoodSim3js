@@ -26,9 +26,9 @@
             if (ship.hasReachedGoal()) {
                 //Fish/land/refuel and find new path to new goal
             }
-            else if (/*goal is still valid*/true){
-                ship.followPath();
-            }
+            //else if (/*goal is still valid*/true){
+            //    ship.followPath();
+            //}
 
         });
     }
