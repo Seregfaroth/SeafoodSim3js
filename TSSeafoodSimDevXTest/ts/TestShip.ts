@@ -38,7 +38,7 @@ class TestShip {
             ship.setPath(path);
             ship.followPath();
             //Check that the function throws an error
-            assert.raises(function () {
+            assert.throws(function () {
                 ship.followPath();
             }, Error, "should throw an error");
         });

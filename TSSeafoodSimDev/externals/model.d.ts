@@ -111,6 +111,7 @@ declare class ShipOwner {
     hasLicense(): boolean;
     obtainLisence(): void;
     looseLisence(): void;
+    getShipPrice(): number;
     financialTransaction(p_amount: number): void;
     buyShip(): Ship;
     sellShip(ship: Ship): void;

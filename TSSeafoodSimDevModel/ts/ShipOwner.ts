@@ -1,8 +1,8 @@
 ﻿class ShipOwner {
-    private m_ships: Ship[];
+    private m_ships: Ship[] = [];
     private m_balance: number = 0;
-    private m_license: boolean;
-    private m_shipPrice: number = 100;
+    private m_license: boolean = true;
+    private m_shipPrice: number = 100; // Should maybe be stored in map?
     private m_shipStartPosition: Point;
 
     public constructor(p_shipStartPosition: Point) {
@@ -32,6 +32,9 @@
         this.m_license = false;
     }
 
+    public getShipPrice(): number {
+        return this.m_shipPrice;
+    }
     public financialTransaction(p_amount: number): void {
         this.m_balance += p_amount;
     }
@@ -45,7 +48,7 @@
 
     public sellShip(ship: Ship): void {
         if (this.m_ships.indexOf(ship) === -1) {
-            throw "Ship owner does not own this ship";
+            throw new Error("Ship owner does not own this ship");
         }
         else {
             this.m_ships.splice(this.m_ships.indexOf(ship), 1);

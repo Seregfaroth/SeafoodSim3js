@@ -9,3 +9,6 @@ declare class TestSchool {
 declare class TestShip {
     constructor();
 }
+declare class TestShipOwner {
+    constructor();
+}
