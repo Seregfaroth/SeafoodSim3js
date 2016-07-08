@@ -131,4 +131,10 @@ class Map {
     public getMapHeight(): number {
         return this.m_grid.length;
     }
+
+    public run(): void {
+        this.m_schools.forEach(function (s) {
+            s.live(this);
+        });
+    }
 }

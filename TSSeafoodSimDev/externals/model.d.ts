@@ -109,6 +109,7 @@ declare class Map {
     getPathFindingMap(): number[][];
     getMapWidth(): number;
     getMapHeight(): number;
+    run(): void;
 }
 declare class ShipOwner {
     private m_ships;
