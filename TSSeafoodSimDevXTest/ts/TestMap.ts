@@ -53,7 +53,7 @@
             assert.deepEqual(fish.length, capacity, "number of fish should be equal to capacity");
             assert.deepEqual(map.getNoOfFishInTile(fishingPoint), noOfFish - fish.length, "the fished fish should be removed from map");
             assert.deepEqual(codScool.getSize(), noOfFish - fish.length, "the fished fish should be removed from cod school");
-        }
+        });
 
 
     }
