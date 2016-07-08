@@ -44,15 +44,16 @@ declare class Site extends Tile {
     protected m_resourceCapacity: number;
     protected m_resourceAtSite: number;
     protected m_processPerDay: number;
-    protected m_price: number;
-    constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_price: number);
+    constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number);
     getShipCapacity(): number;
     getResourceCapacity(): number;
     getResourceAtSite(): number;
     getProcessPerDay(): number;
-    getPrice(): number;
 }
 declare class FuelSite extends Site {
+    private m_price;
+    constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_price: number);
+    getPrice(): number;
     provideFuel(p_desiredAmount: number): number;
     restock(): void;
 }
@@ -70,7 +71,13 @@ declare class Land extends Tile {
 }
 declare class LandingSite extends Site {
     private m_prices;
-    receiveFish(p_fish: Fish[]): [Fish[], number];
+    constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_prices: {
+        [fishType: number]: number;
+    });
+    getPrices(): {
+        [fishType: number]: number;
+    };
+    receiveFish(p_fish: Fish[]): number;
     processFish(): void;
 }
 declare class Mackerel extends School {
@@ -86,14 +93,18 @@ declare class Map {
     private m_ships;
     constructor(p_size: number, p_noOfSchools: number, p_restrictions: Restrictions);
     getRestrictions(): Restrictions;
+    getGrid(): Tile[][];
+    getShips(): Ship[];
     private placeSchools(p_n);
+    addSchool(p_school: School): void;
     private generateMap(p_size);
     addShip(ship: Ship): void;
     removeShip(ship: Ship): void;
     getNoOfShips(): number;
+    getFishingPercentage(): number;
     fish(p_position: Point, p_capacity: number): Fish[];
     private getSchoolsInTile(p_position);
-    private getNoOfFishInTile(p_position);
+    getNoOfFishInTile(p_position: Point): number;
     getTile(p_position: Point): Tile;
     getPathFindingMap(): number[][];
     getMapWidth(): number;
@@ -104,11 +115,15 @@ declare class ShipOwner {
     private m_balance;
     private m_license;
     private m_shipPrice;
+    private m_shipStartPosition;
+    constructor(p_shipStartPosition: Point);
     getShips(): Ship[];
     getBalance(): number;
+    getShipStartPosition(): Point;
     hasLicense(): boolean;
     obtainLisence(): void;
     looseLisence(): void;
+    getShipPrice(): number;
     financialTransaction(p_amount: number): void;
     buyShip(): Ship;
     sellShip(ship: Ship): void;
@@ -166,6 +181,9 @@ declare class Ship {
     getCargoCapacity(): number;
     getPath(): Point[];
     setPath(p_path: Point[]): void;
+    getPosition(): Point;
+    getFuelPerMove(): number;
+    getOwner(): ShipOwner;
     followPath(): void;
     hasReachedGoal(): boolean;
     private moveTo(p_position);

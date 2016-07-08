@@ -1,4 +1,4 @@
-﻿class AI {
+﻿ class AI {
     private m_balanceToBuyShip: number;
     private m_balanceToSellShip: number;
     

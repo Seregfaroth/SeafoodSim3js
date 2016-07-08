@@ -4,6 +4,21 @@
 declare class Test {
     constructor();
 }
+declare class TestFuelSite {
+    constructor();
+}
+declare class TestLandingSite {
+    constructor();
+}
+declare class TestMap {
+    constructor();
+}
 declare class TestSchool {
+    constructor();
+}
+declare class TestShip {
+    constructor();
+}
+declare class TestShipOwner {
     constructor();
 }

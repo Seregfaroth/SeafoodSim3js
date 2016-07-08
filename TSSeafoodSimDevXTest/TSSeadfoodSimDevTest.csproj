@@ -27,7 +27,12 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="ts\Test.ts" />
+    <TypeScriptCompile Include="ts\TestFuelSite.ts" />
+    <TypeScriptCompile Include="ts\TestLandingSite.ts" />
+    <TypeScriptCompile Include="ts\TestMap.ts" />
     <TypeScriptCompile Include="ts\TestSchool.ts" />
+    <TypeScriptCompile Include="ts\TestShip.ts" />
+    <TypeScriptCompile Include="ts\TestShipOwner.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="web.Debug.config">

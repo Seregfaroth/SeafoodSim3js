@@ -10,7 +10,7 @@ class Model {
     constructor() {
         console.log("constructing model");
         this.m_map = new Map(8, 4, null);
-        this.m_shipOwner = new ShipOwner();
+        this.m_shipOwner = new ShipOwner(new Point(3,3));
         this.m_goverment = new Government();
     }
 
