@@ -5,7 +5,7 @@
 
 class TestSchool {
     constructor() {
-        var startPosition: Point = new Point(0, 0); 
+        var startPosition: Point2 = new Point2(0, 0); 
         var singleCod: Cod;
         var singleMackerel: Mackerel;
         var map: Map = new Map(5, 5, new Restrictions());

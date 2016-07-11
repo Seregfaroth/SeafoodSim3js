@@ -1,11 +1,12 @@
-﻿class ShipOwner {
+﻿/// <reference path = "../../TSSeafoodSimDev/externals/wrappers.d.ts"/>
+class ShipOwner {
     private m_ships: Ship[] = [];
     private m_balance: number = 10001;
     private m_license: boolean = true;
     private m_shipPrice: number = 100; // Should maybe be stored in map?
-    private m_shipStartPosition: Point;
+    private m_shipStartPosition: Point2;
 
-    public constructor(p_shipStartPosition: Point) {
+    public constructor(p_shipStartPosition: Point2) {
         this.m_shipStartPosition = p_shipStartPosition;
     }
 
@@ -17,7 +18,7 @@
         return this.m_balance;
     }
 
-    public getShipStartPosition(): Point {
+    public getShipStartPosition(): Point2 {
         return this.m_shipStartPosition;
     }
     public hasLicense(): boolean {

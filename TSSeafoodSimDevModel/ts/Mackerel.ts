@@ -1,8 +1,8 @@
 ﻿/// <reference path="School.ts"/>
-
+/// <reference path = "../../TSSeafoodSimDev/externals/wrappers.d.ts"/>
 class Mackerel extends School {
 
-    public constructor(p_size: number, p_position: Point) {
+    public constructor(p_size: number, p_position: Point2) {
         super(p_size, p_position);
         this.m_maxAge = 18;
         this.m_typeNumber = 1;

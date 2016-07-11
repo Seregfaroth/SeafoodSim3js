@@ -1,11 +1,11 @@
 ﻿class TestShipOwner {
 
     public constructor() {
-        var owner: ShipOwner = new ShipOwner(new Point(0, 0));
+        var owner: ShipOwner = new ShipOwner(new Point2(0, 0));
 
         QUnit.test("ShipOwner: constructor", function (assert) {
             var testOwner: ShipOwner;
-            var point: Point = new Point(0, 0);
+            var point: Point2 = new Point2(0, 0);
             assert.equal(testOwner, undefined);
             testOwner = new ShipOwner(point);
             //Check that the ship owner has been created with the correct memebers
@@ -44,7 +44,7 @@
         });
 
         QUnit.test("ShipOwner: sell ship exception", function (assert) {
-            var ship: Ship = new Ship(new ShipOwner(new Point(1,1)));
+            var ship: Ship = new Ship(new ShipOwner(new Point2(1,1)));
             assert.throws(function () {
                 owner.sellShip(ship);
             }, Error, "should throw an error");

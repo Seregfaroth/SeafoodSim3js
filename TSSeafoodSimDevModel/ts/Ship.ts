@@ -1,10 +1,11 @@
-﻿class Ship {
+﻿/// <reference path = "../../TSSeafoodSimDev/externals/wrappers.d.ts"/>
+class Ship {
     private m_fuel: number;
     private m_cargo: Fish[];
     private m_fuelCapacity: number = 100;
     private m_cargoCapacity: number = 100;
-    private m_position: Point;
-    private m_path: Point[];
+    private m_position: Point2;
+    private m_path: Point2[];
     private m_fuelPerMove: number = 1;
     private m_owner: ShipOwner;
 
@@ -31,15 +32,15 @@
         return this.m_cargoCapacity;
     }
 
-    public getPath(): Point[] {
+    public getPath(): Point2[] {
         return this.m_path;
     }
 
-    public setPath(p_path: Point[]) {
+    public setPath(p_path: Point2[]) {
         this.m_path = p_path;
     }
 
-    public getPosition(): Point {
+    public getPosition(): Point2 {
         return this.m_position;
     }
     public getFuelPerMove(): number {
@@ -65,7 +66,7 @@
         return this.m_path.length === 1 && this.m_path[0] === this.m_position;
     }
 
-    private moveTo(p_position: Point): void {
+    private moveTo(p_position: Point2): void {
         this.m_position = p_position;
         this.m_fuel -= this.m_fuelPerMove;
     }

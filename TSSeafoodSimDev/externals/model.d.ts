@@ -9,14 +9,23 @@ declare class AI {
     private findLandingSite(p_map);
     private findFuelSite(p_map);
 }
+declare class Fish {
+    private m_age;
+    private m_maximumAge;
+    private m_type;
+    constructor(p_type: number, p_age?: number);
+    getType(): number;
+    getAge(): number;
+    age(): void;
+}
 declare abstract class School {
-    protected m_position: Point;
+    protected m_position: Point2;
     protected m_fish: Fish[];
     protected m_maxAge: number;
     protected m_typeNumber: number;
-    constructor(p_size: number, p_position: Point);
+    constructor(p_size: number, p_position: Point2);
     getSize(): number;
-    getPosition(): Point;
+    getPosition(): Point2;
     getFish(): Fish[];
     shuffleFish(): void;
     live(p_map: Map): void;
@@ -26,18 +35,9 @@ declare abstract class School {
     protected abstract move(p_map: Map): void;
 }
 declare class Cod extends School {
-    constructor(p_size: number, p_position: Point);
+    constructor(p_size: number, p_position: Point2);
     protected move(p_map: Map): void;
     protected recruit(): void;
-}
-declare class Fish {
-    private m_age;
-    private m_maximumAge;
-    private m_type;
-    constructor(p_type: number, p_age?: number);
-    getType(): number;
-    getAge(): number;
-    age(): void;
 }
 declare class Tile {
 }
@@ -83,7 +83,7 @@ declare class LandingSite extends Site {
     processFish(): void;
 }
 declare class Mackerel extends School {
-    constructor(p_size: number, p_position: Point);
+    constructor(p_size: number, p_position: Point2);
     protected move(): void;
     protected recruit(): void;
 }
@@ -104,10 +104,10 @@ declare class Map {
     removeShip(ship: Ship): void;
     getNoOfShips(): number;
     getFishingPercentage(): number;
-    fish(p_position: Point, p_capacity: number): Fish[];
+    fish(p_position: Point2, p_capacity: number): Fish[];
     private getSchoolsInTile(p_position);
-    getNoOfFishInTile(p_position: Point): number;
-    getTile(p_position: Point): Tile;
+    getNoOfFishInTile(p_position: Point2): number;
+    getTile(p_position: Point2): Tile;
     getPathFindingMap(): number[][];
     getMapWidth(): number;
     getMapHeight(): number;
@@ -119,10 +119,10 @@ declare class ShipOwner {
     private m_license;
     private m_shipPrice;
     private m_shipStartPosition;
-    constructor(p_shipStartPosition: Point);
+    constructor(p_shipStartPosition: Point2);
     getShips(): Ship[];
     getBalance(): number;
-    getShipStartPosition(): Point;
+    getShipStartPosition(): Point2;
     hasLicense(): boolean;
     obtainLisence(): void;
     looseLisence(): void;
@@ -183,9 +183,9 @@ declare class Ship {
     getCargo(): Fish[];
     getFuelCapacity(): number;
     getCargoCapacity(): number;
-    getPath(): Point[];
-    setPath(p_path: Point[]): void;
-    getPosition(): Point;
+    getPath(): Point2[];
+    setPath(p_path: Point2[]): void;
+    getPosition(): Point2;
     getFuelPerMove(): number;
     getOwner(): ShipOwner;
     getCargoSize(): number;

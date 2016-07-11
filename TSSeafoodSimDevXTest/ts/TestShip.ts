@@ -3,7 +3,7 @@
 
 class TestShip {
     constructor() {
-        var owner: ShipOwner = new ShipOwner(new Point(0,0));
+        var owner: ShipOwner = new ShipOwner(new Point2(0,0));
         var ship: Ship = new Ship(owner);
 
 
@@ -20,8 +20,8 @@ class TestShip {
         });
 
         QUnit.test("Ship: Follow path", function (assert) {
-            var point: Point = new Point(ship.getPosition().row, ship.getPosition().col + 1);
-            var path: Point[] = [ship.getPosition(), point, point];
+            var point: Point2 = new Point2(ship.getPosition().row, ship.getPosition().col + 1);
+            var path: Point2[] = [ship.getPosition(), point, point];
             var fuel: number = ship.getFuel();
             ship.setPath(path);
             assert.notDeepEqual(ship.getPosition(), point);
@@ -34,7 +34,7 @@ class TestShip {
         });
 
         QUnit.test("Ship: follow path exception", function (assert) {
-            var path: Point[] = [new Point(0, 0), new Point(1, 0)];
+            var path: Point2[] = [new Point2(0, 0), new Point2(1, 0)];
             ship.setPath(path);
             ship.followPath();
             //Check that the function throws an error
@@ -44,8 +44,8 @@ class TestShip {
         });
 
         QUnit.test("Ship: has reached goal", function (assert) {
-            var goal: Point = new Point(ship.getPosition().row, ship.getPosition().col + 1);
-            var path: Point[] = [ship.getPosition(), goal];
+            var goal: Point2 = new Point2(ship.getPosition().row, ship.getPosition().col + 1);
+            var path: Point2[] = [ship.getPosition(), goal];
             ship.setPath(path);
             assert.ok(!ship.hasReachedGoal());
             ship.followPath();
@@ -67,7 +67,7 @@ class TestShip {
         QUnit.test("Ship: refuel", function (assert) {
             var fuelSite: FuelSite = new FuelSite(1, 100, 1, 1);
             var balance: number = ship.getOwner().getBalance();
-            ship.setPath([new Point(0, 0), new Point(0, 1)]);
+            ship.setPath([new Point2(0, 0), new Point2(0, 1)]);
             ship.followPath();
             var fuel: number = ship.getFuel();
             //Check that the ship has used fuel

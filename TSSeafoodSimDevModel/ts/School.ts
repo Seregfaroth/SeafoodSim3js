@@ -1,11 +1,13 @@
-﻿abstract class School {
-    protected m_position: Point;
+﻿/// <reference path = "../../TSSeafoodSimDev/externals/wrappers.d.ts"/>
+/// <reference path="Fish.ts"/>
+abstract class School {
+    protected m_position: Point2;
     protected m_fish: Fish[];
     protected m_maxAge: number;
     protected m_typeNumber: number;
 
 
-    public constructor(p_size: number, p_position: Point) {
+    public constructor(p_size: number, p_position: Point2) {
         this.m_position = p_position;
         this.m_fish = [];
     }
@@ -14,7 +16,7 @@
         return this.m_fish.length;
     }
 
-    public getPosition(): Point {
+    public getPosition(): Point2 {
         return this.m_position;
     }
 

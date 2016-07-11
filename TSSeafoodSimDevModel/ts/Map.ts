@@ -24,8 +24,8 @@ class Map {
         return this.m_ships;
     }
     private placeSchools(p_n) {
-        this.addSchool(new Cod(100, new Point(1, 1)));
-        this.addSchool(new Cod(100, new Point(4, 4)));
+        this.addSchool(new Cod(100, new Point2(1, 1)));
+        this.addSchool(new Cod(100, new Point2(4, 4)));
     }
     public addSchool(p_school: School): void {
         this.m_schools.push(p_school);
@@ -69,7 +69,7 @@ class Map {
         return this.m_fishingPercentage;
     }
 
-    public fish(p_position: Point, p_capacity: number): Fish[] {
+    public fish(p_position: Point2, p_capacity: number): Fish[] {
         var percentage: number = this.m_fishingPercentage;
         var noOfFishInTile: number = this.getNoOfFishInTile(p_position);
         var fish: Fish[] = [];
@@ -87,7 +87,7 @@ class Map {
         });
         return fish;
     }
-    private getSchoolsInTile(p_position: Point): School[] {
+    private getSchoolsInTile(p_position: Point2): School[] {
         var list: School[] = [];
         this.m_schools.forEach(function (s) {
             if (s.getPosition() === p_position) {
@@ -97,7 +97,7 @@ class Map {
         });
         return list;
     }
-    public getNoOfFishInTile(p_position: Point): number {
+    public getNoOfFishInTile(p_position: Point2): number {
         var num: number = 0;
         this.getSchoolsInTile(p_position).forEach(function (s) {
            num += s.getSize();
@@ -105,7 +105,7 @@ class Map {
         return num;
     }
 
-    public getTile(p_position: Point): Tile {
+    public getTile(p_position: Point2): Tile {
         return this.m_grid[p_position.row][p_position.col];
     }
 
