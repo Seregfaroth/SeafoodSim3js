@@ -88,6 +88,6 @@ class MapView {
         }
         //debugger;
         this.m_renderer.render(this.m_camera, this.m_scene );
-        debugger;
+        //debugger;
     }
 }
