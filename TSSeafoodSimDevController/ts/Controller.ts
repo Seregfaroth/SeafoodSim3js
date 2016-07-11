@@ -25,7 +25,6 @@ class Controller {
         
     }
 
-
     runSimulation(p_ticks?: number) {
         var ticksLeft;
         if (p_ticks != undefined)
