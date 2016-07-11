@@ -1,24 +1,38 @@
 /// <reference path="../../TSSeafoodSimDevThirdPartyWrappers/ts/Declarations/three.d.ts" />
-declare class Point {
+declare class Point2 {
     row: number;
     col: number;
     constructor(p_row: number, p_col: number);
 }
+declare class Point3 {
+    row: number;
+    col: number;
+    depth: number;
+    constructor(p_row: number, p_col: number, p_depth: number);
+}
 declare class TKN_Scene {
-    m_scene: THREE.Scene;
+    private m_scene;
     constructor();
+    scene: THREE.Scene;
+    add(p_mesh: TKN_Mesh): void;
 }
 declare class TKN_Camera {
-    m_camera: THREE.Camera;
+    private m_camera;
+    private m_position;
     constructor();
+    position: Point3;
+    camera: THREE.Camera;
 }
 declare class TKN_Renderer {
-    m_renderer: THREE.WebGLRenderer;
+    private m_renderer;
     constructor();
+    render(p_cam: TKN_Camera, p_scene: TKN_Scene): void;
+    domElement: any;
 }
 declare class TKN_Geometry {
-    m_geometry: THREE.Geometry;
+    private m_geometry;
     constructor(p_size?: number);
+    geometry: THREE.Geometry;
 }
 declare enum e_color {
     Green = 0,
@@ -29,13 +43,16 @@ declare enum e_color {
     Black = 5,
 }
 declare class TKN_material {
-    m_material: THREE.MeshBasicMaterial;
+    private m_material;
     constructor(p_color: e_color);
+    material: THREE.Material;
 }
 declare class TKN_Mesh {
-    m_mesh: THREE.Mesh;
-    m_position: Point;
-    m_geometry: THREE.Geometry;
+    private m_mesh;
+    private m_position;
+    private m_geometry;
+    private m_material;
     constructor(p_geometry: TKN_Geometry, p_material: TKN_material);
-    setPosition(p_row: any, p_col: any): void;
+    position: Point2;
+    mesh: THREE.Mesh;
 }

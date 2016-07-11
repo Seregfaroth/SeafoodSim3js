@@ -3,14 +3,14 @@
         var map: Map = new Map(0, 0, new Restrictions());
 
         QUnit.test("Map: add ship", function (assert) {
-            var ship: Ship = new Ship(new ShipOwner(new Point(0, 0)));
+            var ship: Ship = new Ship(new ShipOwner(new Point2(0, 0)));
             assert.deepEqual(map.getShips().indexOf(ship), -1, "ship should not be in map");
             map.addShip(ship);
             assert.ok(map.getShips().indexOf(ship) > -1, "ship should be in map");
         });
 
         QUnit.test("Map: remove ship", function (assert) {
-            var ship: Ship = new Ship(new ShipOwner(new Point(0, 0)));
+            var ship: Ship = new Ship(new ShipOwner(new Point2(0, 0)));
             map.addShip(ship);
             assert.ok(map.getShips().indexOf(ship) > -1, "ship should be in map");
             map.removeShip(ship);
@@ -18,9 +18,9 @@
         });
         QUnit.test("Map: get number of fish in tile", function (assert) {
             map = new Map(0, 0, new Restrictions());
-            var point: Point = new Point(0, 0);
+            var point: Point2 = new Point2(0, 0);
             assert.deepEqual(map.getNoOfFishInTile(point), 0, "there should be no fish in tile");
-            map.addSchool(new Cod(100, new Point(0,1)));
+            map.addSchool(new Cod(100, new Point2(0,1)));
             assert.deepEqual(map.getNoOfFishInTile(point), 0, "there should be no fish in tile");
             map.addSchool(new Cod(100, point));
             //Check that fish have been added
@@ -31,7 +31,7 @@
 
         QUnit.test("Map: fish", function (assert) {
             map = new Map(0, 0, new Restrictions());
-            var fishingPoint: Point = new Point(0, 0);
+            var fishingPoint: Point2 = new Point2(0, 0);
             var noOfFish: number = 1000;
             var codScool: Cod = new Cod(noOfFish, fishingPoint)
             map.addSchool(codScool);
@@ -44,7 +44,7 @@
 
         QUnit.test("Map: fish with full capacity", function (assert) {
             map = new Map(0, 0, new Restrictions());
-            var fishingPoint: Point = new Point(0, 0);
+            var fishingPoint: Point2 = new Point2(0, 0);
             var noOfFish: number = 100000;
             var codScool: Cod = new Cod(noOfFish, fishingPoint)
             map.addSchool(codScool);

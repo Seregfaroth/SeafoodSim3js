@@ -24,7 +24,7 @@ class MapView {
         this.m_renderer = new TKN_Renderer();
         this.m_camera = new TKN_Camera();
         //this.m_camera.m_camera.position.z = 5;
-        this.m_camera.m_camera.lookAt(new THREE.Vector3(0, 0, 0));
+        //this.m_camera.m_camera.lookAt(new THREE.Vector3(0, 0, 0));
         this.m_scene = new TKN_Scene();
         this.m_geometry = new TKN_Geometry();
         this.m_redMaterial = new TKN_material(e_color.Red);
@@ -36,12 +36,14 @@ class MapView {
         this.m_fishMat = new TKN_material(8);
         this.m_noM = new TKN_material(1);
 
+        //this.m_camera.position = new Point
+
         //create fishses
         var i = 0;
         for (var school of p_map.m_schools) {
             this.m_schools[i] = new TKN_Mesh(new TKN_Geometry(0.1), this.m_whiteMaterial);
-            this.m_schools[i].setPosition(i, i);//
-            this.m_scene.m_scene.add(this.m_schools[i].m_mesh);
+            this.m_schools[i].position = new Point2(i, i);
+            this.m_scene.add(this.m_schools[i]);
             i++;
         }
 
@@ -53,7 +55,7 @@ class MapView {
             var rot = 0;
             this.m_mapTile[h] = [];
             for (var w = 0; w < p_map.getMapWidth(); w++) {
-                var pos = new Point(h, w);
+                var pos = new Point2(h, w);
                 
                 console.log((p_map.getTile(pos) instanceof  Ocean) + " " + h + "  " + w);
                 if (p_map.getTile(pos) instanceof  Ocean) 
@@ -66,15 +68,15 @@ class MapView {
                     this.m_mapTile[h][w] = new TKN_Mesh(this.m_geometry, this.m_yellowMaterial); 
                 else
                     this.m_mapTile[h][w] = new TKN_Mesh(this.m_geometry, this.m_noM); 
-                this.m_mapTile[h][w].setPosition(h, w);
+                this.m_mapTile[h][w].position = new Point2(h, w);
                 
-                this.m_scene.m_scene.add(this.m_mapTile[h][w].m_mesh);  
+                this.m_scene.add(this.m_mapTile[h][w]);  
                 //this.m_renderer.m_renderer.render(this.m_scene.m_scene, this.m_camera.m_camera);  
                 //debugger;       
             }          
         }
         
-        document.body.insertBefore(this.m_renderer.m_renderer.domElement, document.body.firstChild);
+        document.body.insertBefore(this.m_renderer.domElement, document.body.firstChild);
         
     }
 
@@ -82,9 +84,10 @@ class MapView {
         console.log("updating MapView");
         var i = 0;
         for (var sc of this.m_schools) {
-            sc.setPosition(p_map.m_schools[i].getPosition().row, p_map.m_schools[i++].getPosition().col);
+            sc.position = new Point2(p_map.m_schools[i].getPosition().row, p_map.m_schools[i++].getPosition().col);
         }
-        this.m_renderer.m_renderer.render(this.m_scene.m_scene, this.m_camera.m_camera);
-        debugger;
+        //debugger;
+        this.m_renderer.render(this.m_camera, this.m_scene );
+        //debugger;
     }
 }

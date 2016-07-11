@@ -11,7 +11,7 @@ class Model {
     constructor() {
         console.log("constructing model");
         this.m_map = new Map(8, 4, new Restrictions());
-        this.m_shipOwner = new ShipOwner(new Point(3,3));
+        this.m_shipOwner = new ShipOwner(new Point2(3,3));
         this.m_goverment = new Government();
         this.m_ai = new AI();
     }
