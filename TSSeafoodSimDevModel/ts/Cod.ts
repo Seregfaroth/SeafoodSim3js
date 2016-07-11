@@ -3,7 +3,7 @@
 class Cod extends School{
     public constructor(p_size: number, p_position: Point2) {
         super(p_size, p_position);
-        this.m_maxAge = 10;
+        this.m_maxAge = 3;
         this.m_typeNumber = 0;
         for (var i = 0; i < p_size; i++) {
             this.m_fish.push(new Fish(this.m_typeNumber, Math.floor(Math.random() * this.m_maxAge)));
@@ -11,8 +11,8 @@ class Cod extends School{
     }
    
     //Move with a probability of 25% with a random direction
-    ///OBS need to check if index is inside map
     protected move(p_map: Map): void {
+        //console.log("Original position: " + JSON.stringify(this.m_position));
         var move: boolean = Math.random() < 0.25;
         
         if (move) {
@@ -60,12 +60,16 @@ class Cod extends School{
             } while (!(p_map.getTile(newPoint) instanceof Ocean));
             this.m_position = newPoint;
         }
+        //console.log("new postion: " + JSON.stringify(this.m_position));
     }
 
-    protected recruit(): void {
-        var noOfNewFish: number = Math.random() * this.m_fish.length;
-        for (var i = 0; i < noOfNewFish; i++) {
-            this.m_fish.push(new Fish(this.m_typeNumber));
+    protected recruit(p_map: Map): void {
+        if ((<Ocean>p_map.getTile(this.m_position)).getFishCapacity() > this.getSize()) {
+            //Only recruit if the tile is not full
+            var noOfNewFish: number = Math.random() * this.m_fish.length;
+            for (var i = 0; i < noOfNewFish; i++) {
+                this.m_fish.push(new Fish(this.m_typeNumber));
+            }
         }
     }
 

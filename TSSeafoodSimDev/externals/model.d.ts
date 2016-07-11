@@ -31,13 +31,13 @@ declare abstract class School {
     live(p_map: Map): void;
     private age();
     getMaxAge(): number;
-    protected abstract recruit(): void;
+    protected abstract recruit(p_map: Map): void;
     protected abstract move(p_map: Map): void;
 }
 declare class Cod extends School {
     constructor(p_size: number, p_position: Point2);
     protected move(p_map: Map): void;
-    protected recruit(): void;
+    protected recruit(p_map: Map): void;
 }
 declare class Tile {
 }
@@ -68,17 +68,20 @@ declare class Government {
     getBalance(): number;
     getTaxingRate(): number;
     setTaxingRate(rate: number): void;
+    getRestrictions(): Restrictions;
 }
 declare class Land extends Tile {
 }
 declare class LandingSite extends Site {
     private m_prices;
+    private m_untaxedValue;
     constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_prices: {
         [fishType: number]: number;
     });
     getPrices(): {
         [fishType: number]: number;
     };
+    tax(p_taxingRate: number): number;
     receiveFish(p_fish: Fish[]): number;
     processFish(): void;
 }
@@ -112,6 +115,7 @@ declare class Map {
     getMapWidth(): number;
     getMapHeight(): number;
     run(): void;
+    getLandingSites(): LandingSite[];
 }
 declare class ShipOwner {
     private m_ships;
@@ -119,7 +123,9 @@ declare class ShipOwner {
     private m_license;
     private m_shipPrice;
     private m_shipStartPosition;
-    constructor(p_shipStartPosition: Point2);
+    private m_id;
+    constructor(p_shipStartPosition: Point2, p_id: string);
+    getId(): string;
     getShips(): Ship[];
     getBalance(): number;
     getShipStartPosition(): Point2;
@@ -133,17 +139,21 @@ declare class ShipOwner {
 }
 declare class Model {
     private m_map;
-    private m_shipOwner;
+    private m_shipOwners;
     private m_goverment;
     private m_ai;
     constructor();
     run(): void;
     getMap(): Map;
+    getGovernment(): Government;
+    createShipOwner(p_startingPoint: Point2): void;
+    updateScore(): void;
 }
 declare class Ocean extends Tile {
     private m_fishCapacity;
     private m_shipCapacity;
     constructor(p_fishCapacity: number, p_shipCapacity: number);
+    getFishCapacity(): number;
 }
 declare class Restrictions {
     private m_quotes;
@@ -168,6 +178,7 @@ declare class Restrictions {
     };
     setMaxShips(p_n: number): void;
     getMaxShips(): number;
+    isRestricted(p_tile: Tile): boolean;
 }
 declare class Ship {
     private m_fuel;

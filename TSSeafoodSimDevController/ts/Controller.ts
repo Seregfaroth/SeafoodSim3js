@@ -5,10 +5,12 @@
 class Controller {
     private m_view: MainView;
     private m_model: Model;
+    private m_eventHandler: EventHandler;
     constructor() {
         console.log("Controller loading");
         this.m_model = new Model();
         this.m_view = new MainView(this.m_model.getMap()); 
+        this.m_eventHandler = new EventHandler(this);
         //debugger;
         if (this.m_model != undefined && this.m_view != undefined) {
             //debugger;
@@ -17,6 +19,13 @@ class Controller {
         }
     }
 
+    public getModel(): Model {
+        return this.m_model;
+    }
+
+    public getEventHandler(): EventHandler {
+        return this.m_eventHandler;
+    }
     simulationTick() {
         console.log("Controller running simulation");
         
@@ -26,6 +35,7 @@ class Controller {
     }
 
     runSimulation(p_ticks?: number) {
+        
         var ticksLeft;
         if (p_ticks != undefined)
             ticksLeft = p_ticks;
@@ -38,8 +48,13 @@ class Controller {
             ticksLeft--;
             console.log("ticksleft: " + ticksLeft);
             //debugger;
+
         }
     }  
+
+    public pause(): void {
+        //TODO
+    }
 }
 
 

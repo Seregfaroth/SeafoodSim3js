@@ -37,9 +37,10 @@ abstract class School {
     }
 
     public live(p_map: Map): void {
+        console.log("live amount: " + this.m_fish.length);
         this.move(p_map);
         this.age();
-        this.recruit();
+        this.recruit(p_map);
     }
 
     private age(): void {
@@ -57,6 +58,6 @@ abstract class School {
     public getMaxAge(): number {
         return this.m_maxAge;
     }
-    protected abstract recruit(): void
+    protected abstract recruit(p_map:Map): void
     protected abstract move(p_map: Map): void;
 }

@@ -3,7 +3,7 @@
 
 class TestShip {
     constructor() {
-        var owner: ShipOwner = new ShipOwner(new Point2(0,0));
+        var owner: ShipOwner = new ShipOwner(new Point2(0,0), "0");
         var ship: Ship = new Ship(owner);
 
 

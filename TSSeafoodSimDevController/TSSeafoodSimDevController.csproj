@@ -26,6 +26,9 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="ts\Controller.ts" />
+    <TypeScriptCompile Include="ts\declarations\jquery.d.ts" />
+    <TypeScriptCompile Include="ts\declarations\jqueryui.d.ts" />
+    <TypeScriptCompile Include="ts\EventHandler.ts" />
   </ItemGroup>
   <ItemGroup>
     <None Include="web.Debug.config">

@@ -24,6 +24,7 @@ declare class MapView {
     private m_fishMat;
     private m_noM;
     private m_schools;
+    private m_ships;
     constructor(p_map: Map);
     updateMapView(p_map: Map): void;
 }

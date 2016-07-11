@@ -23,5 +23,9 @@
     public setTaxingRate(rate: number): void {
         this.m_taxingRate = rate;
     }
+
+    public getRestrictions(): Restrictions {
+        return this.m_restrictions;
+    }
     
 }

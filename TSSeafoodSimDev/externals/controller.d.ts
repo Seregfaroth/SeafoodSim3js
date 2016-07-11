@@ -4,7 +4,23 @@
 declare class Controller {
     private m_view;
     private m_model;
+    private m_eventHandler;
     constructor();
+    getModel(): Model;
+    getEventHandler(): EventHandler;
     simulationTick(): void;
     runSimulation(p_ticks?: number): void;
+    pause(): void;
+}
+declare class EventHandler {
+    private m_controller;
+    constructor(p_controller: Controller);
+    bindFunctions(): void;
+    setTax(p_n: number): void;
+    setQuote(owner: string, p_n: number): void;
+    setEffortLimit(owner: string, p_n: number): void;
+    setLandingDistrubution(site: string, p_n: number): void;
+    start(): void;
+    pause(): void;
+    restrictArea(p_tile: Tile): void;
 }

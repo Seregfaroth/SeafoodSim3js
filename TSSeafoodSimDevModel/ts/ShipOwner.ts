@@ -5,11 +5,15 @@ class ShipOwner {
     private m_license: boolean = true;
     private m_shipPrice: number = 100; // Should maybe be stored in map?
     private m_shipStartPosition: Point2;
+    private m_id: string;
 
-    public constructor(p_shipStartPosition: Point2) {
+    public constructor(p_shipStartPosition: Point2, p_id: string) {
         this.m_shipStartPosition = p_shipStartPosition;
+        this.m_id = p_id;
     }
-
+    public getId(): string {
+        return this.m_id;
+    }
     public getShips(): Ship[] {
         return this.m_ships;
     }

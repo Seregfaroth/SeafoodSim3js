@@ -17,7 +17,8 @@ class MapView {
     private m_blackMaterial: TKN_material;
     private m_fishMat;
     private m_noM;
-    private m_schools: TKN_Mesh[] = [] ;
+    private m_schools: TKN_Mesh[] = [];
+    private m_ships: TKN_Mesh[] = [];
     
     constructor(p_map: Map) {
         console.log("The View construct");
@@ -48,7 +49,14 @@ class MapView {
         }
 
         //create ships
-        
+        var i = 0;
+        var ships: Ship[] = p_map.getShips();
+        for (var ship of ships) {
+            this.m_ships[i] = new TKN_Mesh(new TKN_Geometry(0.1), this.m_greenMaterial);
+            this.m_ships[i].position = new Point2(i, i);
+            this.m_scene.add(this.m_ships[i]);
+            i++;
+        }
         //create map tiles
         for (var h = 0; h < p_map.getMapHeight(); h++) {
             //debugger;
@@ -57,7 +65,7 @@ class MapView {
             for (var w = 0; w < p_map.getMapWidth(); w++) {
                 var pos = new Point2(h, w);
                 
-                console.log((p_map.getTile(pos) instanceof  Ocean) + " " + h + "  " + w);
+                //console.log((p_map.getTile(pos) instanceof  Ocean) + " " + h + "  " + w);
                 if (p_map.getTile(pos) instanceof  Ocean) 
                     this.m_mapTile[h][w] = new TKN_Mesh(this.m_geometry, this.m_blueMaterial);
                 else if (p_map.getTile(pos) instanceof Land)
@@ -75,8 +83,8 @@ class MapView {
                 //debugger;       
             }          
         }
-        
-        document.body.insertBefore(this.m_renderer.domElement, document.body.firstChild);
+        document.getElementById("mainDiv").appendChild(this.m_renderer.domElement);
+        //document.body.insertBefore(this.m_renderer.domElement, document.body.firstChild);
         
     }
 
@@ -86,6 +94,17 @@ class MapView {
         for (var sc of this.m_schools) {
             sc.position = new Point2(p_map.m_schools[i].getPosition().row, p_map.m_schools[i++].getPosition().col);
         }
+        /*for(var i = 0; i < this.m_ships.length; i++) {
+            this.m_ships[i].position = new Point2(p_map.getShips()[i].getPosition().row, p_map.getShips()[i].getPosition().col);
+        }
+        i = this.m_ships.length;
+        while (this.m_ships.length < p_map.getShips().length) {
+            this.m_ships[i] = new TKN_Mesh(new TKN_Geometry(0.1), this.m_greenMaterial);
+            this.m_ships[i].position = p_map.getShips()[i].getPosition();
+            this.m_scene.add(this.m_ships[i]);
+            i++;
+        }*/
+
         //debugger;
         this.m_renderer.render(this.m_camera, this.m_scene );
         //debugger;

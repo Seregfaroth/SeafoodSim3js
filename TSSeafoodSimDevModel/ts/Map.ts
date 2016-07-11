@@ -24,33 +24,49 @@ class Map {
         return this.m_ships;
     }
     private placeSchools(p_n) {
-        this.addSchool(new Cod(100, new Point2(1, 1)));
-        this.addSchool(new Cod(100, new Point2(4, 4)));
+        var schoolsPlaced: number = 0;
+        while (schoolsPlaced < p_n) {
+            var point: Point2 = new Point2(Math.floor(Math.random() * this.getMapHeight()), Math.floor(Math.random() * this.getMapWidth()));
+            var tile: Tile = this.getTile(point);
+            if (tile instanceof Ocean && this.getNoOfFishInTile(point) < (<Ocean>tile).getFishCapacity()) {
+                this.addSchool(new Cod(10, point));
+                schoolsPlaced++;
+            }
+
+        }
     }
     public addSchool(p_school: School): void {
         this.m_schools.push(p_school);
     }
     private generateMap(p_size: number) {
 
-        for (var i = 0; i < 5; i++) {
+        for (var i = 0; i < p_size; i++) {
             var row: Tile[] = [];
-            for (var j = 0; j < 5; j++) {
-                row.push(new Ocean(1000, 2));
+            for (var j = 0; j < p_size; j++) {
+                row.push(new Ocean(100, 2));
             }
             this.m_grid.push(row);
         }
-
-        for (var col = 0; col < 4; col++) {
-            this.m_grid[0][col] = new Land();
+            for (var c = 0; c < p_size / 2; c++) {
+                for (var r = 0; r < p_size / (4*(c+1)); r++) {
+                    this.m_grid[r][c] = new Land();
+                }
         }
-        this.m_grid[2][2] = new Land();
+        this.m_grid[Math.floor(p_size / 2)][Math.floor(p_size / 2)] = new Land();
         
+        for (var r = p_size - Math.floor(p_size / 5); r < p_size; r++) {
+                for (var c = Math.floor(p_size / 2 + p_size / 5); c < r; c++) {
+                    this.m_grid[r][c] = new Land();
+                }
+            }
+        
+
         var prices: { [fishType: number]: number } = {}
         prices[0] = 10;
         prices[1] = 5;
 
-        this.m_grid[2][3] = new LandingSite(1, 5, 20,prices );
-        this.m_grid[2][1] = new FuelSite(1, 300, 20, 10);
+        this.m_grid[Math.floor(p_size / 2)][Math.floor(p_size / 2)+1] = new LandingSite(1, 5, 20,prices );
+        this.m_grid[Math.floor(p_size / 2)][Math.floor(p_size / 2)-1] = new FuelSite(1, 300, 20, 10);
 
     }
 
@@ -137,5 +153,17 @@ class Map {
         this.m_schools.forEach(function (s) {
             s.live(map);
         });
+    }
+
+    public getLandingSites(): LandingSite[] {
+        var sites: LandingSite[] = [];
+        for (var row = 0; row < this.getMapHeight(); row++) {
+            for (var col = 0; col < this.getMapWidth(); col++) {
+                if (this.m_grid[row][col] instanceof LandingSite) {
+                    sites.push(<LandingSite>this.m_grid[row][col]);
+                }
+            }
+        }
+        return sites;
     }
 }

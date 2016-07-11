@@ -49,4 +49,7 @@
     public getMaxShips(): number {
         return this.m_maxShips;
     }
+    public isRestricted(p_tile: Tile): boolean {
+        return this.m_restrictedAreas.indexOf(p_tile) > -1;
+    }
 }
