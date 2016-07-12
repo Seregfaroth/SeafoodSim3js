@@ -10,7 +10,7 @@ class Model {
 
     constructor() {
         console.log("constructing model");
-        this.m_map = new Map(10,5, new Restrictions());
+        this.m_map = new Map(5,8, new Restrictions());
         this.m_goverment = new Government();
         this.m_ai = new AI();
         this.createShipOwner(new Point2(3, 3));

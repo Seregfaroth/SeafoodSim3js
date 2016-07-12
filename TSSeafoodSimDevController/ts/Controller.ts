@@ -14,7 +14,7 @@ class Controller {
         //debugger;
         if (this.m_model != undefined && this.m_view != undefined) {
             //debugger;
-            this.runSimulation(10);
+            this.runSimulation(0);
             
         }
     }

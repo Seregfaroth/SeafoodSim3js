@@ -54,14 +54,49 @@ class TestShip {
         });
 
         QUnit.test("Ship: fish", function (assert) {
-            assert.ok(true);
-            //TODO test after place fish has been implemented
+            var map: Map = new Map(4, 0, new Restrictions());
+            var point: Point2 = new Point2(2, 2);
+            var noOfFishInSchool: number = 100;
+            var school: Cod = new Cod(noOfFishInSchool, point);
+            map.addSchool(school);
+            var path: Point2[] = [ship.getPosition(), point];
+            ship.setPath(path);
+            ship.followPath();
+            //Check that ship is ready to fish
+            assert.deepEqual(ship.getPosition(), point, "ship should be at fishing position");
+            assert.deepEqual(ship.getCargo(), [], "ship cargo should be empyt");
+
+            ship.fish(map);
+            //Check if ship has fished
+            assert.deepEqual(ship.getCargo().length, Math.floor(noOfFishInSchool * map.getFishingPercentage()), "ship should have fished");
         });
 
         QUnit.test("Ship: land", function (assert) {
-            assert.ok(true)
-            //TODO test after place fish has been implemented
+            var map: Map = new Map(4, 0, new Restrictions);
+            var prices: { [fishType: number]: number } = {};
+            prices[0] = 10;
+            prices[1] = 8;
+            var site: LandingSite = new LandingSite(1, 10, 1, prices);
+            map.getGrid()[2][2] = site;
+            var point: Point2 = new Point2(2, 2);
+            var noOfFishInSchool: number = 100;
+            var school: Cod = new Cod(noOfFishInSchool, point);
+            map.addSchool(school);
+            var path: Point2[] = [ship.getPosition(), point];
+            ship.setPath(path);
+            ship.followPath();
+            ship.fish(map);
+            //Check that ship has some cargo
+            assert.ok(ship.getCargo().length > 0, "ship should have fished");
 
+            var balance: number = owner.getBalance();
+            var price: number = 0;
+            ship.getCargo().forEach(function (f) {
+                price += prices[f.getType()];
+            });
+            ship.land(site);
+            assert.deepEqual(ship.getCargo().length, 0, "ship should have fished");
+            assert.deepEqual(owner.getBalance(), balance + price, "owner should be paid");
         });
 
         QUnit.test("Ship: refuel", function (assert) {

@@ -5,20 +5,22 @@
 
 class TestSchool {
     constructor() {
-        var startPosition: Point2 = new Point2(0, 0); 
-        var singleCod: Cod;
-        var singleMackerel: Mackerel;
+        var startPosition: Point2 = new Point2(0, 0);
+        var singleCod: Cod = new Cod(1, startPosition);
+        var singleMackerel: Mackerel = new Mackerel(1, startPosition);
         var map: Map = new Map(5, 5, new Restrictions());
+        map.getGrid()[0][0] = new Ocean(100, 1);
 
         QUnit.test("Cod: constructor", function (assert) {
-            //Check that singleCod is undefined
-            assert.equal(singleCod, undefined);
+            var testCod: Cod;
+            //Check that testCod is undefined
+            assert.equal(testCod, undefined);
 
             //Create cod and check members
-            singleCod = new Cod(1, startPosition);
-            assert.ok(singleCod);
-            assert.deepEqual(singleCod.getSize(), 1);
-            assert.deepEqual(singleCod.getPosition(), startPosition);
+            testCod = new Cod(1, startPosition);
+            assert.ok(testCod);
+            assert.deepEqual(testCod.getSize(), 1);
+            assert.deepEqual(testCod.getPosition(), startPosition);
         });
         QUnit.test("Cod: age function", function (assert) {
             var age: number = singleCod.getFish()[0].getAge();
@@ -45,14 +47,15 @@ class TestSchool {
             assert.deepEqual(singleCod.getFish().indexOf(testingFish), -1);
         });
         QUnit.test("Mackerel: constructor", function (assert) {
-            //Check that singleMackerel is undefined
-            assert.equal(singleMackerel, undefined);
+            var testMackerel: Mackerel;
+            //Check that testMackerel is undefined
+            assert.equal(testMackerel, undefined);
 
             //Create mackerel and check members
-            singleMackerel = new Mackerel(1, startPosition);
-            assert.ok(singleMackerel);
-            assert.deepEqual(singleMackerel.getSize(), 1);
-            assert.deepEqual(singleMackerel.getPosition(), startPosition);
+            testMackerel = new Mackerel(1, startPosition);
+            assert.ok(testMackerel);
+            assert.deepEqual(testMackerel.getSize(), 1);
+            assert.deepEqual(testMackerel.getPosition(), startPosition);
         });
         QUnit.test("Mackerel: age function", function (assert) {
             var age: number = singleMackerel.getFish()[0].getAge();

@@ -27,6 +27,7 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="ts\Test.ts" />
+    <TypeScriptCompile Include="ts\TestAI.ts" />
     <TypeScriptCompile Include="ts\TestFuelSite.ts" />
     <TypeScriptCompile Include="ts\TestLandingSite.ts" />
     <TypeScriptCompile Include="ts\TestMap.ts" />

@@ -67,24 +67,29 @@ class Ship {
     }
 
     private moveTo(p_position: Point2): void {
-        this.m_position = p_position;
-        this.m_fuel -= this.m_fuelPerMove;
+        if (this.m_fuel > this.m_fuelPerMove) {
+            this.m_position = p_position;
+            this.m_fuel -= this.m_fuelPerMove;
+        }
+    }
+    public emptyPath(): void {
+        this.m_path = [];
+    }
+    public fish(p_map: Map): void {
+        var fishToAdd: Fish[] = p_map.fish(this.m_position, this.m_cargoCapacity - this.m_cargo.length);
+        this.m_cargo = this.m_cargo.concat(fishToAdd);
     }
 
-    public fish(p_map: Map): void {
-        this.m_cargo.concat(p_map.fish(this.m_position, this.m_cargoCapacity - this.m_cargo.length));
-    }
-    
     public land(p_landingSite: LandingSite): void {
         this.shuffleFish();//Might not be necessary every time
         this.m_owner.financialTransaction(p_landingSite.receiveFish(this.m_cargo));
     }
-    
+
     public refuel(p_fuelSite: FuelSite): void {
         var fuelAmount: number = p_fuelSite.provideFuel(this.m_fuelCapacity - this.m_fuel);
-        this.m_owner.financialTransaction(-fuelAmount* p_fuelSite.getPrice());
+        this.m_owner.financialTransaction(-fuelAmount * p_fuelSite.getPrice());
         this.m_fuel += fuelAmount;
-    } 
+    }
 
     private shuffleFish(): void {
         var i: number;
@@ -97,5 +102,54 @@ class Ship {
             this.m_cargo[j] = fishPlaceholder;
         }
     }
+    public randomMove(p_map: Map): void {
+        //console.log("Original position: " + JSON.stringify(this.m_position));
+
+        var direction: number = Math.floor((Math.random() * 4));
+        var newPoint: Point2;
+        //While loop runs until an ocean tile has been found
+        do {
+            switch (direction) {
+                case 0:
+                    if (this.m_position.row === p_map.getGrid().length - 1) {
+                        newPoint = new Point2(0, this.m_position.col);
+                    }
+                    else {
+                        newPoint = new Point2(this.m_position.row + 1, this.m_position.col)
+                    }
+                    break;
+                case 1:
+                    if (this.m_position.col === 0) {
+                        newPoint = new Point2(this.m_position.row, p_map.getGrid()[0].length - 1)
+                    }
+                    else {
+                        newPoint = new Point2(this.m_position.row, this.m_position.col - 1);
+                    }
+                    break;
+                case 2:
+                    if (this.m_position.row === 0) {
+                        newPoint = new Point2(p_map.getGrid().length - 1, this.m_position.col);
+                    }
+                    else {
+                        newPoint = new Point2(this.m_position.row - 1, this.m_position.col);
+                    }
+                    break;
+                case 3:
+                    if (this.m_position.col === p_map.getGrid()[0].length - 1) {
+                        newPoint = new Point2(this.m_position.row, 0);
+                    }
+                    else {
+                        newPoint = new Point2(this.m_position.row, this.m_position.col + 1);
+                    }
+                    break;
+                default:
+                    break;
+            }
+            direction = Math.floor((Math.random() * 4));
+        } while (!(p_map.getTile(newPoint) instanceof Ocean));
+        this.moveTo(newPoint);
+    //console.log("new postion: " + JSON.stringify(this.m_position));
+    }
+
 
 }

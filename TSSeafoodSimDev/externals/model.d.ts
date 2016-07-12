@@ -6,8 +6,9 @@ declare class AI {
     run(p_shipOwner: ShipOwner, p_map: Map): void;
     private buyOrSellShip(p_shipOwner, p_map);
     private runShips(p_shipOwner, p_map);
-    private findLandingSite(p_map);
-    private findFuelSite(p_map);
+    private pathFinding(p_start, p_goal);
+    findNearestLandingSite(p_start: Point2, p_map: Map): Point2;
+    findNearestFuelSite(p_start: Point2, p_map: Map): Point2;
 }
 declare class Fish {
     private m_age;
@@ -116,6 +117,7 @@ declare class Map {
     getMapHeight(): number;
     run(): void;
     getLandingSites(): LandingSite[];
+    emptyGrid(): void;
 }
 declare class ShipOwner {
     private m_ships;
@@ -124,7 +126,7 @@ declare class ShipOwner {
     private m_shipPrice;
     private m_shipStartPosition;
     private m_id;
-    constructor(p_shipStartPosition: Point2, p_id: string);
+    constructor(p_shipStartPosition: Point2, p_id: string, p_balance?: number);
     getId(): string;
     getShips(): Ship[];
     getBalance(): number;
@@ -203,8 +205,10 @@ declare class Ship {
     followPath(): void;
     hasReachedGoal(): boolean;
     private moveTo(p_position);
+    emptyPath(): void;
     fish(p_map: Map): void;
     land(p_landingSite: LandingSite): void;
     refuel(p_fuelSite: FuelSite): void;
     private shuffleFish();
+    randomMove(p_map: Map): void;
 }
