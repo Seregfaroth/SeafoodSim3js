@@ -16,10 +16,11 @@ class Cod extends School{
         var move: boolean = Math.random() < 0.25;
         
         if (move) {
-            var direction: number = Math.floor((Math.random() * 4));
+            
             var newPoint: Point2;
             //While loop runs until an ocean tile has been found
             do {
+                var direction: number = Math.floor((Math.random() * 4));
                 switch (direction) {
                     case 0:
                         if (this.m_position.row === p_map.getGrid().length - 1) {
@@ -56,7 +57,6 @@ class Cod extends School{
                     default:
                         break;
                 }
-                direction = Math.floor((Math.random() * 4));
             } while (!(p_map.getTile(newPoint) instanceof Ocean));
             this.m_position = newPoint;
         }

@@ -23,6 +23,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="css\body.css" />
+    <Content Include="css\bootstrap.min.css" />
     <Content Include="js\pathfinding-browser.js" />
     <Content Include="js\three.js" />
     <Content Include="main.html" />

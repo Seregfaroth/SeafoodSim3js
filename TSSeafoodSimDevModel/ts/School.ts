@@ -37,7 +37,6 @@ abstract class School {
     }
 
     public live(p_map: Map): void {
-        console.log("live amount: " + this.m_fish.length);
         this.move(p_map);
         this.age();
         this.recruit(p_map);

@@ -105,48 +105,36 @@ class Ship {
     public randomMove(p_map: Map): void {
         //console.log("Original position: " + JSON.stringify(this.m_position));
 
-        var direction: number = Math.floor((Math.random() * 4));
+        
         var newPoint: Point2;
         //While loop runs until an ocean tile has been found
         do {
+            var direction: number = Math.floor((Math.random() * 4));
             switch (direction) {
                 case 0:
-                    if (this.m_position.row === p_map.getGrid().length - 1) {
-                        newPoint = new Point2(0, this.m_position.col);
-                    }
-                    else {
+                    if (this.m_position.row !== p_map.getGrid().length - 1) {
                         newPoint = new Point2(this.m_position.row + 1, this.m_position.col)
                     }
                     break;
                 case 1:
-                    if (this.m_position.col === 0) {
-                        newPoint = new Point2(this.m_position.row, p_map.getGrid()[0].length - 1)
-                    }
-                    else {
-                        newPoint = new Point2(this.m_position.row, this.m_position.col - 1);
+                    if (this.m_position.col !== 0) {
+                       newPoint = new Point2(this.m_position.row, this.m_position.col - 1);
                     }
                     break;
                 case 2:
-                    if (this.m_position.row === 0) {
-                        newPoint = new Point2(p_map.getGrid().length - 1, this.m_position.col);
-                    }
-                    else {
+                    if (this.m_position.row !== 0) {
                         newPoint = new Point2(this.m_position.row - 1, this.m_position.col);
                     }
                     break;
                 case 3:
-                    if (this.m_position.col === p_map.getGrid()[0].length - 1) {
-                        newPoint = new Point2(this.m_position.row, 0);
-                    }
-                    else {
+                    if (this.m_position.col !== p_map.getGrid()[0].length - 1) {
                         newPoint = new Point2(this.m_position.row, this.m_position.col + 1);
                     }
                     break;
                 default:
                     break;
             }
-            direction = Math.floor((Math.random() * 4));
-        } while (!(p_map.getTile(newPoint) instanceof Ocean));
+        } while (newPoint && !(p_map.getTile(newPoint) instanceof Ocean));
         this.moveTo(newPoint);
     //console.log("new postion: " + JSON.stringify(this.m_position));
     }

@@ -9,12 +9,12 @@ class Controller {
     constructor() {
         console.log("Controller loading");
         this.m_model = new Model();
-        this.m_view = new MainView(this.m_model.getMap()); 
+        this.m_view = new MainView(this.m_model.getMap(), this.m_model.getShipOwners()); 
         this.m_eventHandler = new EventHandler(this);
         //debugger;
         if (this.m_model != undefined && this.m_view != undefined) {
             //debugger;
-            this.runSimulation(0);
+            this.runSimulation(1);
             
         }
     }

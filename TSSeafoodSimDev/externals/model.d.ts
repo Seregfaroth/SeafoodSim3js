@@ -146,9 +146,10 @@ declare class Model {
     private m_ai;
     constructor();
     run(): void;
+    getShipOwners(): ShipOwner[];
     getMap(): Map;
     getGovernment(): Government;
-    createShipOwner(p_startingPoint: Point2): void;
+    createShipOwner(p_startingPoint: Point2, p_balance?: number): void;
     updateScore(): void;
 }
 declare class Ocean extends Tile {

@@ -12,6 +12,20 @@
         $("#startButton").on("click", this.start);
         this.pause = this.pause.bind(this);
         $("#pauseButton").on("click", this.pause);
+
+        this.setQuote = this.setQuote.bind(this);
+        this.m_controller.getModel().getShipOwners().forEach(function (so) {
+            $("#quoteSlider" + so.getId()).on("slidechange", function (event, ui) {
+                handler.setQuote(so.getId(), ui.value);
+            });
+        });
+
+        this.setEffortLimit = this.setEffortLimit.bind(this);
+        this.m_controller.getModel().getShipOwners().forEach(function (so) {
+            $("#effortSlider" + so.getId()).on("slidechange", function (event, ui) {
+                handler.setEffortLimit(so.getId(), ui.value);
+            });
+        });
         
     }
 
