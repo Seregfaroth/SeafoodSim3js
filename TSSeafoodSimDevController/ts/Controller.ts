@@ -20,6 +20,7 @@ class Controller {
         this.m_model = new Model();
         this.m_view = new MainView(this.m_model.getMap(), this.m_model.getShipOwners()); 
         this.m_eventHandler = new EventHandler(this);
+        //this.m_eventHandler = p_eventHandler;
         this.m_view.updateMainView(this.m_model.getMap());
         //debugger;
         //if (this.m_model != undefined && this.m_view != undefined) {
@@ -28,7 +29,7 @@ class Controller {
             
         
     }
-
+    
     public getModel(): Model {
         return this.m_model;
     }
@@ -63,6 +64,7 @@ class Controller {
             clearInterval(this.m_timer);
             this.m_simState = simState.fast;
             this.m_timer = setInterval(this.simulationTick, this.m_fastDelayPerTick);
+            
         }
     }
 }
