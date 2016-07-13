@@ -14,13 +14,14 @@ class Model {
         this.m_goverment = new Government();
         this.m_ai = new AI();
         this.createShipOwner(new Point2(3, 3), 100000);
+        this.createShipOwner(new Point2(0, 0), 0);
     }
 
     public run() {
         console.log("running model");
         this.m_map.run();
         for (var i = 0; i < this.m_shipOwners.length; i++) {
-           // this.m_ai.run(this.m_shipOwners[i], this.m_map);
+            this.m_ai.run(this.m_shipOwners[i], this.m_map);
         }
         this.updateScore();
     }

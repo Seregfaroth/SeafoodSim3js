@@ -4,3 +4,12 @@
     bottom : 0;
     position: relative;
 }
+.slider-cell {
+    width: 80%;
+}
+.legend-header {
+    font-weight: bold;
+}
+.menu-legend {
+    margin-left: 10px;
+}
