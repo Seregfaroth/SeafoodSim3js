@@ -56,3 +56,10 @@ declare class TKN_Mesh {
     position: Point2;
     mesh: THREE.Mesh;
 }
+declare class TKN_PathFinding {
+    private m_finder;
+    private m_navGrid;
+    constructor();
+    findPath(xOrigin: any, yOrigin: any, xDest: any, yDest: any): number[][];
+    navTable: number[][];
+}
