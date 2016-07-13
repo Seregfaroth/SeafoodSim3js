@@ -30,7 +30,7 @@ declare class TKN_Renderer {
     domElement: any;
 }
 declare class TKN_Geometry {
-    private m_geometry;
+    m_geometry: THREE.Geometry;
     constructor(p_size?: number);
     geometry: THREE.Geometry;
 }

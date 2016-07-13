@@ -21,7 +21,7 @@ class TKN_Camera {
     private m_position: Point3;
     constructor() {
         this.m_camera = new THREE.PerspectiveCamera(60, 1, 0.3, 1000);
-        this.m_camera.position.z = 10;
+        this.m_camera.position.z = 100;
     }
     get position(): Point3 {
         return this.m_position;
@@ -39,7 +39,8 @@ class TKN_Renderer {
     constructor() {
         console.log("Construct TKN_Rendeerer");
         this.m_renderer = new THREE.WebGLRenderer();
-        this.m_renderer.setSize(700, 700);
+        this.m_renderer.setSize(500, 500);
+
     }
 
     render(p_cam: TKN_Camera, p_scene: TKN_Scene) {
@@ -51,7 +52,7 @@ class TKN_Renderer {
 }
 
 class TKN_Geometry {
-    private m_geometry: THREE.Geometry;
+    public m_geometry: THREE.Geometry;
     constructor(p_size: number = 0.8) {
         //this.m_geometry = new THREE.SphereGeometry(1, 24, 24);
         this.m_geometry = new THREE.PlaneGeometry(p_size, p_size);

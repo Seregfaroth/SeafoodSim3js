@@ -32,7 +32,7 @@
     }
 
     public start(): void {
-        this.m_controller.runSimulation(1);
+        this.m_controller.runSimulation();
     }
 
     public pause(): void {

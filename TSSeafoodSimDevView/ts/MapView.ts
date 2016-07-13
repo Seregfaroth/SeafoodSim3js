@@ -49,10 +49,10 @@ class MapView {
         }
 
         //create ships
-        var i = 0;
+        i = 0;
         var ships: Ship[] = p_map.getShips();
         for (var ship of ships) {
-            this.m_ships[i] = new TKN_Mesh(new TKN_Geometry(0.1), this.m_greenMaterial);
+            this.m_ships[i] = new TKN_Mesh(new TKN_Geometry(0.3), this.m_blackMaterial);
             this.m_ships[i].position = new Point2(i, i);
             this.m_scene.add(this.m_ships[i]);
             i++;
@@ -77,6 +77,8 @@ class MapView {
                 else
                     this.m_mapTile[h][w] = new TKN_Mesh(this.m_geometry, this.m_noM); 
                 this.m_mapTile[h][w].position = new Point2(h, w);
+               
+                //this.m_mapTile[h][w].mesh.
                 
                 this.m_scene.add(this.m_mapTile[h][w]);  
                 //this.m_renderer.m_renderer.render(this.m_scene.m_scene, this.m_camera.m_camera);  
@@ -94,9 +96,11 @@ class MapView {
         for (var sc of this.m_schools) {
             sc.position = new Point2(p_map.m_schools[i].getPosition().row, p_map.m_schools[i++].getPosition().col);
         }
-        /*for(var i = 0; i < this.m_ships.length; i++) {
+        for(var i = 0; i < this.m_ships.length; i++) {
             this.m_ships[i].position = new Point2(p_map.getShips()[i].getPosition().row, p_map.getShips()[i].getPosition().col);
         }
+        debugger;
+        /*
         i = this.m_ships.length;
         while (this.m_ships.length < p_map.getShips().length) {
             this.m_ships[i] = new TKN_Mesh(new TKN_Geometry(0.1), this.m_greenMaterial);
