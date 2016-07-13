@@ -6,6 +6,8 @@ class Controller {
     private m_view: MainView;
     private m_model: Model;
     private m_eventHandler: EventHandler;
+    private m_timer: number;
+    private m_fastTimer: number;
     constructor() {
         console.log("Controller loading");
         this.m_model = new Model();
@@ -17,6 +19,7 @@ class Controller {
             this.runSimulation(1);
             
         }
+        this.simulationTick = this.simulationTick.bind(this);
     }
 
     public getModel(): Model {
@@ -28,14 +31,16 @@ class Controller {
     }
     simulationTick() {
         console.log("Controller running simulation");
-        
         this.m_model.run();
         this.m_view.updateMainView(this.m_model.getMap());
         
     }
 
     runSimulation(p_ticks?: number) {
-        
+        if (this.m_timer == undefined) {
+            this.m_timer = setInterval(this.simulationTick.bind(this), 1000);
+        }
+        /*
         var ticksLeft;
         if (p_ticks != undefined)
             ticksLeft = p_ticks;
@@ -49,11 +54,16 @@ class Controller {
             console.log("ticksleft: " + ticksLeft);
             //debugger;
 
-        }
+        }*/
     }  
 
     public pause(): void {
-        //TODO
+        clearInterval(this.m_timer);
+        this.m_timer = undefined;
+    }
+
+    public fastForward(): void {
+
     }
 }
 

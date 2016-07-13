@@ -13,6 +13,10 @@
         this.pause = this.pause.bind(this);
         $("#pauseButton").on("click", this.pause);
 
+        this.fastForward = this.fastForward.bind(this);
+        $("#fastForwardButton").on("click", this.fastForward);
+        
+
         this.setQuote = this.setQuote.bind(this);
         this.m_controller.getModel().getShipOwners().forEach(function (so) {
             $("#quoteSlider" + so.getId()).on("slidechange", function (event, ui) {
@@ -53,6 +57,9 @@
         this.m_controller.pause();
     }
 
+    public fastForward(): void {
+        this.m_controller.fastForward();
+    }
     public restrictArea(p_tile: Tile) {
         if (this.m_controller.getModel().getGovernment().getRestrictions().isRestricted(p_tile)) {
             this.m_controller.getModel().getGovernment().getRestrictions().unRestrictArea(p_tile);

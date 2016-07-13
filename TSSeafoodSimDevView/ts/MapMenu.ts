@@ -6,6 +6,7 @@
         menuDiv.style.cssFloat = "left";
         menuDiv.style.width = "20%";
         menuDiv.style.height = "70%";
+        menuDiv.className = "ui-widget-content";
         document.getElementById("mainDiv").appendChild(menuDiv);
 
         //Create tax slider
@@ -90,5 +91,11 @@
         pauseButton.className = "ui-button";
         buttonsDiv.appendChild(pauseButton);
 
+        var fastForwardButton: HTMLButtonElement = document.createElement("button");
+        fastForwardButton.innerHTML = "fast forward";
+        fastForwardButton.id = "fastForwardButton";
+        fastForwardButton.style.margin = "10px";
+        fastForwardButton.className = "ui-button";
+        buttonsDiv.appendChild(fastForwardButton);
     }
 }
