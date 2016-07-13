@@ -1,31 +1,23 @@
 ﻿class Government {
     private m_restrictions: Restrictions;
-    private m_balance: number;
     private m_taxingRate: number;
-    private m_environmentalScore: number;
-    private m_socialScore: number;
-
+    private m_score: Score;
+ 
     public constructor() {
         this.m_restrictions = new Restrictions();
-        this.m_balance = 0;
         this.m_taxingRate = 0;
-        this.m_environmentalScore = 0;
-        this.m_socialScore = 0;
+        this.m_score = new Score();
+
     }
 
     public financialTransaction(p_amount: number): void {
         this.m_balance += p_amount;
     }
+    public getScore(): Score {
+        return this.m_score;
+    }
 
-    public getBalance(): number {
-        return this.m_balance;
-    }
-    public getSocialScore(): number {
-        return this.m_socialScore;
-    }
-    public getEnvironmentalScore(): number {
-        return this.m_environmentalScore;
-    }
+
     public getTaxingRate(): number {
         return this.m_taxingRate;
     }
@@ -37,5 +29,7 @@
     public getRestrictions(): Restrictions {
         return this.m_restrictions;
     }
+
+
     
 }

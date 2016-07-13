@@ -16,3 +16,9 @@
 .score{
     margin-left: 10px;
 }
+.menu-text {
+    font-size: 80%;
+}
+.marked {
+    color:red;
+}

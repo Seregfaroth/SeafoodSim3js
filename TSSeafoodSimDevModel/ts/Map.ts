@@ -25,6 +25,9 @@ class Map {
     public getShips(): Ship[] {
         return this.m_ships;
     }
+    public getSchools(): School[] {
+        return this.m_schools;
+    }
     private placeSchools(p_n) {
         var schoolsPlaced: number = 0;
         while (schoolsPlaced < p_n) {
@@ -162,6 +165,18 @@ class Map {
             for (var col = 0; col < this.getMapWidth(); col++) {
                 if (this.m_grid[row][col] instanceof LandingSite) {
                     sites.push(<LandingSite>this.m_grid[row][col]);
+                }
+            }
+        }
+        return sites;
+    }
+
+    public getFuelSites(): FuelSite[] {
+        var sites: FuelSite[] = [];
+        for (var row = 0; row < this.getMapHeight(); row++) {
+            for (var col = 0; col < this.getMapWidth(); col++) {
+                if (this.m_grid[row][col] instanceof FuelSite) {
+                    sites.push(<FuelSite>this.m_grid[row][col]);
                 }
             }
         }

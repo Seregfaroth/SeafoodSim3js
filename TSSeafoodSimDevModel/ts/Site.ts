@@ -11,7 +11,7 @@ class Site extends Tile {
         this.m_shipCapacity = p_shipCapacity;
         this.m_resourceCapacity = p_resourceCapacity;
         this.m_processPerDay = p_processPerDay;
-        this.m_runningCost = p_runningCost;
+        this.m_runningCost = p_resourceCapacity * 0.1;
     }
 
     public getShipCapacity(): number {

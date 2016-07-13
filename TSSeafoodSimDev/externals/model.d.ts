@@ -1,4 +1,17 @@
 /// <reference path="wrappers.d.ts" />
+declare class Score {
+    private m_financialScore;
+    private m_socialScore;
+    private m_environmentalScore;
+    private m_mininumSchool;
+    private m_minimumScore;
+    private m_maximumScore;
+    constructor();
+    getSocialScore(): number;
+    getEnvironmentalScore(): number;
+    getFinancialScore(): number;
+    updateScore(p_map: Map, p_gov: Government): void;
+}
 declare class AI {
     private m_balanceToBuyShip;
     private m_balanceToSellShip;
@@ -64,15 +77,11 @@ declare class FuelSite extends Site {
 }
 declare class Government {
     private m_restrictions;
-    private m_balance;
     private m_taxingRate;
-    private m_environmentalScore;
-    private m_socialScore;
+    private m_score;
     constructor();
     financialTransaction(p_amount: number): void;
-    getBalance(): number;
-    getSocialScore(): number;
-    getEnvironmentalScore(): number;
+    getScore(): Score;
     getTaxingRate(): number;
     setTaxingRate(rate: number): void;
     getRestrictions(): Restrictions;
@@ -109,6 +118,7 @@ declare class Map {
     getRestrictions(): Restrictions;
     getGrid(): Tile[][];
     getShips(): Ship[];
+    getSchools(): School[];
     private placeSchools(p_n);
     addSchool(p_school: School): void;
     private generateMap(p_size);
@@ -125,6 +135,7 @@ declare class Map {
     getMapHeight(): number;
     run(): void;
     getLandingSites(): LandingSite[];
+    getFuelSites(): FuelSite[];
     emptyGrid(): void;
 }
 declare class ShipOwner {
@@ -158,7 +169,6 @@ declare class Model {
     getMap(): Map;
     getGovernment(): Government;
     createShipOwner(p_startingPoint: Point2, p_balance?: number): void;
-    updateScore(): void;
 }
 declare class Ocean extends Tile {
     private m_fishCapacity;

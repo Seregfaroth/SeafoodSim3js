@@ -42,15 +42,24 @@
         this.m_controller.getModel().getGovernment().getRestrictions().setLandingDistrubution(site, p_n);
     }
 
-    public start=():void=> {
+    public start = (): void => {
+        $("#fastForwardButton").removeClass("marked");
+        $("#pauseButton").removeClass("marked");
+        $("#startButton").addClass("marked");
         this.m_controller.runSimulation();
     }
 
     public pause = (): void => {
+        $("#startButton").removeClass("marked");
+        $("#fastForwardButton").removeClass("marked");
+        $("#pauseButton").addClass("marked");
         this.m_controller.pause();
     }
 
-    public fastForward = ():void=> {
+    public fastForward = (): void => {
+        $("#pauseButton").removeClass("marked");
+        $("#startButton").removeClass("marked");
+        $("#fastForwardButton").addClass("marked");
         this.m_controller.fastForward();
     }
     public restrictArea=(p_tile: Tile)=> {

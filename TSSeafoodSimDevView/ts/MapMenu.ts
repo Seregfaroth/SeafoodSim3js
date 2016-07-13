@@ -7,7 +7,7 @@
         menuDiv.style.cssFloat = "left";
         menuDiv.style.width = "20%";
         menuDiv.style.height = "70%";
-        menuDiv.className = "ui-widget-content";
+        menuDiv.classList.add("ui-widget-content");
         document.getElementById("mainDiv").appendChild(menuDiv);
 
         //Create score view
@@ -19,12 +19,14 @@
         menuDiv.appendChild(scoreLegend);
         scoreLegend.classList.add("menu-legend");
         var scoreTable: HTMLTableElement = document.createElement("table");
+        scoreTable.classList.add("menu-text");
         scoreLegend.appendChild(scoreTable);
 
         var financialRow: HTMLTableRowElement = scoreTable.insertRow();
         var labelCell: HTMLTableCellElement = financialRow.insertCell();
         var finacialScoreLabel: HTMLDivElement = document.createElement("div");
         finacialScoreLabel.innerHTML = "Financial Score:";
+        
         labelCell.appendChild(finacialScoreLabel);
         var scoreCell: HTMLTableCellElement = financialRow.insertCell();
         var score: HTMLDivElement = document.createElement("div");
@@ -90,6 +92,7 @@
         quoteLegend.appendChild(quoteLabel);
         menuDiv.appendChild(quoteLegend);
         var quoteTable: any = document.createElement("TABLE");
+        quoteTable.classList.add("menu-text");
         quoteLegend.appendChild(quoteTable);
 
         for (var i = 0; i < p_ShipOwners.length; i++) {
@@ -122,6 +125,7 @@
         effortLegend.appendChild(effortLabel);
         menuDiv.appendChild(effortLegend);
         var effortTable: any = document.createElement("TABLE");
+        effortTable.classList.add("menu-text");
         effortLegend.appendChild(effortTable);
 
         for (var i = 0; i < p_ShipOwners.length; i++) {
@@ -179,8 +183,8 @@
     }
 
     public updateScore(p_government: Government): void {
-        $("#financialScore").text(p_government.getBalance());
-        $("#socailScore").text(p_government.getSocialScore());
-        $("#environmentalScore").text(p_government.getEnvironmentalScore());
+        $("#financialScore").text(Math.round(p_government.getScore().getFinancialScore()));
+        $("#socailScore").text(Math.round(p_government.getScore().getSocialScore()));
+        $("#environmentalScore").text(Math.round(p_government.getScore().getEnvironmentalScore()));
     }
 }

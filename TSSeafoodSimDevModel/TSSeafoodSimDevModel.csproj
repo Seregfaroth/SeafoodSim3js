@@ -33,6 +33,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="Score.ts" />
     <TypeScriptCompile Include="ts\AI.ts" />
     <TypeScriptCompile Include="ts\Cod.ts" />
     <TypeScriptCompile Include="ts\Fish.ts" />
