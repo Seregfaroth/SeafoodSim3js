@@ -1,17 +1,25 @@
 /// <reference path="model.d.ts" />
 /// <reference path="view.d.ts" />
 /// <reference path="wrappers.d.ts" />
+declare enum simState {
+    starting = 0,
+    running = 1,
+    paused = 2,
+    ending = 3,
+}
 declare class Controller {
     private m_view;
     private m_model;
     private m_eventHandler;
     private m_timer;
     private m_fastTimer;
+    private m_simState;
+    private m_delayPerTick;
     constructor();
     getModel(): Model;
     getEventHandler(): EventHandler;
-    simulationTick(): void;
-    runSimulation(p_ticks?: number): void;
+    simulationTick: () => void;
+    runSimulation: (p_ticks?: number) => void;
     pause(): void;
     fastForward(): void;
 }

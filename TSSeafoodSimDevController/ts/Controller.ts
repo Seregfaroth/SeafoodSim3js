@@ -1,22 +1,27 @@
 ﻿/// <reference path = "../../TSSeafoodSimDev/externals/model.d.ts"/>
 /// <reference path = "../../TSSeafoodSimDev/externals/view.d.ts"/>
 /// <reference path = "../../TSSeafoodSimDev/externals/wrappers.d.ts"/>
-
+enum simState { starting, running, paused, ending }
 class Controller {
     private m_view: MainView;
     private m_model: Model;
     private m_eventHandler: EventHandler;
     private m_timer: number;
     private m_fastTimer: number;
+
+    private m_simState: simState;
+    private m_delayPerTick: number;
     constructor() {
         console.log("Controller loading");
+        this.m_simState = simState.starting;
+        this.m_delayPerTick = 1000;
         this.m_model = new Model();
         this.m_view = new MainView(this.m_model.getMap(), this.m_model.getShipOwners()); 
         this.m_eventHandler = new EventHandler(this);
         //debugger;
-        if (this.m_model != undefined && this.m_view != undefined) {
-            //debugger;
-            this.runSimulation(1);
+        //if (this.m_model != undefined && this.m_view != undefined) {
+        //    //debugger;
+        //    this.runSimulation(5, 2000);
             
         }
         this.simulationTick = this.simulationTick.bind(this);
@@ -29,11 +34,13 @@ class Controller {
     public getEventHandler(): EventHandler {
         return this.m_eventHandler;
     }
-    simulationTick() {
-        console.log("Controller running simulation");
+    simulationTick = () => {
+        debugger;
+        console.log("Controller running simulationtick");
+        
         this.m_model.run();
         this.m_view.updateMainView(this.m_model.getMap());
-        
+        this.m_simState = simState.running;
     }
 
     runSimulation(p_ticks?: number) {
@@ -51,7 +58,8 @@ class Controller {
             //debugger;
             this.simulationTick();
             ticksLeft--;
-            console.log("ticksleft: " + ticksLeft);
+            //console.log("ticksleft: " + ticksLeft);
+            
             //debugger;
 
         }*/
