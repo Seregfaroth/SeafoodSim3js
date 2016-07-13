@@ -4,3 +4,9 @@
     bottom : 0;
     position: relative;
 }
+.slider-cell {
+    width: 80%;
+}
+.slider-legend-labe.slider-cell {
+    font-weight: bold;
+}

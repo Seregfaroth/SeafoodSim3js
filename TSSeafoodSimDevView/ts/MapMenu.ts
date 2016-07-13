@@ -14,7 +14,7 @@
         menuDiv.appendChild(taxDiv);
 
         var taxLabel: HTMLElement = document.createElement("div");
-        taxLabel.innerHTML = "Taxing rate:";
+        taxLabel.innerHTML = "<b>Taxing rate:</b>";
         taxLabel.style.cssFloat = "left";
         taxDiv.appendChild(taxLabel);
         
@@ -32,10 +32,11 @@
 
         //Create quote sliders
         var quoteLegend: HTMLElement = document.createElement("legend");
-        quoteLegend.innerHTML = " quotes";
+        quoteLegend.innerHTML = "<b>Quotes</b>";
+        
         menuDiv.appendChild(quoteLegend);
         var quoteTable: any = document.createElement("TABLE");
-        quoteLabel.appendChild(quoteLegend);
+        quoteLegend.appendChild(quoteTable);
 
         for (var i = 0; i < p_ShipOwners.length; i++) {
             var row: HTMLTableRowElement = quoteTable.insertRow();
@@ -43,37 +44,44 @@
             var quoteLabel: HTMLElement = document.createElement("div");
             quoteLabel.innerHTML = p_ShipOwners[i].getId();
             quoteLabel.style.cssFloat = "left";
-            quoteLegend.appendChild(quoteLabel);
+            cell.appendChild(quoteLabel);
 
-
+            cell = row.insertCell();
+            cell.className = "slider-cell";
             var quoteSlider: HTMLElement = document.createElement("div");
             quoteSlider.id = "quoteSlider" + p_ShipOwners[i].getId();;
             quoteSlider.style.width = "70%";
             quoteSlider.style.cssFloat = "right";
             quoteSlider.style.margin = "10px";
-            quoteLegend.appendChild(quoteSlider);
+            cell.appendChild(quoteSlider);
             $("#quoteSlider" + p_ShipOwners[i].getId()).slider();
             $("#quoteSlider" + p_ShipOwners[i].getId()).slider("option", "min", 0);
             $("#quoteSlider" + p_ShipOwners[i].getId()).slider("option", "max", 100);
         }
 
         //Create effort limit sliders
-        var effortDiv: HTMLElement = document.createElement("legend");
-        menuDiv.appendChild(effortDiv);
+        var effortLegend: HTMLElement = document.createElement("legend");
+        effortLegend.innerHTML = "<b> Effort Limits: </b>";
+        menuDiv.appendChild(effortLegend);
+        var effortTable: any = document.createElement("TABLE");
+        effortLegend.appendChild(effortTable);
 
         for (var i = 0; i < p_ShipOwners.length; i++) {
+            var row: HTMLTableRowElement = effortTable.insertRow();
+            var cell: HTMLTableCellElement = row.insertCell();
             var effortLabel: HTMLElement = document.createElement("div");
             effortLabel.innerHTML = p_ShipOwners[i].getId();
             effortLabel.style.cssFloat = "left";
-            effortDiv.appendChild(effortLabel);
+            cell.appendChild(effortLabel);
 
-
+            cell = row.insertCell();
+            cell.className = "slider-cell";
             var effortSlider: HTMLElement = document.createElement("div");
-            effortSlider.id = "effortSlider" + p_ShipOwners[i].getId();;
+            effortSlider.id = "effortSlider" + p_ShipOwners[i].getId();
             effortSlider.style.width = "70%";
             effortSlider.style.cssFloat = "right";
             effortSlider.style.margin = "10px";
-            effortDiv.appendChild(effortSlider);
+            cell.appendChild(effortSlider);
             $("#effortSlider" + p_ShipOwners[i].getId()).slider();
             $("#effortSlider" + p_ShipOwners[i].getId()).slider("option", "min", 0);
             $("#effortSlider" + p_ShipOwners[i].getId()).slider("option", "max", 100);

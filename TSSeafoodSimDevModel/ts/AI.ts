@@ -26,7 +26,7 @@ class AI {
     private runShips(p_shipOwner: ShipOwner, p_map: Map): void {
         var ai: AI = this;
         p_shipOwner.getShips().forEach(function (ship) {
-            if (ship.hasReachedGoal()) {
+           /* if (ship.hasReachedGoal()) {
                 //If ship has reached a previous sat goal
                 var tile: Tile = p_map.getTile(ship.getPosition());
                 if (tile instanceof LandingSite) {
@@ -72,7 +72,7 @@ class AI {
                     ship.fish(p_map);
                 }
             }
-            /* if (ship.getPath() != undefined) {
+            */ if (ship.getPath() != undefined) {
                  if (ship.getPath().length > 1) {
                      ship.fish(p_map);
                      ship.followPath();
@@ -80,7 +80,7 @@ class AI {
                  else {
                      ship.setPath(ai.m_fishingPath);
                  }
-             }*/
+             }
         });
     }
     private pathFinding(p_start: Point2, p_goal: Point2): Point2[] {
