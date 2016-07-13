@@ -21,7 +21,7 @@ class Controller {
         this.m_view = new MainView(this.m_model.getMap(), this.m_model.getShipOwners()); 
         this.m_eventHandler = new EventHandler(this);
         //this.m_eventHandler = p_eventHandler;
-        this.m_view.updateMainView(this.m_model.getMap());
+        this.m_view.updateMainView(this.m_model);
         //debugger;
         //if (this.m_model != undefined && this.m_view != undefined) {
         //    //debugger;
@@ -41,7 +41,7 @@ class Controller {
         console.log("Controller running simulationtick");
         
         this.m_model.run();
-        this.m_view.updateMainView(this.m_model.getMap());
+        this.m_view.updateMainView(this.m_model);
     }
 
     runSimulation = (p_ticks?: number) =>{

@@ -45,8 +45,13 @@ class Model {
 
         //Financial score
         this.m_map.getLandingSites().forEach(function (ls) {
+            gov.financialTransaction(-ls.getRunningCost());
             gov.financialTransaction(ls.tax(gov.getTaxingRate()));
         });
+
+        //Social score
+
+        //Environmental score
     }
     
 }

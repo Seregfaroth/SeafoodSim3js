@@ -28,17 +28,19 @@
         labelCell.appendChild(finacialScoreLabel);
         var scoreCell: HTMLTableCellElement = financialRow.insertCell();
         var score: HTMLDivElement = document.createElement("div");
+        score.id = "financialScore";
         score.innerHTML = "0";
         score.classList.add("score");
         scoreCell.appendChild(score);
 
-        var ecoRow: HTMLTableRowElement = scoreTable.insertRow();
-        var labelCell: HTMLTableCellElement = ecoRow.insertCell();
+        var envRow: HTMLTableRowElement = scoreTable.insertRow();
+        var labelCell: HTMLTableCellElement = envRow.insertCell();
         var ecoScoreLabel: HTMLDivElement = document.createElement("div");
-        ecoScoreLabel.innerHTML = "Ecological Score:";
+        ecoScoreLabel.innerHTML = "Environmental Score:";
         labelCell.appendChild(ecoScoreLabel);
-        var scoreCell: HTMLTableCellElement = ecoRow.insertCell();
+        var scoreCell: HTMLTableCellElement = envRow.insertCell();
         var score: HTMLDivElement = document.createElement("div");
+        score.id = "environmentalScore";
         score.innerHTML = "0";
         score.classList.add("score");
         scoreCell.appendChild(score);
@@ -51,6 +53,7 @@
         var scoreCell: HTMLTableCellElement = socialRow.insertCell();
         var score: HTMLDivElement = document.createElement("div");
         score.innerHTML = "0";
+        score.id = "socialScore";
         score.classList.add("score");
         scoreCell.appendChild(score);
 
@@ -173,5 +176,11 @@
         fastForwardButton.classList.add("fa-fast-forward");
         fastForwardButton.classList.add("ui-button");
         buttonsDiv.appendChild(fastForwardButton);
+    }
+
+    public updateScore(p_government: Government): void {
+        $("#financialScore").text(p_government.getBalance());
+        $("#socailScore").text(p_government.getSocialScore());
+        $("#environmentalScore").text(p_government.getEnvironmentalScore());
     }
 }

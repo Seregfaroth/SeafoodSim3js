@@ -20,7 +20,12 @@
     public getBalance(): number {
         return this.m_balance;
     }
-
+    public getSocialScore(): number {
+        return this.m_socialScore;
+    }
+    public getEnvironmentalScore(): number {
+        return this.m_environmentalScore;
+    }
     public getTaxingRate(): number {
         return this.m_taxingRate;
     }

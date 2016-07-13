@@ -47,15 +47,17 @@ declare class Site extends Tile {
     protected m_resourceCapacity: number;
     protected m_resourceAtSite: number;
     protected m_processPerDay: number;
-    constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number);
+    protected m_runningCost: number;
+    constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_runningCost: number);
     getShipCapacity(): number;
+    getRunningCost(): number;
     getResourceCapacity(): number;
     getResourceAtSite(): number;
     getProcessPerDay(): number;
 }
 declare class FuelSite extends Site {
     private m_price;
-    constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_price: number);
+    constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_price: number, p_runningCost: number);
     getPrice(): number;
     provideFuel(p_desiredAmount: number): number;
     restock(): void;
@@ -69,6 +71,8 @@ declare class Government {
     constructor();
     financialTransaction(p_amount: number): void;
     getBalance(): number;
+    getSocialScore(): number;
+    getEnvironmentalScore(): number;
     getTaxingRate(): number;
     setTaxingRate(rate: number): void;
     getRestrictions(): Restrictions;
@@ -80,7 +84,7 @@ declare class LandingSite extends Site {
     private m_untaxedValue;
     constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_prices: {
         [fishType: number]: number;
-    });
+    }, p_runningCost: number);
     getPrices(): {
         [fishType: number]: number;
     };
@@ -99,6 +103,8 @@ declare class Map {
     private m_restrictions;
     private m_fishingPercentage;
     private m_ships;
+    private m_fuelRunningCost;
+    private m_landingRunningCost;
     constructor(p_size: number, p_noOfSchools: number, p_restrictions: Restrictions);
     getRestrictions(): Restrictions;
     getGrid(): Tile[][];
