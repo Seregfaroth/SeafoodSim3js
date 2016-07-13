@@ -64,6 +64,8 @@ declare class Government {
     private m_restrictions;
     private m_balance;
     private m_taxingRate;
+    private m_environmentalScore;
+    private m_socialScore;
     constructor();
     financialTransaction(p_amount: number): void;
     getBalance(): number;

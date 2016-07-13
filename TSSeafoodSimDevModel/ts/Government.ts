@@ -2,10 +2,15 @@
     private m_restrictions: Restrictions;
     private m_balance: number;
     private m_taxingRate: number;
-
+    private m_environmentalScore: number;
+    private m_socialScore: number;
 
     public constructor() {
         this.m_restrictions = new Restrictions();
+        this.m_balance = 0;
+        this.m_taxingRate = 0;
+        this.m_environmentalScore = 0;
+        this.m_socialScore = 0;
     }
 
     public financialTransaction(p_amount: number): void {

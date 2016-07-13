@@ -10,6 +10,17 @@
         menuDiv.className = "ui-widget-content";
         document.getElementById("mainDiv").appendChild(menuDiv);
 
+        //Create score view
+        var scoreLegend: HTMLLegendElement = document.createElement("legend");
+        scoreLegend.classList.add("menu-legend");
+        var scoreTable: HTMLTableElement = document.createElement("table");
+        scoreLegend.appendChild(scoreTable);
+        var financialRow: HTMLTableRowElement = scoreTable.insertRow();
+        var finacialScoreLabel: HTMLDivElement = document.createElement("div");
+        finacialScoreLabel.innerHTML = "Financial Score:";
+        financialRow.appendChild(finacialScoreLabel);
+
+
         //Create tax slider
         var taxDiv: HTMLElement = document.createElement("legend");
         taxDiv.classList.add("menu-legend");
