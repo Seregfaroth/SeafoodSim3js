@@ -2,7 +2,7 @@
 class AI {
      private m_balanceToBuyShip: number = 1000000;
      private m_balanceToSellShip: number = 0;
-    private m_fishingPath: Point2[] = [new Point2(1, 0), new Point2(1, 1), new Point2(1, 2), new Point2(1, 3), new Point2(1, 4), new Point2(2, 4),
+     private m_fishingPath: Point2[] = [new Point2(2, 0),new Point2(1, 0), new Point2(1, 1), new Point2(1, 2), new Point2(1, 3), new Point2(1, 4), new Point2(2, 4),
         new Point2(3, 4), new Point2(3, 3), new Point2(3, 2), new Point2(3, 1), new Point2(3, 0), new Point2(2, 0)];
 
     public run(p_shipOwner: ShipOwner, p_map: Map): void {
@@ -73,13 +73,12 @@ class AI {
                 }
             }
             */ if (ship.getPath() != undefined) {
-                 if (ship.getPath().length > 1) {
+                if (ship.getPath().length <= 1) {
+                    ship.setPath(ai.m_fishingPath.slice());
+                 }
                      ship.fish(p_map);
                      ship.followPath();
-                 }
-                 else {
-                     ship.setPath(ai.m_fishingPath.slice());
-                 }
+                 
              }
         });
     }
