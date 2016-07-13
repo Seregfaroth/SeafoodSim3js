@@ -6,5 +6,6 @@
         new TestFuelSite();
         new TestLandingSite();
         new TestMap();
+        new TestAI();
     }
 }

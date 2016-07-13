@@ -4,6 +4,9 @@
 declare class Test {
     constructor();
 }
+declare class TestAI {
+    constructor();
+}
 declare class TestFuelSite {
     constructor();
 }

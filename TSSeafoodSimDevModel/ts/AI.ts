@@ -26,7 +26,55 @@ class AI {
     private runShips(p_shipOwner: ShipOwner, p_map: Map): void {
         var ai: AI = this;
         p_shipOwner.getShips().forEach(function (ship) {
-            if (ship.getPath() != undefined) {
+            if (ship.hasReachedGoal()) {
+                //If ship has reached a previous sat goal
+                var tile: Tile = p_map.getTile(ship.getPosition());
+                if (tile instanceof LandingSite) {
+                    //If ship has reached a landing site
+                    ship.land(tile);
+                    ship.emptyPath();
+                }
+                else if (tile instanceof FuelSite) {
+                    //If ship has reached fuel site
+                    ship.refuel(tile);
+                    ship.emptyPath();
+                }
+            }
+            else {
+                try {
+                    ship.followPath()
+                }
+                catch (e) {
+                    //If ship has no path to follow
+                    var nearestFuel: Point2 = ai.findNearestFuelSite(ship.getPosition(), p_map);
+                    var fuelPath: Point2[] = ai.pathFinding(ship.getPosition(), nearestFuel);
+                    if (ship.getFuel() < fuelPath.length * ship.getFuelPerMove()) {
+                        //Ship must refuel if fuel is too low
+                        ship.setPath(fuelPath);
+                    }
+                    else if (ship.getCargo().length > ship.getCargoCapacity() * 0.9) {
+                        //If ship is more than 90% full, ship must land
+                        var landingPoint: Point2 = ai.findNearestLandingSite(ship.getPosition(), p_map);
+                        var landingPath: Point2[] = ai.pathFinding(ship.getPosition(), landingPoint);
+                        var fuelPoint: Point2 = ai.findNearestFuelSite(landingPoint, p_map);
+                        var sailingDistanceToRefuel: number =  landingPath.length + ai.pathFinding(landingPoint, fuelPoint).length;
+                        if (ship.getFuel() < sailingDistanceToRefuel * ship.getFuelPerMove()) {
+                            //If ship cannot reach lanidng site and reach nearest fuel site with current fuel it must refuel
+                            ship.setPath(fuelPath);
+                        }
+                        else {
+                            ship.setPath(landingPath);
+                        }
+                    }
+                    else {
+                        //If ship does not need to land or refuel it should move randomly and fish
+                        ship.randomMove(p_map);
+                        ship.fish(p_map);
+                    }
+
+                }
+            }
+           /* if (ship.getPath() != undefined) {
                 if (ship.getPath().length > 1) {
                     ship.fish(p_map);
                     ship.followPath();
@@ -34,27 +82,45 @@ class AI {
                 else {
                     ship.setPath(ai.m_fishingPath);
                 }
-            }
+            }*/
         });
     }
-
-    private findLandingSite(p_map: Map): Point2 {
-        for (var row = 0; row < p_map.getMapHeight(); row++) {
-            for (var col = 0; col < p_map.getMapWidth(); col++) {
-                if (p_map.getTile(new Point2(row, col)) instanceof LandingSite) {
-                    return new Point2(row, col);
+    private pathFinding(p_start: Point2, p_goal: Point2): Point2[] {
+        return [];
+    }
+    public findNearestLandingSite(p_start: Point2, p_map: Map): Point2 {
+        var startRow: number = p_start.row;
+        var startCol: number = p_start.col;
+        var delta: number = 0;
+        while (delta < Math.max(p_map.getMapHeight(), p_map.getMapWidth())) {
+            for (var row = startRow - delta; row <= startRow + delta; row++) {
+                for (var col = startCol - delta; col <= startCol + delta; col++) {
+                    if (row >= 0 && row < p_map.getMapHeight() && col >= 0 && col < p_map.getMapWidth()) {
+                         if (p_map.getGrid()[row][col] instanceof LandingSite) {
+                            return new Point2(row, col);
+                        }
+                    }
                 }
             }
+            delta++;
         }
     }
 
-    private findFuelSite(p_map: Map): Point2 {
-        for (var row = 0; row < p_map.getMapHeight(); row++) {
-            for (var col = 0; col < p_map.getMapWidth(); col++) {
-                if (p_map.getTile(new Point2(row, col)) instanceof FuelSite) {
-                    return new Point2(row, col);
+    public findNearestFuelSite(p_start: Point2, p_map: Map): Point2 {
+        var startRow: number = p_start.row;
+        var startCol: number = p_start.col;
+        var delta: number = 0;
+        while (delta < Math.max(p_map.getMapHeight(), p_map.getMapWidth())) {
+            for (var row = startRow - delta; row <= startRow + delta; row++) {
+                for (var col = startCol - delta; col <= startCol + delta; col++) {
+                    if (row >= 0 && row < p_map.getMapHeight() && col >= 0 && col < p_map.getMapWidth()) {
+                        if (p_map.getGrid()[row][col] instanceof FuelSite) {
+                            return new Point2(row, col);
+                        }
+                    }
                 }
             }
+            delta++;
         }
     }
 }

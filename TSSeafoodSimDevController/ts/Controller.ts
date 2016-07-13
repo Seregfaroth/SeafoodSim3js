@@ -14,7 +14,7 @@ class Controller {
         this.m_simState = simState.starting;
         this.m_delayPerTick = 1000;
         this.m_model = new Model();
-        this.m_view = new MainView(this.m_model.getMap()); 
+        this.m_view = new MainView(this.m_model.getMap(), this.m_model.getShipOwners()); 
         this.m_eventHandler = new EventHandler(this);
         //debugger;
         //if (this.m_model != undefined && this.m_view != undefined) {

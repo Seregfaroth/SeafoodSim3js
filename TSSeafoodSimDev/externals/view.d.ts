@@ -3,11 +3,11 @@
 declare class MainView {
     private m_mapView;
     private m_mapMenu;
-    constructor(p_map: Map);
+    constructor(p_map: Map, p_ShipOwners: ShipOwner[]);
     updateMainView(p_map: Map): void;
 }
 declare class MapMenu {
-    constructor();
+    constructor(p_ShipOwners: ShipOwner[], p_LandingSites: LandingSite[]);
 }
 declare class MapView {
     private m_renderer;

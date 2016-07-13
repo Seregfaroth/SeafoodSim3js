@@ -10,10 +10,10 @@ class Model {
 
     constructor() {
         console.log("constructing model");
-        this.m_map = new Map(10,5, new Restrictions());
+        this.m_map = new Map(10,8, new Restrictions());
         this.m_goverment = new Government();
         this.m_ai = new AI();
-        this.createShipOwner(new Point2(3, 3));
+        this.createShipOwner(new Point2(3, 3), 100000);
     }
 
     public run() {
@@ -25,6 +25,10 @@ class Model {
         this.updateScore();
     }
 
+    public getShipOwners(): ShipOwner[] {
+        return this.m_shipOwners;
+    }
+
     public getMap(): Map {
         return this.m_map;
     }
@@ -32,8 +36,8 @@ class Model {
     public getGovernment(): Government {
         return this.m_goverment;
     }
-    public createShipOwner(p_startingPoint: Point2) {
-        this.m_shipOwners.push(new ShipOwner(p_startingPoint, "shipOwner" + this.m_shipOwners.length));
+    public createShipOwner(p_startingPoint: Point2, p_balance?: number) {
+        this.m_shipOwners.push(new ShipOwner(p_startingPoint, "shipOwner" + this.m_shipOwners.length, p_balance));
     }
     public updateScore(): void {
         var gov: Government = this.getGovernment();

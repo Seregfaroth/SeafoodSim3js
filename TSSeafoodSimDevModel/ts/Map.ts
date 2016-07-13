@@ -93,13 +93,12 @@ class Map {
             //If the ship is not able to fish the full percentage
             percentage = p_capacity / noOfFishInTile;
         }
-
         this.getSchoolsInTile(p_position).forEach(function (s) {
             s.shuffleFish(); //May not be necessary to shuffle every time
             var fishInSchool: Fish[] = s.getFish();
             //Take a percentage of fish out of the school and add it to the fish list
             var fishToAdd: Fish[] = fishInSchool.splice(0, fishInSchool.length * percentage);
-            fish = fish.concat(fishToAdd);
+             fish = fish.concat(fishToAdd);
         });
         return fish;
     }
@@ -165,5 +164,13 @@ class Map {
             }
         }
         return sites;
+    }
+
+    public emptyGrid(): void {
+        for (var r = 0; r < this.getMapHeight(); r++) {
+            for (var c = 0; c < this.getMapWidth(); c++) {
+                this.m_grid[r][c] = new Ocean(100,1);
+            }
+        }
     }
 }
