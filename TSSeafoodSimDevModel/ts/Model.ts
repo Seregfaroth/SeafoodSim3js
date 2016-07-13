@@ -14,6 +14,7 @@ class Model {
         this.m_goverment = new Government();
         this.m_ai = new AI();
         this.createShipOwner(new Point2(3, 3), 100000);
+        this.createShipOwner(new Point2(0, 0), 0);
     }
 
     public run() {

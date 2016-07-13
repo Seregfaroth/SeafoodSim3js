@@ -7,6 +7,9 @@
 .slider-cell {
     width: 80%;
 }
-.slider-legend-labe.slider-cell {
+.legend-header {
     font-weight: bold;
+}
+.menu-legend {
+    margin-left: 10px;
 }

@@ -3,6 +3,7 @@
     constructor(p_ShipOwners: ShipOwner[], p_LandingSites: LandingSite[]) {
         console.log("construct MapMenu");
         var menuDiv: HTMLElement = document.createElement("div");
+        menuDiv.id = "menuDiv";
         menuDiv.style.cssFloat = "left";
         menuDiv.style.width = "20%";
         menuDiv.style.height = "70%";
@@ -11,10 +12,12 @@
 
         //Create tax slider
         var taxDiv: HTMLElement = document.createElement("legend");
+        taxDiv.classList.add("menu-legend");
         menuDiv.appendChild(taxDiv);
 
         var taxLabel: HTMLElement = document.createElement("div");
-        taxLabel.innerHTML = "<b>Taxing rate:</b>";
+        taxLabel.innerHTML = "Taxing rate:";
+        taxLabel.className = "legend-header";
         taxLabel.style.cssFloat = "left";
         taxDiv.appendChild(taxLabel);
         
@@ -32,8 +35,12 @@
 
         //Create quote sliders
         var quoteLegend: HTMLElement = document.createElement("legend");
-        quoteLegend.innerHTML = "<b>Quotes</b>";
-        
+        quoteLegend.classList.add("menu-legend");
+        var quoteLabel: HTMLElement = document.createElement("div");
+        quoteLabel.innerHTML = "Quotes:";
+
+        quoteLabel.className = "legend-header";
+        quoteLegend.appendChild(quoteLabel);
         menuDiv.appendChild(quoteLegend);
         var quoteTable: any = document.createElement("TABLE");
         quoteLegend.appendChild(quoteTable);
@@ -61,7 +68,11 @@
 
         //Create effort limit sliders
         var effortLegend: HTMLElement = document.createElement("legend");
-        effortLegend.innerHTML = "<b> Effort Limits: </b>";
+        effortLegend.classList.add("menu-legend");
+        var effortLabel: HTMLElement = document.createElement("div");
+        effortLabel.innerHTML = "Effort Limits:";
+        effortLabel.className = "legend-header";
+        effortLegend.appendChild(effortLabel);
         menuDiv.appendChild(effortLegend);
         var effortTable: any = document.createElement("TABLE");
         effortLegend.appendChild(effortTable);
@@ -88,30 +99,35 @@
         }
         //Create buttons
         var buttonsDiv: HTMLElement = document.createElement("legend");
+        buttonsDiv.classList.add("menu-legend");
         var labelDiv: HTMLElement = document.createElement("div");
-        labelDiv.innerHTML = "simulation control";
+        labelDiv.className = "legend-header";
+        labelDiv.innerHTML = "Simulation control:";
         buttonsDiv.appendChild(labelDiv);
         menuDiv.appendChild(buttonsDiv);
 
-        var startButton: HTMLButtonElement = document.createElement("button");
-        startButton.innerHTML = "start";
+        var startButton: HTMLDivElement = document.createElement("div");
         startButton.id = "startButton";
         startButton.style.margin = "10px";
-        startButton.className = "ui-button";
+        startButton.classList.add("ui-button");
+        startButton.classList.add("fa");
+        startButton.classList.add("fa-play");
         buttonsDiv.appendChild(startButton);
 
-        var pauseButton: HTMLButtonElement = document.createElement("button");
-        pauseButton.innerHTML = "pause";
+        var pauseButton: HTMLDivElement = document.createElement("div");
         pauseButton.id = "pauseButton";
         pauseButton.style.margin = "10px";
-        pauseButton.className = "ui-button";
+        pauseButton.classList.add("fa");
+        pauseButton.classList.add("fa-pause");
+        pauseButton.classList.add("ui-button");
         buttonsDiv.appendChild(pauseButton);
 
-        var fastForwardButton: HTMLButtonElement = document.createElement("button");
-        fastForwardButton.innerHTML = "fast forward";
+        var fastForwardButton: HTMLDivElement = document.createElement("div");
         fastForwardButton.id = "fastForwardButton";
         fastForwardButton.style.margin = "10px";
-        fastForwardButton.className = "ui-button";
+        fastForwardButton.classList.add("fa");
+        fastForwardButton.classList.add("fa-fast-forward");
+        fastForwardButton.classList.add("ui-button");
         buttonsDiv.appendChild(fastForwardButton);
     }
 }
