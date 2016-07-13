@@ -6,6 +6,8 @@ class Controller {
     private m_view: MainView;
     private m_model: Model;
     private m_eventHandler: EventHandler;
+    private m_timer: number;
+    private m_fastTimer: number;
 
     private m_simState: simState;
     private m_delayPerTick: number;
@@ -21,7 +23,8 @@ class Controller {
         //    //debugger;
         //    this.runSimulation(5, 2000);
             
-        //}
+        }
+        this.simulationTick = this.simulationTick.bind(this);
     }
 
     public getModel(): Model {
@@ -40,40 +43,35 @@ class Controller {
         this.m_simState = simState.running;
     }
 
-    runSimulation = (p_ticks?: number) => {
-        this.m_simState = simState.running;
+    runSimulation(p_ticks?: number) {
+        if (this.m_timer == undefined) {
+            this.m_timer = setInterval(this.simulationTick.bind(this), 1000);
+        }
+        /*
         var ticksLeft;
         if (p_ticks != undefined)
             ticksLeft = p_ticks;
         else
             ticksLeft = 10;
         //debugger;
-        while (ticksLeft > 0 /*&& this.m_simState === simState.running*/) {
+        while (ticksLeft > 0) {
             //debugger;
-            if (this.m_delayPerTick != undefined)
-                //setInterval(this.simulationTick(), this.m_delayPerTick);
-            {
-                console.log(this.m_simState);
-            //    console.log(simState.running);
-                //debugger;
-                if (this.m_simState == simState.running) {
-                    this.m_simState = simState.starting;
-                    window.setTimeout(this.simulationTick, this.m_delayPerTick);
-                    //window.setTimeout(this.simulationTick(), 1000);
-                }
-            }
-            else 
-                window.setTimeout(this.simulationTick, 400);
+            this.simulationTick();
             ticksLeft--;
             //console.log("ticksleft: " + ticksLeft);
             
             //debugger;
 
-        }
+        }*/
     }  
 
     public pause(): void {
-        //TODO
+        clearInterval(this.m_timer);
+        this.m_timer = undefined;
+    }
+
+    public fastForward(): void {
+
     }
 }
 

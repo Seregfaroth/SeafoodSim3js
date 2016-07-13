@@ -11,6 +11,8 @@ declare class Controller {
     private m_view;
     private m_model;
     private m_eventHandler;
+    private m_timer;
+    private m_fastTimer;
     private m_simState;
     private m_delayPerTick;
     constructor();
@@ -19,6 +21,7 @@ declare class Controller {
     simulationTick: () => void;
     runSimulation: (p_ticks?: number) => void;
     pause(): void;
+    fastForward(): void;
 }
 declare class EventHandler {
     private m_controller;
@@ -30,5 +33,6 @@ declare class EventHandler {
     setLandingDistrubution(site: string, p_n: number): void;
     start(): void;
     pause(): void;
+    fastForward(): void;
     restrictArea(p_tile: Tile): void;
 }
