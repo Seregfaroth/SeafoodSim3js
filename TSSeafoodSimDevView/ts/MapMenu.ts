@@ -10,7 +10,7 @@
         document.getElementById("mainDiv").appendChild(menuDiv);
 
         //Create tax slider
-        var taxDiv: HTMLElement = document.createElement("div");
+        var taxDiv: HTMLElement = document.createElement("legend");
         menuDiv.appendChild(taxDiv);
 
         var taxLabel: HTMLElement = document.createElement("div");
@@ -31,14 +31,19 @@
 
 
         //Create quote sliders
-        var quoteDiv: HTMLElement = document.createElement("div");
-        menuDiv.appendChild(quoteDiv);
+        var quoteLegend: HTMLElement = document.createElement("legend");
+        quoteLegend.innerHTML = " quotes";
+        menuDiv.appendChild(quoteLegend);
+        var quoteTable: any = document.createElement("TABLE");
+        quoteLabel.appendChild(quoteLegend);
 
         for (var i = 0; i < p_ShipOwners.length; i++) {
+            var row: HTMLTableRowElement = quoteTable.insertRow();
+            var cell: HTMLTableCellElement = row.insertCell();
             var quoteLabel: HTMLElement = document.createElement("div");
             quoteLabel.innerHTML = p_ShipOwners[i].getId();
             quoteLabel.style.cssFloat = "left";
-            quoteDiv.appendChild(quoteLabel);
+            quoteLegend.appendChild(quoteLabel);
 
 
             var quoteSlider: HTMLElement = document.createElement("div");
@@ -46,14 +51,14 @@
             quoteSlider.style.width = "70%";
             quoteSlider.style.cssFloat = "right";
             quoteSlider.style.margin = "10px";
-            quoteDiv.appendChild(quoteSlider);
+            quoteLegend.appendChild(quoteSlider);
             $("#quoteSlider" + p_ShipOwners[i].getId()).slider();
             $("#quoteSlider" + p_ShipOwners[i].getId()).slider("option", "min", 0);
             $("#quoteSlider" + p_ShipOwners[i].getId()).slider("option", "max", 100);
         }
 
         //Create effort limit sliders
-        var effortDiv: HTMLElement = document.createElement("div");
+        var effortDiv: HTMLElement = document.createElement("legend");
         menuDiv.appendChild(effortDiv);
 
         for (var i = 0; i < p_ShipOwners.length; i++) {
@@ -74,7 +79,10 @@
             $("#effortSlider" + p_ShipOwners[i].getId()).slider("option", "max", 100);
         }
         //Create buttons
-        var buttonsDiv: HTMLElement = document.createElement("div");
+        var buttonsDiv: HTMLElement = document.createElement("legend");
+        var labelDiv: HTMLElement = document.createElement("div");
+        labelDiv.innerHTML = "simulation control";
+        buttonsDiv.appendChild(labelDiv);
         menuDiv.appendChild(buttonsDiv);
 
         var startButton: HTMLButtonElement = document.createElement("button");

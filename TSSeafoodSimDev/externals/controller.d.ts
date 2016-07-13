@@ -6,6 +6,7 @@ declare enum simState {
     running = 1,
     paused = 2,
     ending = 3,
+    fast = 4,
 }
 declare class Controller {
     private m_view;
@@ -15,6 +16,7 @@ declare class Controller {
     private m_fastTimer;
     private m_simState;
     private m_delayPerTick;
+    private m_fastDelayPerTick;
     constructor();
     getModel(): Model;
     getEventHandler(): EventHandler;
@@ -27,12 +29,12 @@ declare class EventHandler {
     private m_controller;
     constructor(p_controller: Controller);
     bindFunctions(): void;
-    setTax(p_n: number): void;
-    setQuote(owner: string, p_n: number): void;
-    setEffortLimit(owner: string, p_n: number): void;
-    setLandingDistrubution(site: string, p_n: number): void;
-    start(): void;
-    pause(): void;
-    fastForward(): void;
-    restrictArea(p_tile: Tile): void;
+    setTax: (p_n: number) => void;
+    setQuote: (owner: string, p_n: number) => void;
+    setEffortLimit: (owner: string, p_n: number) => void;
+    setLandingDistrubution: (site: string, p_n: number) => void;
+    start: () => void;
+    pause: () => void;
+    fastForward: () => void;
+    restrictArea: (p_tile: Tile) => void;
 }

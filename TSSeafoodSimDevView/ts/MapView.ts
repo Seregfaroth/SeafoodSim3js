@@ -100,8 +100,7 @@ class MapView {
         for(var i = 0; i < this.m_ships.length; i++) {
             this.m_ships[i].position = new Point2(p_map.getShips()[i].getPosition().row, p_map.getShips()[i].getPosition().col);
         }
-        debugger;
-        
+        /*
         i = this.m_ships.length;
         while (this.m_ships.length < p_map.getShips().length) {
             this.m_ships[i] = new TKN_Mesh(new TKN_Geometry(0.3), this.m_blackMaterial);
@@ -110,7 +109,7 @@ class MapView {
             i++;
         }
 
-        debugger;
+        //debugger;
         this.m_renderer.render(this.m_camera, this.m_scene );
         //debugger;
     }
