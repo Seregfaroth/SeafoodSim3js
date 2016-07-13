@@ -46,7 +46,7 @@ class Controller {
         if (p_ticks != undefined)
             ticksLeft = p_ticks;
         else
-            ticksLeft = 10000;
+            ticksLeft = 10;
         //debugger;
         while (ticksLeft > 0 /*&& this.m_simState === simState.running*/) {
             //debugger;

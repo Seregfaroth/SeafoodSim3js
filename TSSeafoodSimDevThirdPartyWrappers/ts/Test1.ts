@@ -21,7 +21,7 @@ class TKN_Camera {
     private m_position: Point3;
     constructor() {
         this.m_camera = new THREE.PerspectiveCamera(60, 1, 0.3, 1000);
-        this.m_camera.position.z = 100;
+        this.m_camera.position.z = 10;
     }
     get position(): Point3 {
         return this.m_position;
