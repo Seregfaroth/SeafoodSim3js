@@ -99,7 +99,6 @@ class MapView {
         for(var i = 0; i < this.m_ships.length; i++) {
             this.m_ships[i].position = new Point2(p_map.getShips()[i].getPosition().row, p_map.getShips()[i].getPosition().col);
         }
-        debugger;
         /*
         i = this.m_ships.length;
         while (this.m_ships.length < p_map.getShips().length) {
