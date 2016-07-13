@@ -2,7 +2,7 @@
 class Ship {
     private m_fuel: number;
     private m_cargo: Fish[];
-    private m_fuelCapacity: number = 100;
+    private m_fuelCapacity: number = 10000;
     private m_cargoCapacity: number = 100;
     private m_position: Point2;
     private m_path: Point2[] = [];
@@ -58,7 +58,6 @@ class Ship {
             throw new Error("Path is empty");
         }
         else {
-            console.log("moving to " + JSON.stringify(this.m_path[0]));
             this.m_path.shift();
             this.moveTo(this.m_path[0]);
         }
