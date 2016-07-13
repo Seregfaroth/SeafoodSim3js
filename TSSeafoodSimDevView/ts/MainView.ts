@@ -9,10 +9,10 @@ class MainView {
         this.m_mapMenu = new MapMenu(p_ShipOwners, p_map.getLandingSites());
     }
 
-    updateMainView(p_map: Map) {
+    updateMainView(p_model: Model) {
         console.log("updating mainView");
-
-        this.m_mapView.updateMapView(p_map);
+        this.m_mapMenu.updateScore(p_model.getGovernment());
+        this.m_mapView.updateMapView(p_model.getMap());
     }
 
 }

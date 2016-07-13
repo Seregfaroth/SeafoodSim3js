@@ -1,8 +1,8 @@
 ﻿/// <reference path="Site.ts"/>
 class FuelSite extends Site {
     private m_price: number;
-    public constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_price: number) {
-        super(p_shipCapacity, p_resourceCapacity, p_processPerDay);
+    public constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_price: number, p_runningCost: number) {
+        super(p_shipCapacity, p_resourceCapacity, p_processPerDay, p_runningCost);
         this.m_resourceAtSite = this.m_resourceCapacity;
         this.m_price = p_price;
     }
