@@ -1,6 +1,6 @@
 ﻿/// <reference path = "../../TSSeafoodSimDev/externals/wrappers.d.ts"/>
 class AI {
-     private m_balanceToBuyShip: number = 10000;
+     private m_balanceToBuyShip: number = 1000000;
      private m_balanceToSellShip: number = 0;
     private m_fishingPath: Point2[] = [new Point2(1, 0), new Point2(1, 1), new Point2(1, 2), new Point2(1, 3), new Point2(1, 4), new Point2(2, 4),
         new Point2(3, 4), new Point2(3, 3), new Point2(3, 2), new Point2(3, 1), new Point2(3, 0), new Point2(2, 0)];
@@ -78,7 +78,7 @@ class AI {
                      ship.followPath();
                  }
                  else {
-                     ship.setPath(ai.m_fishingPath);
+                     ship.setPath(ai.m_fishingPath.slice());
                  }
              }
         });

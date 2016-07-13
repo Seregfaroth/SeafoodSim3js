@@ -12,14 +12,47 @@
 
         //Create score view
         var scoreLegend: HTMLLegendElement = document.createElement("legend");
+        var scoreLabel: HTMLDivElement = document.createElement("div");
+        scoreLabel.classList.add("legend-header");
+        scoreLabel.innerHTML = "Score:";
+        scoreLegend.appendChild(scoreLabel);
+        menuDiv.appendChild(scoreLegend);
         scoreLegend.classList.add("menu-legend");
         var scoreTable: HTMLTableElement = document.createElement("table");
         scoreLegend.appendChild(scoreTable);
+
         var financialRow: HTMLTableRowElement = scoreTable.insertRow();
+        var labelCell: HTMLTableCellElement = financialRow.insertCell();
         var finacialScoreLabel: HTMLDivElement = document.createElement("div");
         finacialScoreLabel.innerHTML = "Financial Score:";
-        financialRow.appendChild(finacialScoreLabel);
+        labelCell.appendChild(finacialScoreLabel);
+        var scoreCell: HTMLTableCellElement = financialRow.insertCell();
+        var score: HTMLDivElement = document.createElement("div");
+        score.innerHTML = "0";
+        score.classList.add("score");
+        scoreCell.appendChild(score);
 
+        var ecoRow: HTMLTableRowElement = scoreTable.insertRow();
+        var labelCell: HTMLTableCellElement = ecoRow.insertCell();
+        var ecoScoreLabel: HTMLDivElement = document.createElement("div");
+        ecoScoreLabel.innerHTML = "Ecological Score:";
+        labelCell.appendChild(ecoScoreLabel);
+        var scoreCell: HTMLTableCellElement = ecoRow.insertCell();
+        var score: HTMLDivElement = document.createElement("div");
+        score.innerHTML = "0";
+        score.classList.add("score");
+        scoreCell.appendChild(score);
+
+        var socialRow: HTMLTableRowElement = scoreTable.insertRow();
+        var labelCell: HTMLTableCellElement = socialRow.insertCell();
+        var socialScoreLabel: HTMLDivElement = document.createElement("div");
+        socialScoreLabel.innerHTML = "Social Score:";
+        labelCell.appendChild(socialScoreLabel);
+        var scoreCell: HTMLTableCellElement = socialRow.insertCell();
+        var score: HTMLDivElement = document.createElement("div");
+        score.innerHTML = "0";
+        score.classList.add("score");
+        scoreCell.appendChild(score);
 
         //Create tax slider
         var taxDiv: HTMLElement = document.createElement("legend");

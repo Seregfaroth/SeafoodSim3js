@@ -58,6 +58,7 @@ class Ship {
             throw new Error("Path is empty");
         }
         else {
+            console.log("moving to " + JSON.stringify(this.m_path[0]));
             this.m_path.shift();
             this.moveTo(this.m_path[0]);
         }

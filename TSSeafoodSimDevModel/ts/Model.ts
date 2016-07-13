@@ -13,7 +13,7 @@ class Model {
         this.m_map = new Map(10,1, new Restrictions());
         this.m_goverment = new Government();
         this.m_ai = new AI();
-        this.createShipOwner(new Point2(3, 3), 100000);
+        this.createShipOwner(new Point2(3, 3), 100000000000);
         this.createShipOwner(new Point2(0, 0), 0);
     }
 
