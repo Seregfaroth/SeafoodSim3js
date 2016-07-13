@@ -48,7 +48,7 @@
         var quoteLegend: HTMLElement = document.createElement("legend");
         quoteLegend.classList.add("menu-legend");
         var quoteLabel: HTMLElement = document.createElement("div");
-        quoteLabel.innerHTML = "Quotes:";
+        quoteLabel.innerHTML = "Quotas:";
 
         quoteLabel.className = "legend-header";
         quoteLegend.appendChild(quoteLabel);
