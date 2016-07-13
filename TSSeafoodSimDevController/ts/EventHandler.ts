@@ -42,15 +42,15 @@
         this.m_controller.getModel().getGovernment().getRestrictions().setLandingDistrubution(site, p_n);
     }
 
-    public start=(): void=> {
+    public start=():void=> {
         this.m_controller.runSimulation();
     }
 
-    public pause= (): void=> {
+    public pause = (): void => {
         this.m_controller.pause();
     }
 
-    public fastForward = (): void=> {
+    public fastForward = ():void=> {
         this.m_controller.fastForward();
     }
     public restrictArea=(p_tile: Tile)=> {
