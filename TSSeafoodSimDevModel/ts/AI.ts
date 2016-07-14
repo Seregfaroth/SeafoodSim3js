@@ -28,6 +28,7 @@ class AI {
         var ai: AI = this;
         p_shipOwner.getShips().forEach(function (ship) {
             console.log("cargo: " + ship.getCargoSize());
+            console.log("fuel: " + ship.getFuel());
             if (ship.hasReachedGoal()) {
                 //If ship has reached a previous sat goal
                 var tile: Tile = p_map.getTile(ship.getPosition());
@@ -50,8 +51,8 @@ class AI {
                 //If ship has no path to follow
                 var nearestFuel: Point2 = ai.findNearestFuelSite(ship.getPosition(), p_map);
                 var fuelPath: Point2[] = ai.pathFinding(p_map, ship.getPosition(), nearestFuel);
-                if (ship.getFuel() < fuelPath.length * ship.getFuelPerMove()) {
-                    //Ship must refuel if fuel is too low
+                if (ship.getFuel() <= fuelPath.length * ship.getFuelPerMove()) {
+                     //Ship must refuel if fuel is too low
                     ship.setPath(fuelPath);
                 }
                 else if (ship.getCargo().length > ship.getCargoCapacity() * 0.9) {

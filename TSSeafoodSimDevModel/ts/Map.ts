@@ -34,7 +34,7 @@ class Map {
             var point: Point2 = new Point2(Math.floor(Math.random() * this.getMapHeight()), Math.floor(Math.random() * this.getMapWidth()));
             var tile: Tile = this.getTile(point);
             if (tile instanceof Ocean && this.getNoOfFishInTile(point) < (<Ocean>tile).getFishCapacity()) {
-                this.addSchool(new Cod(10, point));
+                this.addSchool(new Cod(90, point));
                 schoolsPlaced++;
             }
 
@@ -110,7 +110,7 @@ class Map {
     private getSchoolsInTile(p_position: Point2): School[] {
         var list: School[] = [];
         this.m_schools.forEach(function (s) {
-            if (s.getPosition().compare(p_position)) {
+           if (s.getPosition().compare( p_position) ){
                 list.push(s);
 
             }
@@ -156,6 +156,12 @@ class Map {
         var map: Map = this;
         this.m_schools.forEach(function (s) {
             s.live(map);
+        });
+        this.getLandingSites().forEach(function (ls) {
+            ls.processFish();
+        });
+        this.getFuelSites().forEach(function (fs) {
+            fs.restock();
         });
     }
 
