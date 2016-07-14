@@ -76,7 +76,7 @@ class TestShip {
             var prices: { [fishType: number]: number } = {};
             prices[0] = 10;
             prices[1] = 8;
-            var site: LandingSite = new LandingSite(1, 10, 1, prices,1);
+            var site: LandingSite = new LandingSite(1, 10, 1, prices, 1, "0");
             map.getGrid()[2][2] = site;
             var point: Point2 = new Point2(2, 2);
             var noOfFishInSchool: number = 100;
@@ -100,7 +100,7 @@ class TestShip {
         });
 
         QUnit.test("Ship: refuel", function (assert) {
-            var fuelSite: FuelSite = new FuelSite(1, 100, 1, 1,1);
+            var fuelSite: FuelSite = new FuelSite(1, 100, 1, 1, 1, "0");
             var balance: number = ship.getOwner().getBalance();
             ship.setPath([new Point2(0, 0), new Point2(0, 1)]);
             ship.followPath();

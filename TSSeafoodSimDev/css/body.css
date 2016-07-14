@@ -11,8 +11,22 @@
     font-weight: bold;
 }
 .menu-legend {
-    margin-left: 10px;
+    padding: 5px;
 }
 .score{
     margin-left: 10px;
 }
+.menu-text {
+    font-size: 80%;
+}
+.marked {
+    color: black !important;
+}
+.fa{
+    color: dimgray;
+}
+.slider-value-cell {
+    padding: 10px;
+    min-width: 70px;
+}
+

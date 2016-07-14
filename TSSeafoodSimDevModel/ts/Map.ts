@@ -25,6 +25,9 @@ class Map {
     public getShips(): Ship[] {
         return this.m_ships;
     }
+    public getSchools(): School[] {
+        return this.m_schools;
+    }
     private placeSchools(p_n) {
         var schoolsPlaced: number = 0;
         while (schoolsPlaced < p_n) {
@@ -67,8 +70,8 @@ class Map {
         prices[0] = 10;
         prices[1] = 5;
 
-        this.m_grid[Math.floor(p_size / 2)][Math.floor(p_size / 2)+1] = new LandingSite(1, 5, 20,prices,this.m_landingRunningCost);
-        this.m_grid[Math.floor(p_size / 2)][Math.floor(p_size / 2)-1] = new FuelSite(1, 300, 20, 10,this.m_fuelRunningCost);
+        this.m_grid[Math.floor(p_size / 2)][Math.floor(p_size / 2)+1] = new LandingSite(1, 5, 20,prices,this.m_landingRunningCost, "landingSite0");
+        this.m_grid[Math.floor(p_size / 2)][Math.floor(p_size / 2)-1] = new FuelSite(1, 300, 20, 10,this.m_fuelRunningCost, "fuelSite0");
 
     }
 
@@ -100,14 +103,14 @@ class Map {
             var fishInSchool: Fish[] = s.getFish();
             //Take a percentage of fish out of the school and add it to the fish list
             var fishToAdd: Fish[] = fishInSchool.splice(0, fishInSchool.length * percentage);
-             fish = fish.concat(fishToAdd);
+            fish = fish.concat(fishToAdd);
         });
         return fish;
     }
     private getSchoolsInTile(p_position: Point2): School[] {
         var list: School[] = [];
         this.m_schools.forEach(function (s) {
-            if (s.getPosition() === p_position) {
+            if (s.getPosition().compare(p_position)) {
                 list.push(s);
 
             }
@@ -162,6 +165,18 @@ class Map {
             for (var col = 0; col < this.getMapWidth(); col++) {
                 if (this.m_grid[row][col] instanceof LandingSite) {
                     sites.push(<LandingSite>this.m_grid[row][col]);
+                }
+            }
+        }
+        return sites;
+    }
+
+    public getFuelSites(): FuelSite[] {
+        var sites: FuelSite[] = [];
+        for (var row = 0; row < this.getMapHeight(); row++) {
+            for (var col = 0; col < this.getMapWidth(); col++) {
+                if (this.m_grid[row][col] instanceof FuelSite) {
+                    sites.push(<FuelSite>this.m_grid[row][col]);
                 }
             }
         }

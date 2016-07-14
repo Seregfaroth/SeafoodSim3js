@@ -37,6 +37,13 @@ class Controller {
     public getEventHandler(): EventHandler {
         return this.m_eventHandler;
     }
+    public getSimState(): simState {
+        return this.m_simState;
+    }
+
+    public getMainView(): MainView {
+        return this.m_view;
+    }
     simulationTick = () => {
         console.log("Controller running simulationtick");
         

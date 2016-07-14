@@ -7,7 +7,7 @@
 
         QUnit.test("AI: findNearestLandingSite", function (assert) {
             map.emptyGrid();
-            map.getGrid()[2][2] = new LandingSite(1, 10, 1, {},1);
+            map.getGrid()[2][2] = new LandingSite(1, 10, 1, {},1,"0");
 
             assert.deepEqual(ai.findNearestLandingSite(new Point2(2, 2), map), new Point2(2, 2), "Should find nearest landing site at 2,2");
             assert.deepEqual(ai.findNearestLandingSite(new Point2(0, 0), map), new Point2(2, 2), "Should find nearest landing site at 2,2");
@@ -17,8 +17,8 @@
 
         QUnit.test("AI: findNearestLandingSite with multiple sites", function (assert) {
             map.emptyGrid();
-            map.getGrid()[0][4] = new LandingSite(1, 10, 1, {},1);
-            map.getGrid()[3][0] = new LandingSite(1, 10, 1, {},1);
+            map.getGrid()[0][4] = new LandingSite(1, 10, 1, {}, 1, "0");
+            map.getGrid()[3][0] = new LandingSite(1, 10, 1, {}, 1, "1");
             
             assert.deepEqual(ai.findNearestLandingSite(new Point2(0, 0), map), new Point2(3, 0), "Nearest from 0,0 should be 3,0");
             assert.deepEqual(ai.findNearestLandingSite(new Point2(4, 0), map), new Point2(3, 0), "Nearest from 4,0 should be 3,0");
@@ -51,6 +51,23 @@
 
              ai.run(richShipOwner, map);
              assert.ok(richShipOwner.getShips().length >= noOfShips, "rich ship owner should not sell any of his ships");
+        });
+
+        QUnit.test("AI: pathfinding straight line", function (assert) {
+            map.emptyGrid();
+            var expectedPath: Point2[] = [new Point2(0, 0), new Point2(0, 1), new Point2(0,2)];
+            var path: Point2[] = ai.pathFinding(map,new Point2(0, 0), new Point2(0, 2));
+            assert.deepEqual(path, expectedPath, "should find a straight line path");
+        });
+
+        QUnit.test("AI: pathfinding with land", function (assert) {
+            map.emptyGrid();
+            map.getGrid()[3][0] = new Land();
+            map.getGrid()[3][1] = new Land();
+            map.getGrid()[3][2] = new Land();
+            var expectedPath: Point2[] = [new Point2(2, 0), new Point2(2, 1), new Point2(2, 2), new Point2(2, 3), new Point2(3, 3), new Point2(4, 3), new Point2(4, 2), new Point2(4, 1), new Point2(4, 0)];
+            var path: Point2[] = ai.pathFinding(map, new Point2(2, 0), new Point2(4, 0));
+            assert.deepEqual(path, expectedPath, "should find a path around the land");
         });
     }
 

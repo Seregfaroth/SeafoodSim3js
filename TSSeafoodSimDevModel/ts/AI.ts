@@ -1,5 +1,6 @@
 ﻿/// <reference path = "../../TSSeafoodSimDev/externals/wrappers.d.ts"/>
 class AI {
+    private m_pathFinder: TKN_PathFinding = new TKN_PathFinding();
      private m_balanceToBuyShip: number = 1000000;
      private m_balanceToSellShip: number = 0;
      private m_fishingPath: Point2[] = [new Point2(2, 0),new Point2(1, 0), new Point2(1, 1), new Point2(1, 2), new Point2(1, 3), new Point2(1, 4), new Point2(2, 4),
@@ -26,7 +27,8 @@ class AI {
     private runShips(p_shipOwner: ShipOwner, p_map: Map): void {
         var ai: AI = this;
         p_shipOwner.getShips().forEach(function (ship) {
-           /* if (ship.hasReachedGoal()) {
+            console.log("cargo: " + ship.getCargoSize());
+            if (ship.hasReachedGoal()) {
                 //If ship has reached a previous sat goal
                 var tile: Tile = p_map.getTile(ship.getPosition());
                 if (tile instanceof LandingSite) {
@@ -47,7 +49,7 @@ class AI {
             catch (e) {
                 //If ship has no path to follow
                 var nearestFuel: Point2 = ai.findNearestFuelSite(ship.getPosition(), p_map);
-                var fuelPath: Point2[] = ai.pathFinding(ship.getPosition(), nearestFuel);
+                var fuelPath: Point2[] = ai.pathFinding(p_map, ship.getPosition(), nearestFuel);
                 if (ship.getFuel() < fuelPath.length * ship.getFuelPerMove()) {
                     //Ship must refuel if fuel is too low
                     ship.setPath(fuelPath);
@@ -55,9 +57,9 @@ class AI {
                 else if (ship.getCargo().length > ship.getCargoCapacity() * 0.9) {
                     //If ship is more than 90% full, ship must land
                     var landingPoint: Point2 = ai.findNearestLandingSite(ship.getPosition(), p_map);
-                    var landingPath: Point2[] = ai.pathFinding(ship.getPosition(), landingPoint);
+                    var landingPath: Point2[] = ai.pathFinding(p_map, ship.getPosition(), landingPoint);
                     var fuelPoint: Point2 = ai.findNearestFuelSite(landingPoint, p_map);
-                    var sailingDistanceToRefuel: number = landingPath.length + ai.pathFinding(landingPoint, fuelPoint).length;
+                    var sailingDistanceToRefuel: number = landingPath.length + ai.pathFinding(p_map, landingPoint, fuelPoint).length;
                     if (ship.getFuel() < sailingDistanceToRefuel * ship.getFuelPerMove()) {
                         //If ship cannot reach lanidng site and reach nearest fuel site with current fuel it must refuel
                         ship.setPath(fuelPath);
@@ -72,18 +74,19 @@ class AI {
                     ship.fish(p_map);
                 }
             }
-            */ if (ship.getPath() != undefined) {
+            /* if (ship.getPath() != undefined) {
                 if (ship.getPath().length <= 1) {
                     ship.setPath(ai.m_fishingPath.slice());
                  }
                      ship.fish(p_map);
                      ship.followPath();
                  
-             }
+             }*/
         });
     }
-    private pathFinding(p_start: Point2, p_goal: Point2): Point2[] {
-        return [];
+    public pathFinding(p_map: Map, p_start: Point2, p_goal: Point2): Point2[] {
+        this.m_pathFinder.navTable = p_map.getPathFindingMap();
+        return this.m_pathFinder.findPath(p_start, p_goal);
     }
     public findNearestLandingSite(p_start: Point2, p_map: Map): Point2 {
         var startRow: number = p_start.row;

@@ -4,12 +4,12 @@
         var prices: { [fishType: number]: number } = {};
         prices[0] = 10;
         prices[1] = 8;
-        var landingSite: LandingSite = new LandingSite(1, 5, 1, prices,1);
+        var landingSite: LandingSite = new LandingSite(1, 5, 1, prices, 1, "0");
 
         QUnit.test("LandingSite: Constructor", function (assert) {
             var testingSite: LandingSite;
             assert.equal(testingSite, undefined, "site should be undefined");
-            testingSite = new LandingSite(1, 1, 1, prices,1);
+            testingSite = new LandingSite(1, 1, 1, prices, 1, "0");
             //Check that the landing site has been created with the correct members
             assert.ok(testingSite, "fuel site should not be undefined");
             assert.deepEqual(testingSite.getPrices(), prices, "price should be correct");

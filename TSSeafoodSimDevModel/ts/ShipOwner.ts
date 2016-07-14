@@ -14,7 +14,7 @@ class ShipOwner {
             this.m_balance = p_balance;
         }
     }
-    public getId(): string {
+    public getID(): string {
         return this.m_id;
     }
     public getShips(): Ship[] {

@@ -1,12 +1,26 @@
 /// <reference path="wrappers.d.ts" />
+declare class Score {
+    private m_financialScore;
+    private m_socialScore;
+    private m_environmentalScore;
+    private m_mininumSchool;
+    private m_minimumScore;
+    private m_maximumScore;
+    constructor();
+    getSocialScore(): number;
+    getEnvironmentalScore(): number;
+    getFinancialScore(): number;
+    updateScore(p_map: Map, p_gov: Government): void;
+}
 declare class AI {
+    private m_pathFinder;
     private m_balanceToBuyShip;
     private m_balanceToSellShip;
     private m_fishingPath;
     run(p_shipOwner: ShipOwner, p_map: Map): void;
     private buyOrSellShip(p_shipOwner, p_map);
     private runShips(p_shipOwner, p_map);
-    private pathFinding(p_start, p_goal);
+    pathFinding(p_map: Map, p_start: Point2, p_goal: Point2): Point2[];
     findNearestLandingSite(p_start: Point2, p_map: Map): Point2;
     findNearestFuelSite(p_start: Point2, p_map: Map): Point2;
 }
@@ -48,7 +62,9 @@ declare class Site extends Tile {
     protected m_resourceAtSite: number;
     protected m_processPerDay: number;
     protected m_runningCost: number;
-    constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_runningCost: number);
+    protected m_id: string;
+    constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_runningCost: number, p_id: string);
+    getID(): string;
     getShipCapacity(): number;
     getRunningCost(): number;
     getResourceCapacity(): number;
@@ -57,22 +73,17 @@ declare class Site extends Tile {
 }
 declare class FuelSite extends Site {
     private m_price;
-    constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_price: number, p_runningCost: number);
+    constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_price: number, p_runningCost: number, p_id: string);
     getPrice(): number;
     provideFuel(p_desiredAmount: number): number;
     restock(): void;
 }
 declare class Government {
     private m_restrictions;
-    private m_balance;
     private m_taxingRate;
-    private m_environmentalScore;
-    private m_socialScore;
+    private m_score;
     constructor();
-    financialTransaction(p_amount: number): void;
-    getBalance(): number;
-    getSocialScore(): number;
-    getEnvironmentalScore(): number;
+    getScore(): Score;
     getTaxingRate(): number;
     setTaxingRate(rate: number): void;
     getRestrictions(): Restrictions;
@@ -84,7 +95,7 @@ declare class LandingSite extends Site {
     private m_untaxedValue;
     constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_prices: {
         [fishType: number]: number;
-    }, p_runningCost: number);
+    }, p_runningCost: number, p_id: string);
     getPrices(): {
         [fishType: number]: number;
     };
@@ -109,6 +120,7 @@ declare class Map {
     getRestrictions(): Restrictions;
     getGrid(): Tile[][];
     getShips(): Ship[];
+    getSchools(): School[];
     private placeSchools(p_n);
     addSchool(p_school: School): void;
     private generateMap(p_size);
@@ -125,6 +137,7 @@ declare class Map {
     getMapHeight(): number;
     run(): void;
     getLandingSites(): LandingSite[];
+    getFuelSites(): FuelSite[];
     emptyGrid(): void;
 }
 declare class ShipOwner {
@@ -135,7 +148,7 @@ declare class ShipOwner {
     private m_shipStartPosition;
     private m_id;
     constructor(p_shipStartPosition: Point2, p_id: string, p_balance?: number);
-    getId(): string;
+    getID(): string;
     getShips(): Ship[];
     getBalance(): number;
     getShipStartPosition(): Point2;
@@ -158,7 +171,6 @@ declare class Model {
     getMap(): Map;
     getGovernment(): Government;
     createShipOwner(p_startingPoint: Point2, p_balance?: number): void;
-    updateScore(): void;
 }
 declare class Ocean extends Tile {
     private m_fishCapacity;
