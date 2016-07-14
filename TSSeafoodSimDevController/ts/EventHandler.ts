@@ -59,15 +59,15 @@
     }
 
     public setTax = (p_n: number): void => {
-        $("#taxValue").text($("#taxSlider").slider("option", "value"));
-        this.m_controller.getModel().getGovernment().setTaxingRate(p_n);
+        this.updateTaxValue(p_n);
+        this.m_controller.getModel().getGovernment().setTaxingRate(p_n / 100);
     }
     public updateTaxValue = (p_n: number): void => {
-        $("#taxValue").text($("#taxSlider").slider("option", "value"));
+        $("#taxValue").text($("#taxSlider").slider("option", "value")+ "%");
     }
     public setQuote = (owner: string, p_n: number): void => {
         this.m_controller.getModel().getGovernment().getRestrictions().setQuote(owner, p_n);
-        $("#quoteValue" + owner).text($("#quoteSlider" + owner).slider("option", "value"));
+        this.updateQuoteValue(owner, p_n);
     }
     public updateQuoteValue = (owner: string, p_n: number): void => {
         $("#quoteValue" + owner).text($("#quoteSlider" + owner).slider("option", "value"));
@@ -75,7 +75,7 @@
 
     public setEffortLimit = (owner: string, p_n: number): void =>{
         this.m_controller.getModel().getGovernment().getRestrictions().setEffortLimit(owner, p_n);
-        $("#effortValue" + owner).text($("#effortSlider" + owner).slider("option", "value"));
+        this.updateEffortLimitValue(owner, p_n);
     }
     public updateEffortLimitValue = (owner: string, p_n: number): void => {
         $("#effortValue" + owner).text($("#effortSlider" + owner).slider("option", "value"));

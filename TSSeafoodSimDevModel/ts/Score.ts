@@ -26,12 +26,12 @@
         var score: Score = this;
         //Financial score
         p_map.getLandingSites().forEach(function (ls) {
-            score.m_financialScore -= ls.getRunningCost();
+            //score.m_financialScore -= ls.getRunningCost();
             score.m_financialScore += ls.tax(p_gov.getTaxingRate());
         });
 
         p_map.getFuelSites().forEach(function (fs) {
-            score.m_financialScore -= fs.getRunningCost();
+            //score.m_financialScore -= fs.getRunningCost();
         });
 
         //Social score

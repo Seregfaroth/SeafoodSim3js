@@ -1,17 +1,4 @@
 /// <reference path="wrappers.d.ts" />
-declare class Score {
-    private m_financialScore;
-    private m_socialScore;
-    private m_environmentalScore;
-    private m_mininumSchool;
-    private m_minimumScore;
-    private m_maximumScore;
-    constructor();
-    getSocialScore(): number;
-    getEnvironmentalScore(): number;
-    getFinancialScore(): number;
-    updateScore(p_map: Map, p_gov: Government): void;
-}
 declare class AI {
     private m_pathFinder;
     private m_balanceToBuyShip;
@@ -202,6 +189,19 @@ declare class Restrictions {
     setMaxShips(p_n: number): void;
     getMaxShips(): number;
     isRestricted(p_tile: Tile): boolean;
+}
+declare class Score {
+    private m_financialScore;
+    private m_socialScore;
+    private m_environmentalScore;
+    private m_mininumSchool;
+    private m_minimumScore;
+    private m_maximumScore;
+    constructor();
+    getSocialScore(): number;
+    getEnvironmentalScore(): number;
+    getFinancialScore(): number;
+    updateScore(p_map: Map, p_gov: Government): void;
 }
 declare class Ship {
     private m_fuel;

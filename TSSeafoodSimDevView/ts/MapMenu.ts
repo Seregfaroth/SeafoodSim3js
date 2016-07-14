@@ -91,7 +91,7 @@
         $("#taxSlider").slider();
         $("#taxSlider").slider("option", "min", 0);
         $("#taxSlider").slider("option", "max", 100);
-        taxValueDiv.innerHTML = $("#taxSlider").slider("option", "value");
+        taxValueDiv.innerHTML = $("#taxSlider").slider("option", "value")+ "%";
 
         //Create quote sliders
         var quoteLegend: HTMLElement = document.createElement("legend");

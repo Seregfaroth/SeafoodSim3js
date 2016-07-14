@@ -2,8 +2,8 @@
 class Ship {
     private m_fuel: number;
     private m_cargo: Fish[];
-    private m_fuelCapacity: number = 10000;
-    private m_cargoCapacity: number = 100;
+    private m_fuelCapacity: number = 10;
+    private m_cargoCapacity: number = 1;
     private m_position: Point2;
     private m_path: Point2[] = [];
     private m_fuelPerMove: number = 1;
@@ -67,7 +67,7 @@ class Ship {
     }
 
     private moveTo(p_position: Point2): void {
-        if (this.m_fuel > this.m_fuelPerMove) {
+        if (this.m_fuel >= this.m_fuelPerMove) {
             this.m_position = p_position;
             this.m_fuel -= this.m_fuelPerMove;
         }
@@ -78,7 +78,7 @@ class Ship {
     public fish(p_map: Map): void {
         var fishToAdd: Fish[] = p_map.fish(this.m_position, this.m_cargoCapacity - this.m_cargo.length);
         this.m_cargo = this.m_cargo.concat(fishToAdd);
-        debugger;
+        
     }
 
     public land(p_landingSite: LandingSite): void {
