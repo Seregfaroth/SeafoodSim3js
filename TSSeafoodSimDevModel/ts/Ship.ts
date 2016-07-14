@@ -2,8 +2,8 @@
 class Ship {
     private m_fuel: number;
     private m_cargo: Fish[];
-    private m_fuelCapacity: number = 10;
-    private m_cargoCapacity: number = 1;
+    private m_fuelCapacity: number = 40;
+    private m_cargoCapacity: number = 4;
     private m_position: Point2;
     private m_path: Point2[] = [];
     private m_fuelPerMove: number = 1;
