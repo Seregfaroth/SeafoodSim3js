@@ -24,6 +24,11 @@ class MapView {
         console.log("The View construct");
         this.m_renderer = new TKN_Renderer();
         this.m_camera = new TKN_Camera();
+        debugger;
+        this.m_camera.position = new Point3(p_map.getMapWidth() / 2.0, p_map.getMapHeight() / 2.0, 10);
+        var t = p_map.getMapWidth() / 2.0;
+        var t2 = p_map.getMapHeight() / 2.0;
+        debugger;
         //this.m_camera.m_camera.position.z = 5;
         //this.m_camera.m_camera.lookAt(new THREE.Vector3(0, 0, 0));
         this.m_scene = new TKN_Scene();

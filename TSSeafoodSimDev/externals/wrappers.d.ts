@@ -3,12 +3,14 @@ declare class Point2 {
     row: number;
     col: number;
     constructor(p_row: number, p_col: number);
+    compare(p_com: Point2): boolean;
 }
 declare class Point3 {
     row: number;
     col: number;
     depth: number;
     constructor(p_row: number, p_col: number, p_depth: number);
+    compare(p_com: Point3): boolean;
 }
 declare class TKN_Scene {
     private m_scene;
@@ -22,6 +24,7 @@ declare class TKN_Camera {
     constructor();
     position: Point3;
     camera: THREE.Camera;
+    lookAt(p_point: Point3): void;
 }
 declare class TKN_Renderer {
     private m_renderer;

@@ -28,9 +28,13 @@ class TKN_Camera {
     }
     set position(p_pos: Point3) {
         this.m_position = p_pos;
+        this.m_camera.position = new THREE.Vector3(p_pos.col, p_pos.row, p_pos.depth);
     }
     get camera(): THREE.Camera {
         return this.m_camera;
+    }
+    lookAt(p_point: Point3) {
+        this.m_camera.lookAt(new THREE.Vector3(p_point.col, p_point.row, p_point.depth));
     }
 }
 
@@ -95,8 +99,8 @@ class TKN_Mesh {
     }
     set position(p_pos: Point2) {
         this.m_position = p_pos;
-        this.m_mesh.position.x = p_pos.col-4;
-        this.m_mesh.position.y = 4-p_pos.row;       
+        this.m_mesh.position.x = p_pos.col;
+        this.m_mesh.position.y = -p_pos.row;       
     }
     get position(): Point2 {
         return this.m_position;

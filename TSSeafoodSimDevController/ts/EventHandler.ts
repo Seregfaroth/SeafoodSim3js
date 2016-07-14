@@ -47,6 +47,7 @@
     }
 
     public pause = (): void => {
+        debugger;
         this.m_controller.pause();
     }
 
