@@ -15,7 +15,8 @@ class Main {
         //    [0, 0, 0, 1, 0, 0, 0, 0]
         //];
         //p.navTable = navMatrix;
-        //var f = p.findPath(0, 0, 6, 4);
+        //debugger;
+        //var f = p.findPath(new Point2(0, 0), new Point2(4,6));
         //debugger;
         this.m_controller = new Controller();
         
