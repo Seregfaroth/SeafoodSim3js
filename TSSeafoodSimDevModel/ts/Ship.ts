@@ -78,7 +78,7 @@ class Ship {
     public fish(p_map: Map): void {
         var fishToAdd: Fish[] = p_map.fish(this.m_position, this.m_cargoCapacity - this.m_cargo.length);
         this.m_cargo = this.m_cargo.concat(fishToAdd);
-        debugger;
+        //debugger;
     }
 
     public land(p_landingSite: LandingSite): void {

@@ -8,10 +8,7 @@
     }
     compare(p_com: Point2): boolean {
         return this.row === p_com.row && this.col === p_com.col;
-    }
-
-
-    
+    }    
 }
 
 class Point3 {
