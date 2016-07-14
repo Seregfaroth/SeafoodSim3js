@@ -1,5 +1,5 @@
 ﻿class MapMenu {
-    constructor(p_ShipOwners: ShipOwner[], p_landingSites: LandingSite[]) {
+    constructor(p_ShipOwners: ShipOwner[], p_landingSites: LandingSite[], p_taxingRate: number) {
         console.log("construct MapMenu");
         var menuDiv: HTMLElement = document.createElement("div");
         menuDiv.id = "menuDiv";
@@ -77,6 +77,7 @@
         var cell: HTMLTableCellElement = row.insertCell();
         var taxValueDiv: HTMLDivElement = document.createElement("div");
         cell.appendChild(taxValueDiv);
+        taxValueDiv.innerHTML = p_taxingRate*100+ "%";
         cell.className = "slider-value-cell";
         taxValueDiv.id = "taxValue";
 
@@ -91,7 +92,7 @@
         $("#taxSlider").slider();
         $("#taxSlider").slider("option", "min", 0);
         $("#taxSlider").slider("option", "max", 100);
-        taxValueDiv.innerHTML = $("#taxSlider").slider("option", "value")+ "%";
+        $("#taxSlider").slider("value",p_taxingRate*100);
 
         //Create quote sliders
         var quoteLegend: HTMLElement = document.createElement("legend");

@@ -5,7 +5,7 @@
  
     public constructor() {
         this.m_restrictions = new Restrictions();
-        this.m_taxingRate = 0.5;
+        this.m_taxingRate = 0.2;
         this.m_score = new Score();
 
     }

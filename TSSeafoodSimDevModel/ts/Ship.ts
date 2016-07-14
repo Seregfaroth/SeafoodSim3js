@@ -2,8 +2,8 @@
 class Ship {
     private m_fuel: number;
     private m_cargo: Fish[];
-    private m_fuelCapacity: number = 10;
-    private m_cargoCapacity: number = 1;
+    private m_fuelCapacity: number = 30;
+    private m_cargoCapacity: number = 10;
     private m_position: Point2;
     private m_path: Point2[] = [];
     private m_fuelPerMove: number = 1;
@@ -53,23 +53,31 @@ class Ship {
         return this.m_cargo.length;
     }
     //Throws an exception if path is empty, moves to last point in array otherwise
-    public followPath(): void {
+    public followPath(p_map: Map): void {
         if (this.m_path.length < 2) {
             throw new Error("Path is empty");
         }
-        else {
-            this.m_path.shift();
-            this.moveTo(this.m_path[0]);
+        else if (this.moveTo(this.m_path[1], p_map)) {
+            //Only take point out of path if ship can move to point
+             this.m_path.shift();
         }
     }
     public hasReachedGoal(): boolean {
         return this.m_path.length === 1 && this.m_path[0] === this.m_position;
     }
 
-    private moveTo(p_position: Point2): void {
-        if (this.m_fuel >= this.m_fuelPerMove) {
+    private moveTo(p_position: Point2, p_map: Map): boolean {
+        var tile: Tile = p_map.getTile(p_position);
+        var noOfShipsInTile: number = p_map.getNoOfShipsInTile(p_position);
+        if (this.m_fuel >= this.m_fuelPerMove &&
+            ((tile instanceof Ocean && (<Ocean>tile).getShipCapacity() > noOfShipsInTile) ||
+                (tile instanceof Site && (<Site>tile).getShipCapacity() > noOfShipsInTile))) {
             this.m_position = p_position;
             this.m_fuel -= this.m_fuelPerMove;
+            return true;
+        }
+        else {
+            return false;
         }
     }
     public emptyPath(): void {

@@ -18,16 +18,9 @@ class Controller {
         this.m_delayPerTick = 1000;
         this.m_fastDelayPerTick = 100;
         this.m_model = new Model();
-        this.m_view = new MainView(this.m_model.getMap(), this.m_model.getShipOwners()); 
+        this.m_view = new MainView(this.m_model.getMap(), this.m_model.getShipOwners(),this.m_model.getGovernment().getTaxingRate()); 
         this.m_eventHandler = new EventHandler(this);
-        //this.m_eventHandler = p_eventHandler;
         this.m_view.updateMainView(this.m_model);
-        //debugger;
-        //if (this.m_model != undefined && this.m_view != undefined) {
-        //    //debugger;
-        //    this.runSimulation(5, 2000);
-            
-        
     }
     
     public getModel(): Model {

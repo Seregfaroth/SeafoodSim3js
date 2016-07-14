@@ -45,44 +45,38 @@ class AI {
             }
 
             try {
-                ship.followPath()
+                ship.followPath(p_map)
             }
             catch (e) {
-                //If ship has no path to follow
-                var nearestFuel: Point2 = ai.findNearestFuelSite(ship.getPosition(), p_map);
-                var fuelPath: Point2[] = ai.pathFinding(p_map, ship.getPosition(), nearestFuel);
-                if (ship.getFuel() <= fuelPath.length * ship.getFuelPerMove()) {
-                     //Ship must refuel if fuel is too low
-                    ship.setPath(fuelPath);
-                }
-                else if (ship.getCargo().length > ship.getCargoCapacity() * 0.9) {
-                    //If ship is more than 90% full, ship must land
-                    var landingPoint: Point2 = ai.findNearestLandingSite(ship.getPosition(), p_map);
-                    var landingPath: Point2[] = ai.pathFinding(p_map, ship.getPosition(), landingPoint);
-                    var fuelPoint: Point2 = ai.findNearestFuelSite(landingPoint, p_map);
-                    var sailingDistanceToRefuel: number = landingPath.length + ai.pathFinding(p_map, landingPoint, fuelPoint).length;
-                    if (ship.getFuel() < sailingDistanceToRefuel * ship.getFuelPerMove()) {
-                        //If ship cannot reach lanidng site and reach nearest fuel site with current fuel it must refuel
+                if (p_map.getFuelSites().length > 0 && p_map.getLandingSites().length > 0) {
+                    //If ship has no path to follow
+                    var nearestFuel: Point2 = ai.findNearestFuelSite(ship.getPosition(), p_map);
+                    var fuelPath: Point2[] = ai.pathFinding(p_map, ship.getPosition(), nearestFuel);
+                    if (ship.getFuel() <= fuelPath.length * ship.getFuelPerMove()) {
+                        //Ship must refuel if fuel is too low
                         ship.setPath(fuelPath);
                     }
+                    else if (ship.getCargo().length > ship.getCargoCapacity() * 0.9) {
+                        //If ship is more than 90% full, ship must land
+                        var landingPoint: Point2 = ai.findNearestLandingSite(ship.getPosition(), p_map);
+                        var landingPath: Point2[] = ai.pathFinding(p_map, ship.getPosition(), landingPoint);
+                        var fuelPoint: Point2 = ai.findNearestFuelSite(landingPoint, p_map);
+                        var sailingDistanceToRefuel: number = landingPath.length + ai.pathFinding(p_map, landingPoint, fuelPoint).length;
+                        if (ship.getFuel() < sailingDistanceToRefuel * ship.getFuelPerMove()) {
+                            //If ship cannot reach lanidng site and reach nearest fuel site with current fuel it must refuel
+                            ship.setPath(fuelPath);
+                        }
+                        else {
+                            ship.setPath(landingPath);
+                        }
+                    }
                     else {
-                        ship.setPath(landingPath);
+                        //If ship does not need to land or refuel it should move randomly and fish
+                        ship.randomMove(p_map);
+                        ship.fish(p_map);
                     }
                 }
-                else {
-                    //If ship does not need to land or refuel it should move randomly and fish
-                    ship.randomMove(p_map);
-                    ship.fish(p_map);
-                }
             }
-            /* if (ship.getPath() != undefined) {
-                if (ship.getPath().length <= 1) {
-                    ship.setPath(ai.m_fishingPath.slice());
-                 }
-                     ship.fish(p_map);
-                     ship.followPath();
-                 
-             }*/
         });
     }
     public pathFinding(p_map: Map, p_start: Point2, p_goal: Point2): Point2[] {

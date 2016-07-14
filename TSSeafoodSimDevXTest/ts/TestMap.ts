@@ -55,6 +55,18 @@
             assert.deepEqual(codScool.getSize(), noOfFish - fish.length, "the fished fish should be removed from cod school");
         });
 
+        QUnit.test("Map: get number of ships in tile", function (assert) {
+            map = new Map(5, 0, new Restrictions());
+            var owner: ShipOwner = new ShipOwner(new Point2(4, 4), "0");
+            //Check that no ships are in tile
+            assert.deepEqual(map.getNoOfShipsInTile(new Point2(4, 4)), 0, "there should not be any ships in tile");
+            map.addShip(owner.buyShip());
+            assert.deepEqual(map.getNoOfShipsInTile(new Point2(4, 4)), 1, "there should be 1 ship in tile");
+            map.addShip(owner.buyShip());
+            map.addShip(owner.buyShip());
+            map.addShip(owner.buyShip());
+            assert.deepEqual(map.getNoOfShipsInTile(new Point2(4, 4)), 4, "there should be 4 ships in tile");
+        });
         
     }
 }

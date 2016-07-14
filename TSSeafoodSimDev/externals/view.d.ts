@@ -3,12 +3,12 @@
 declare class MainView {
     private m_mapView;
     private m_mapMenu;
-    constructor(p_map: Map, p_ShipOwners: ShipOwner[]);
+    constructor(p_map: Map, p_ShipOwners: ShipOwner[], p_taxingRate: number);
     getMapMenu(): MapMenu;
     updateMainView(p_model: Model): void;
 }
 declare class MapMenu {
-    constructor(p_ShipOwners: ShipOwner[], p_landingSites: LandingSite[]);
+    constructor(p_ShipOwners: ShipOwner[], p_landingSites: LandingSite[], p_taxingRate: number);
     updateScore(p_government: Government): void;
 }
 declare class MapView {

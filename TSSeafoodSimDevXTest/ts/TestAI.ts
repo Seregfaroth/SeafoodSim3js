@@ -28,6 +28,7 @@
         });
 
         QUnit.test("AI: buy ship", function (assert) {
+            map.emptyGrid();
             assert.deepEqual(richShipOwner.getShips(), [], "rich ship owner should not have any ships");
             assert.deepEqual(poorShipOwner.getShips(), [], "poor ship owner should not have any ships");
             ai.run(richShipOwner, map);
@@ -40,6 +41,7 @@
         });
 
         QUnit.test("AI: sell ship", function (assert) {
+            map.emptyGrid();
             poorShipOwner.buyShip();
             assert.deepEqual(poorShipOwner.getShips().length, 1, "poor ship owner should have 1 ship");
              ai.run(poorShipOwner, map);

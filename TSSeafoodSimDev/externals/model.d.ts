@@ -120,6 +120,7 @@ declare class Map {
     getNoOfFishInTile(p_position: Point2): number;
     getTile(p_position: Point2): Tile;
     getPathFindingMap(): number[][];
+    getNoOfShipsInTile(p_point: Point2): number;
     getMapWidth(): number;
     getMapHeight(): number;
     run(): void;
@@ -164,6 +165,7 @@ declare class Ocean extends Tile {
     private m_shipCapacity;
     constructor(p_fishCapacity: number, p_shipCapacity: number);
     getFishCapacity(): number;
+    getShipCapacity(): number;
 }
 declare class Restrictions {
     private m_quotes;
@@ -223,9 +225,9 @@ declare class Ship {
     getFuelPerMove(): number;
     getOwner(): ShipOwner;
     getCargoSize(): number;
-    followPath(): void;
+    followPath(p_map: Map): void;
     hasReachedGoal(): boolean;
-    private moveTo(p_position);
+    private moveTo(p_position, p_map);
     emptyPath(): void;
     fish(p_map: Map): void;
     land(p_landingSite: LandingSite): void;

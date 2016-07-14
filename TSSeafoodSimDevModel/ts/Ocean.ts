@@ -12,4 +12,8 @@ class Ocean extends Tile {
     public getFishCapacity(): number {
         return this.m_fishCapacity;
     }
+
+    public getShipCapacity(): number {
+        return this.m_shipCapacity;
+    }
 }

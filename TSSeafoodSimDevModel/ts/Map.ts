@@ -67,8 +67,8 @@ class Map {
         
 
         var prices: { [fishType: number]: number } = {}
-        prices[0] = 10;
-        prices[1] = 5;
+        prices[0] = 1000;
+        prices[1] = 500;
 
         this.m_grid[Math.floor(p_size / 2)][Math.floor(p_size / 2)+1] = new LandingSite(1, 5, 20,prices,this.m_landingRunningCost, "landingSite0");
         this.m_grid[Math.floor(p_size / 2)][Math.floor(p_size / 2)-1] = new FuelSite(1, 300, 20, 10,this.m_fuelRunningCost, "fuelSite0");
@@ -144,7 +144,15 @@ class Map {
         }
         return map;
     }
-
+    public getNoOfShipsInTile(p_point: Point2): number {
+        var n: number = 0;
+        this.m_ships.forEach(function (s) {
+            if (s.getPosition().compare(p_point)) {
+                n++;
+            }
+        });
+        return n;
+    }
     public getMapWidth(): number {
         return this.m_grid[0].length;
     }
