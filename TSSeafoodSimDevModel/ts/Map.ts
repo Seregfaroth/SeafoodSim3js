@@ -103,14 +103,14 @@ class Map {
             var fishInSchool: Fish[] = s.getFish();
             //Take a percentage of fish out of the school and add it to the fish list
             var fishToAdd: Fish[] = fishInSchool.splice(0, fishInSchool.length * percentage);
-             fish = fish.concat(fishToAdd);
+            fish = fish.concat(fishToAdd);
         });
         return fish;
     }
     private getSchoolsInTile(p_position: Point2): School[] {
         var list: School[] = [];
         this.m_schools.forEach(function (s) {
-            if (s.getPosition() === p_position) {
+            if (s.getPosition().compare(p_position)) {
                 list.push(s);
 
             }

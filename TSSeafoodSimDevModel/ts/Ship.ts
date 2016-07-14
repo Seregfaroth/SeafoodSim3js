@@ -78,6 +78,7 @@ class Ship {
     public fish(p_map: Map): void {
         var fishToAdd: Fish[] = p_map.fish(this.m_position, this.m_cargoCapacity - this.m_cargo.length);
         this.m_cargo = this.m_cargo.concat(fishToAdd);
+        debugger;
     }
 
     public land(p_landingSite: LandingSite): void {
@@ -134,7 +135,7 @@ class Ship {
                 default:
                     break;
             }
-        } while (newPoint && !(p_map.getTile(newPoint) instanceof Ocean));
+        } while (!newPoint || !(p_map.getTile(newPoint) instanceof Ocean));
         this.moveTo(newPoint);
     //console.log("new postion: " + JSON.stringify(this.m_position));
     }

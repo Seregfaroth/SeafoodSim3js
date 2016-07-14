@@ -20,7 +20,7 @@ declare class AI {
     run(p_shipOwner: ShipOwner, p_map: Map): void;
     private buyOrSellShip(p_shipOwner, p_map);
     private runShips(p_shipOwner, p_map);
-    private pathFinding(p_start, p_goal);
+    pathFinding(p_map: Map, p_start: Point2, p_goal: Point2): Point2[];
     findNearestLandingSite(p_start: Point2, p_map: Map): Point2;
     findNearestFuelSite(p_start: Point2, p_map: Map): Point2;
 }
