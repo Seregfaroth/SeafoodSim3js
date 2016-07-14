@@ -60,6 +60,6 @@ declare class TKN_PathFinding {
     private m_finder;
     private m_navGrid;
     constructor();
-    findPath(xOrigin: any, yOrigin: any, xDest: any, yDest: any): number[][];
+    findPath(p_origin: Point2, p_dest: Point2): Point2[];
     navTable: number[][];
 }
