@@ -1,5 +1,6 @@
 ﻿/// <reference path = "../../TSSeafoodSimDev/externals/wrappers.d.ts"/>
 class AI {
+    private m_pathFinder: TKN_PathFinding = new TKN_PathFinding();
      private m_balanceToBuyShip: number = 1000000;
      private m_balanceToSellShip: number = 0;
      private m_fishingPath: Point2[] = [new Point2(2, 0),new Point2(1, 0), new Point2(1, 1), new Point2(1, 2), new Point2(1, 3), new Point2(1, 4), new Point2(2, 4),
@@ -83,7 +84,7 @@ class AI {
         });
     }
     private pathFinding(p_start: Point2, p_goal: Point2): Point2[] {
-        return [];
+        return []//this.m_pathFinder.findPath(p_start, p_goal);
     }
     public findNearestLandingSite(p_start: Point2, p_map: Map): Point2 {
         var startRow: number = p_start.row;

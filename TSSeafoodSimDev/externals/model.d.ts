@@ -13,6 +13,7 @@ declare class Score {
     updateScore(p_map: Map, p_gov: Government): void;
 }
 declare class AI {
+    private m_pathFinder;
     private m_balanceToBuyShip;
     private m_balanceToSellShip;
     private m_fishingPath;
@@ -61,7 +62,9 @@ declare class Site extends Tile {
     protected m_resourceAtSite: number;
     protected m_processPerDay: number;
     protected m_runningCost: number;
-    constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_runningCost: number);
+    protected m_id: string;
+    constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_runningCost: number, p_id: string);
+    getID(): string;
     getShipCapacity(): number;
     getRunningCost(): number;
     getResourceCapacity(): number;
@@ -70,7 +73,7 @@ declare class Site extends Tile {
 }
 declare class FuelSite extends Site {
     private m_price;
-    constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_price: number, p_runningCost: number);
+    constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_price: number, p_runningCost: number, p_id: string);
     getPrice(): number;
     provideFuel(p_desiredAmount: number): number;
     restock(): void;
@@ -80,7 +83,6 @@ declare class Government {
     private m_taxingRate;
     private m_score;
     constructor();
-    financialTransaction(p_amount: number): void;
     getScore(): Score;
     getTaxingRate(): number;
     setTaxingRate(rate: number): void;
@@ -93,7 +95,7 @@ declare class LandingSite extends Site {
     private m_untaxedValue;
     constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_prices: {
         [fishType: number]: number;
-    }, p_runningCost: number);
+    }, p_runningCost: number, p_id: string);
     getPrices(): {
         [fishType: number]: number;
     };
@@ -146,7 +148,7 @@ declare class ShipOwner {
     private m_shipStartPosition;
     private m_id;
     constructor(p_shipStartPosition: Point2, p_id: string, p_balance?: number);
-    getId(): string;
+    getID(): string;
     getShips(): Ship[];
     getBalance(): number;
     getShipStartPosition(): Point2;

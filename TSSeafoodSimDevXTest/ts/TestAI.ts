@@ -7,7 +7,7 @@
 
         QUnit.test("AI: findNearestLandingSite", function (assert) {
             map.emptyGrid();
-            map.getGrid()[2][2] = new LandingSite(1, 10, 1, {},1);
+            map.getGrid()[2][2] = new LandingSite(1, 10, 1, {},1,"0");
 
             assert.deepEqual(ai.findNearestLandingSite(new Point2(2, 2), map), new Point2(2, 2), "Should find nearest landing site at 2,2");
             assert.deepEqual(ai.findNearestLandingSite(new Point2(0, 0), map), new Point2(2, 2), "Should find nearest landing site at 2,2");
@@ -17,8 +17,8 @@
 
         QUnit.test("AI: findNearestLandingSite with multiple sites", function (assert) {
             map.emptyGrid();
-            map.getGrid()[0][4] = new LandingSite(1, 10, 1, {},1);
-            map.getGrid()[3][0] = new LandingSite(1, 10, 1, {},1);
+            map.getGrid()[0][4] = new LandingSite(1, 10, 1, {}, 1, "0");
+            map.getGrid()[3][0] = new LandingSite(1, 10, 1, {}, 1, "1");
             
             assert.deepEqual(ai.findNearestLandingSite(new Point2(0, 0), map), new Point2(3, 0), "Nearest from 0,0 should be 3,0");
             assert.deepEqual(ai.findNearestLandingSite(new Point2(4, 0), map), new Point2(3, 0), "Nearest from 4,0 should be 3,0");

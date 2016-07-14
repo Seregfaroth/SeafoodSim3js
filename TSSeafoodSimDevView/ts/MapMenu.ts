@@ -1,11 +1,10 @@
 ﻿class MapMenu {
-
-    constructor(p_ShipOwners: ShipOwner[], p_LandingSites: LandingSite[]) {
+    constructor(p_ShipOwners: ShipOwner[], p_landingSites: LandingSite[]) {
         console.log("construct MapMenu");
         var menuDiv: HTMLElement = document.createElement("div");
         menuDiv.id = "menuDiv";
         menuDiv.style.cssFloat = "left";
-        menuDiv.style.width = "20%";
+        menuDiv.style.width = "25%";
         menuDiv.style.height = "70%";
         menuDiv.classList.add("ui-widget-content");
         document.getElementById("mainDiv").appendChild(menuDiv);
@@ -60,34 +59,45 @@
         scoreCell.appendChild(score);
 
         //Create tax slider
-        var taxDiv: HTMLElement = document.createElement("legend");
-        taxDiv.classList.add("menu-legend");
-        menuDiv.appendChild(taxDiv);
+       
 
+        var taxLegend: HTMLElement = document.createElement("legend");
+        taxLegend.classList.add("menu-legend");
         var taxLabel: HTMLElement = document.createElement("div");
-        taxLabel.innerHTML = "Taxing rate:";
+        taxLabel.innerHTML = "Taxing rate";
         taxLabel.className = "legend-header";
-        taxLabel.style.cssFloat = "left";
-        taxDiv.appendChild(taxLabel);
-        
+        taxLegend.appendChild(taxLabel);
+        menuDiv.appendChild(taxLegend);
 
+        var table: any = document.createElement("TABLE");
+        table.classList.add("menu-text");
+        taxLegend.appendChild(table);
+        var row: HTMLTableRowElement = table.insertRow();
+
+        var cell: HTMLTableCellElement = row.insertCell();
+        var taxValueDiv: HTMLDivElement = document.createElement("div");
+        cell.appendChild(taxValueDiv);
+        cell.className = "slider-value-cell";
+        taxValueDiv.id = "taxValue";
+
+        var cell = row.insertCell();
         var taxSlider: HTMLElement = document.createElement("div");
         taxSlider.id = "taxSlider";
         taxSlider.style.width = "70%";
         taxSlider.style.cssFloat = "right";
         taxSlider.style.margin = "10px";
-        taxDiv.appendChild(taxSlider);
+        cell.className = "slider-cell";
+        cell.appendChild(taxSlider);
         $("#taxSlider").slider();
         $("#taxSlider").slider("option", "min", 0);
         $("#taxSlider").slider("option", "max", 100);
-
+        taxValueDiv.innerHTML = $("#taxSlider").slider("option", "value");
 
         //Create quote sliders
         var quoteLegend: HTMLElement = document.createElement("legend");
         quoteLegend.classList.add("menu-legend");
         var quoteLabel: HTMLElement = document.createElement("div");
-        quoteLabel.innerHTML = "Quotas:";
-
+        quoteLabel.innerHTML = "Quotes";
         quoteLabel.className = "legend-header";
         quoteLegend.appendChild(quoteLabel);
         menuDiv.appendChild(quoteLegend);
@@ -99,28 +109,35 @@
             var row: HTMLTableRowElement = quoteTable.insertRow();
             var cell: HTMLTableCellElement = row.insertCell();
             var quoteLabel: HTMLElement = document.createElement("div");
-            quoteLabel.innerHTML = p_ShipOwners[i].getId();
+            quoteLabel.innerHTML = p_ShipOwners[i].getID() + ":";
             quoteLabel.style.cssFloat = "left";
             cell.appendChild(quoteLabel);
 
             cell = row.insertCell();
+            cell.className = "slider-value-cell";
+            var sliderValue: HTMLDivElement = document.createElement("div");
+            sliderValue.id = "quoteValue" + p_ShipOwners[i].getID();
+            cell.appendChild(sliderValue);
+
+            cell = row.insertCell();
             cell.className = "slider-cell";
             var quoteSlider: HTMLElement = document.createElement("div");
-            quoteSlider.id = "quoteSlider" + p_ShipOwners[i].getId();;
+            quoteSlider.id = "quoteSlider" + p_ShipOwners[i].getID();
             quoteSlider.style.width = "70%";
             quoteSlider.style.cssFloat = "right";
             quoteSlider.style.margin = "10px";
             cell.appendChild(quoteSlider);
-            $("#quoteSlider" + p_ShipOwners[i].getId()).slider();
-            $("#quoteSlider" + p_ShipOwners[i].getId()).slider("option", "min", 0);
-            $("#quoteSlider" + p_ShipOwners[i].getId()).slider("option", "max", 100);
+            $("#quoteSlider" + p_ShipOwners[i].getID()).slider();
+            $("#quoteSlider" + p_ShipOwners[i].getID()).slider("option", "min", 0);
+            $("#quoteSlider" + p_ShipOwners[i].getID()).slider("option", "max", 100);
+            sliderValue.innerHTML = $("#quoteSlider" + p_ShipOwners[i].getID()).slider("option", "value");
         }
 
         //Create effort limit sliders
         var effortLegend: HTMLElement = document.createElement("legend");
         effortLegend.classList.add("menu-legend");
         var effortLabel: HTMLElement = document.createElement("div");
-        effortLabel.innerHTML = "Effort Limits:";
+        effortLabel.innerHTML = "Effort Limits";
         effortLabel.className = "legend-header";
         effortLegend.appendChild(effortLabel);
         menuDiv.appendChild(effortLegend);
@@ -132,28 +149,75 @@
             var row: HTMLTableRowElement = effortTable.insertRow();
             var cell: HTMLTableCellElement = row.insertCell();
             var effortLabel: HTMLElement = document.createElement("div");
-            effortLabel.innerHTML = p_ShipOwners[i].getId();
+            effortLabel.innerHTML = p_ShipOwners[i].getID() + ":";
             effortLabel.style.cssFloat = "left";
             cell.appendChild(effortLabel);
 
             cell = row.insertCell();
+            cell.className = "slider-value-cell";
+            var sliderValue: HTMLDivElement = document.createElement("div");
+            sliderValue.id = "effortValue" + p_ShipOwners[i].getID();
+            cell.appendChild(sliderValue);
+
+            cell = row.insertCell();
             cell.className = "slider-cell";
-            var effortSlider: HTMLElement = document.createElement("div");
-            effortSlider.id = "effortSlider" + p_ShipOwners[i].getId();
-            effortSlider.style.width = "70%";
-            effortSlider.style.cssFloat = "right";
-            effortSlider.style.margin = "10px";
-            cell.appendChild(effortSlider);
-            $("#effortSlider" + p_ShipOwners[i].getId()).slider();
-            $("#effortSlider" + p_ShipOwners[i].getId()).slider("option", "min", 0);
-            $("#effortSlider" + p_ShipOwners[i].getId()).slider("option", "max", 100);
+            var slider: HTMLElement = document.createElement("div");
+            slider.id = "effortSlider" + p_ShipOwners[i].getID();
+            slider.style.width = "70%";
+            slider.style.cssFloat = "right";
+            slider.style.margin = "10px";
+            cell.appendChild(slider);
+            $("#effortSlider" + p_ShipOwners[i].getID()).slider();
+            $("#effortSlider" + p_ShipOwners[i].getID()).slider("option", "min", 0);
+            $("#effortSlider" + p_ShipOwners[i].getID()).slider("option", "max", 100);
+            sliderValue.innerHTML = $("#effortSlider" + p_ShipOwners[i].getID()).slider("option", "value");
         }
+        //Create landing distrubution sliders
+        var landingLegend: HTMLElement = document.createElement("legend");
+        landingLegend.classList.add("menu-legend");
+        var landingLabel: HTMLElement = document.createElement("div");
+        landingLabel.innerHTML = "Landing Distrubution";
+        landingLabel.className = "legend-header";
+        landingLegend.appendChild(landingLabel);
+        menuDiv.appendChild(landingLegend);
+        var landingTable: any = document.createElement("TABLE");
+        landingTable.classList.add("menu-text");
+        landingLegend.appendChild(landingTable);
+
+        for (var i = 0; i < p_landingSites.length; i++) {
+            var row: HTMLTableRowElement = landingTable.insertRow();
+            var cell: HTMLTableCellElement = row.insertCell();
+            var label: HTMLElement = document.createElement("div");
+            label.innerHTML = p_landingSites[i].getID() + ":";
+            label.style.cssFloat = "left";
+            cell.appendChild(label);
+
+            cell = row.insertCell();
+            cell.className = "slider-value-cell";
+            var sliderValue: HTMLDivElement = document.createElement("div");
+            sliderValue.id = "landingValue" + p_landingSites[i].getID();
+            cell.appendChild(sliderValue);
+
+            cell = row.insertCell();
+            cell.className = "slider-cell";
+            var slider: HTMLElement = document.createElement("div");
+            slider.id = "landingSlider" + p_landingSites[i].getID();
+            slider.style.width = "70%";
+            slider.style.cssFloat = "right";
+            slider.style.margin = "10px";
+            cell.appendChild(slider);
+            $("#landingSlider" + p_landingSites[i].getID()).slider();
+            $("#landingSlider" + p_landingSites[i].getID()).slider("option", "min", 0);
+            $("#landingSlider" + p_landingSites[i].getID()).slider("option", "max", 100);
+            sliderValue.innerHTML = $("#landingSlider" + p_landingSites[i].getID()).slider("option", "value");
+        }
+        
         //Create buttons
         var buttonsDiv: HTMLElement = document.createElement("legend");
         buttonsDiv.classList.add("menu-legend");
         var labelDiv: HTMLElement = document.createElement("div");
         labelDiv.className = "legend-header";
-        labelDiv.innerHTML = "Simulation control:";
+        labelDiv.innerHTML = "Simulation control";
         buttonsDiv.appendChild(labelDiv);
         menuDiv.appendChild(buttonsDiv);
 
@@ -171,6 +235,7 @@
         pauseButton.classList.add("fa");
         pauseButton.classList.add("fa-pause");
         pauseButton.classList.add("ui-button");
+        pauseButton.classList.add("marked");
         buttonsDiv.appendChild(pauseButton);
 
         var fastForwardButton: HTMLDivElement = document.createElement("div");
@@ -179,9 +244,9 @@
         fastForwardButton.classList.add("fa");
         fastForwardButton.classList.add("fa-fast-forward");
         fastForwardButton.classList.add("ui-button");
-        buttonsDiv.appendChild(fastForwardButton);
+        buttonsDiv.appendChild(fastForwardButton); 
     }
-
+    
     public updateScore(p_government: Government): void {
         $("#financialScore").text(Math.round(p_government.getScore().getFinancialScore()));
         $("#socailScore").text(Math.round(p_government.getScore().getSocialScore()));

@@ -9,10 +9,6 @@
         this.m_score = new Score();
 
     }
-
-    public financialTransaction(p_amount: number): void {
-        this.m_balance += p_amount;
-    }
     public getScore(): Score {
         return this.m_score;
     }

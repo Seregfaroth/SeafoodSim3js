@@ -2,50 +2,97 @@
     private m_controller: Controller;
     public constructor(p_controller: Controller) {
         this.m_controller = p_controller;
-        this.bindFunctions();
-    }
-    public bindFunctions(): void {
-        var handler: EventHandler = this;
-        $("#taxSlider").on("slidechange", function (event, ui) { handler.setTax(ui.value); });
         $("#startButton").on("click", this.start);
         $("#pauseButton").on("click", this.pause);
-        
         $("#fastForwardButton").on("click", this.fastForward);
-        
+        this.bindFunctions();
+    }
+
+    public bindFunctions(): void {
+        var handler: EventHandler = this;
+        $("#taxSlider").off("slide");
+        $("#taxSlider").on("slide", function (event, ui) { handler.updateTaxValue(ui.value); });
+        $("#taxSlider").on("slidechange", function (event, ui) { handler.setTax(ui.value); });
+
         this.m_controller.getModel().getShipOwners().forEach(function (so) {
-            $("#quoteSlider" + so.getId()).on("slidechange", function (event, ui) {
-                handler.setQuote(so.getId(), ui.value);
+            $("#quoteSlider" + so.getID()).off("slide");
+            $("#quoteSlider" + so.getID()).on("slide", function (event, ui) {
+                handler.updateQuoteValue(so.getID(), ui.value);
+            });
+            $("#quoteSlider" + so.getID()).on("slidechange", function (event, ui) {
+                handler.setQuote(so.getID(), ui.value);
+            });
+            $("#effortSlider" + so.getID()).off("slide");
+            $("#effortSlider" + so.getID()).on("slide", function (event, ui) {
+                handler.updateEffortLimitValue(so.getID(), ui.value);
+            });
+            $("#effortSlider" + so.getID()).on("slidechange", function (event, ui) {
+                handler.setEffortLimit(so.getID(), ui.value);
             });
         });
-        
-        this.m_controller.getModel().getShipOwners().forEach(function (so) {
-            $("#effortSlider" + so.getId()).on("slidechange", function (event, ui) {
-                handler.setEffortLimit(so.getId(), ui.value);
+        this.m_controller.getModel().getMap().getLandingSites().forEach(function (ls) {
+            $("#landingSlider" + ls.getID()).off("slide");
+            $("#landingSlider" + ls.getID()).on("slide", function (event, ui) {
+                handler.updateLandingValue(ls.getID(), ui.value);
+            });
+            $("#landingSlider" + ls.getID()).on("slidechange", function (event, ui) {
+                handler.setLandingDistrubution(ls.getID(), ui.value);
             });
         });
-        
+    }
+
+    public unBindFunctions(): void {
+        var handler: EventHandler = this;
+        $("#taxSlider").off("slide");
+        $("#taxSlider").on("slide", function (event, ui) { return false; });
+
+        this.m_controller.getModel().getShipOwners().forEach(function (so) {
+            $("#quoteSlider" + so.getID()).off("slide");
+            $("#quoteSlider" + so.getID()).on("slide", function (event, ui) { return false; });
+            $("#effortSlider" + so.getID()).off("slide");
+            $("#effortSlider" + so.getID()).on("slide", function (event, ui) { return false; });
+        });
+        this.m_controller.getModel().getMap().getLandingSites().forEach(function (ls) {
+            $("#landingSlider" + ls.getID()).off("slide");
+            $("#landingSlider" + ls.getID()).on("slide", function(event, ui) {return false; });
+        });
     }
 
     public setTax = (p_n: number): void => {
+        $("#taxValue").text($("#taxSlider").slider("option", "value"));
         this.m_controller.getModel().getGovernment().setTaxingRate(p_n);
     }
-
+    public updateTaxValue = (p_n: number): void => {
+        $("#taxValue").text($("#taxSlider").slider("option", "value"));
+    }
     public setQuote = (owner: string, p_n: number): void => {
         this.m_controller.getModel().getGovernment().getRestrictions().setQuote(owner, p_n);
+        $("#quoteValue" + owner).text($("#quoteSlider" + owner).slider("option", "value"));
+    }
+    public updateQuoteValue = (owner: string, p_n: number): void => {
+        $("#quoteValue" + owner).text($("#quoteSlider" + owner).slider("option", "value"));
     }
 
     public setEffortLimit = (owner: string, p_n: number): void =>{
         this.m_controller.getModel().getGovernment().getRestrictions().setEffortLimit(owner, p_n);
+        $("#effortValue" + owner).text($("#effortSlider" + owner).slider("option", "value"));
     }
-
+    public updateEffortLimitValue = (owner: string, p_n: number): void => {
+        $("#effortValue" + owner).text($("#effortSlider" + owner).slider("option", "value"));
+    }
     public setLandingDistrubution = (site: string, p_n: number): void =>{
         this.m_controller.getModel().getGovernment().getRestrictions().setLandingDistrubution(site, p_n);
+        $("#landingValue" + site).text($("#landingSlider" + site).slider("option", "value"));
+    }
+    public updateLandingValue = (site: string, p_n: number): void => {
+        $("#landingValue" + site).text($("#landingSlider" + site).slider("option", "value"));
     }
 
     public start = (): void => {
         $("#fastForwardButton").removeClass("marked");
         $("#pauseButton").removeClass("marked");
         $("#startButton").addClass("marked");
+        this.unBindFunctions();
         this.m_controller.runSimulation();
     }
 
@@ -53,6 +100,7 @@
         $("#startButton").removeClass("marked");
         $("#fastForwardButton").removeClass("marked");
         $("#pauseButton").addClass("marked");
+        this.bindFunctions();
         this.m_controller.pause();
     }
 
@@ -60,6 +108,7 @@
         $("#pauseButton").removeClass("marked");
         $("#startButton").removeClass("marked");
         $("#fastForwardButton").addClass("marked");
+        this.unBindFunctions();
         this.m_controller.fastForward();
     }
     public restrictArea=(p_tile: Tile)=> {

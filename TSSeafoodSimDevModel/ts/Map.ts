@@ -70,8 +70,8 @@ class Map {
         prices[0] = 10;
         prices[1] = 5;
 
-        this.m_grid[Math.floor(p_size / 2)][Math.floor(p_size / 2)+1] = new LandingSite(1, 5, 20,prices,this.m_landingRunningCost);
-        this.m_grid[Math.floor(p_size / 2)][Math.floor(p_size / 2)-1] = new FuelSite(1, 300, 20, 10,this.m_fuelRunningCost);
+        this.m_grid[Math.floor(p_size / 2)][Math.floor(p_size / 2)+1] = new LandingSite(1, 5, 20,prices,this.m_landingRunningCost, "landingSite0");
+        this.m_grid[Math.floor(p_size / 2)][Math.floor(p_size / 2)-1] = new FuelSite(1, 300, 20, 10,this.m_fuelRunningCost, "fuelSite0");
 
     }
 
