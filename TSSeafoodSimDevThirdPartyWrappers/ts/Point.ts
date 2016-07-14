@@ -6,6 +6,10 @@
         this.row = p_row;
         this.col = p_col;
     }
+    compare(p_com: Point2): boolean {
+        return this.row === p_com.row && this.col === p_com.col;
+    }
+
 
     
 }
@@ -19,5 +23,8 @@ class Point3 {
         this.row = p_row;
         this.col = p_col;
         this.depth = p_depth;
+    }
+    compare(p_com: Point3): boolean {
+        return this.row === p_com.row && this.col === p_com.col && this.depth === p_com.depth;
     }
 }
