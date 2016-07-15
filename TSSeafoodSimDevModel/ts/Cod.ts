@@ -1,8 +1,12 @@
 ﻿/// <reference path="School.ts"/>
 /// <reference path = "../../TSSeafoodSimDev/externals/wrappers.d.ts"/>
 class Cod extends School{
+    private m_movingRadius: number = 3;
+    private m_origin: Point2;
+
     public constructor(p_size: number, p_position: Point2) {
         super(p_size, p_position);
+        this.m_origin = p_position;
         this.m_maxAge = 3;
         this.m_typeNumber = 0;
         for (var i = 0; i < p_size; i++) {
@@ -57,11 +61,12 @@ class Cod extends School{
                     default:
                         break;
                 }
-            } while (!(p_map.getTile(newPoint) instanceof Ocean));
+            } while (!(p_map.getTile(newPoint) instanceof Ocean) || newPoint.manhattanDistTo(this.m_origin) > this.m_movingRadius);
             this.m_position = newPoint;
         }
         //console.log("new postion: " + JSON.stringify(this.m_position));
     }
+
 
     protected recruit(p_map: Map): void {
         if ((<Ocean>p_map.getTile(this.m_position)).getFishCapacity() > this.getSize()) {

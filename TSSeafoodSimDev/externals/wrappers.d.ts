@@ -4,6 +4,7 @@ declare class Point2 {
     col: number;
     constructor(p_row: number, p_col: number);
     compare(p_com: Point2): boolean;
+    manhattanDistTo(p_point: Point2): number;
 }
 declare class Point3 {
     row: number;

@@ -8,7 +8,12 @@
     }
     compare(p_com: Point2): boolean {
         return this.row === p_com.row && this.col === p_com.col;
-    }    
+    }
+
+    public manhattanDistTo(p_point: Point2): number {
+        return Math.abs(this.row - p_point.row) + Math.abs(this.col - p_point.col);
+    }
+
 }
 
 class Point3 {

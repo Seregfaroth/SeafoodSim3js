@@ -5,12 +5,9 @@ class Map {
     private m_restrictions: Restrictions;
     private m_fishingPercentage: number = 0.01;
     private m_ships: Ship[] = [];
-    private m_fuelRunningCost: number = 2;
-    private m_landingRunningCost: number = 1;
 
     public constructor(p_size: number, p_noOfSchools: number, p_restrictions: Restrictions) {
         this.m_restrictions = p_restrictions;
-        ///OBS size and no of schools is not being used at the moment
         this.generateMap(p_size);
         this.placeSchools(p_noOfSchools);
     }
@@ -30,10 +27,17 @@ class Map {
     }
     private placeSchools(p_n) {
         var schoolsPlaced: number = 0;
+        var placedInSamePlace: number = 0;
+        var schoolsInOnePlace: number = Math.ceil(p_n / 5);
+        var point: Point2 = new Point2(Math.floor(Math.random() * this.getMapHeight()), Math.floor(Math.random() * this.getMapWidth()));
         while (schoolsPlaced < p_n) {
-            var point: Point2 = new Point2(Math.floor(Math.random() * this.getMapHeight()), Math.floor(Math.random() * this.getMapWidth()));
+            if (placedInSamePlace === schoolsInOnePlace) {
+                placedInSamePlace = 0;
+                point = new Point2(Math.floor(Math.random() * this.getMapHeight()), Math.floor(Math.random() * this.getMapWidth()));
+            }
+            placedInSamePlace++;
             var tile: Tile = this.getTile(point);
-            if (tile instanceof Ocean && this.getNoOfFishInTile(point) < (<Ocean>tile).getFishCapacity()) {
+            if (tile instanceof Ocean) {
                 this.addSchool(new Cod(90, point));
                 schoolsPlaced++;
             }
@@ -45,33 +49,50 @@ class Map {
     }
     private generateMap(p_size: number) {
 
-        for (var i = 0; i < p_size; i++) {
-            var row: Tile[] = [];
-            for (var j = 0; j < p_size; j++) {
-                row.push(new Ocean(100, 2));
-            }
-            this.m_grid.push(row);
-        }
-            for (var c = 0; c < p_size / 2; c++) {
-                for (var r = 0; r < p_size / (4*(c+1)); r++) {
-                    this.m_grid[r][c] = new Land();
-                }
-        }
-        this.m_grid[Math.floor(p_size / 2)][Math.floor(p_size / 2)] = new Land();
-        
-        for (var r = p_size - Math.floor(p_size / 5); r < p_size; r++) {
-                for (var c = Math.floor(p_size / 2 + p_size / 5); c < r; c++) {
-                    this.m_grid[r][c] = new Land();
-                }
-            }
-        
-
         var prices: { [fishType: number]: number } = {}
         prices[0] = 1000;
         prices[1] = 500;
 
-        this.m_grid[Math.floor(p_size / 2)][Math.floor(p_size / 2)+1] = new LandingSite(1, 5, 20,prices,this.m_landingRunningCost, "landingSite0");
-        this.m_grid[Math.floor(p_size / 2)][Math.floor(p_size / 2)-1] = new FuelSite(1, 300, 20, 10,this.m_fuelRunningCost, "fuelSite0");
+        for (var i = 0; i < p_size; i++) {
+            var row: Tile[] = [];
+            for (var j = 0; j < p_size; j++) {
+                row.push(new Ocean(100, 1));
+            }
+            this.m_grid.push(row);
+        }
+        for (var c = 0; c < p_size / 2; c++) {
+            for (var r = 0; r < p_size / (4 * (c + 1)); r++) {
+                this.m_grid[r][c] = new Land();
+            }
+        }
+
+        for (var r = p_size - Math.floor(p_size / 5); r < p_size; r++) {
+            for (var c = Math.floor(p_size / 2 + p_size / 5); c < r; c++) {
+                this.m_grid[r][c] = new Land();
+            }
+        }
+        this.m_grid[p_size - 1][Math.floor(p_size / 2 + p_size / 5)-1] = new LandingSite(2, 100, 20, prices, "landingSite0");
+        for (var r = Math.floor(p_size / 3); r < Math.floor(p_size / 2); r++) {
+            for (var c = Math.floor(p_size / 3); c < Math.floor(p_size / 2); c++) {
+                    this.m_grid[r][c] = new Land();
+
+            }
+        }
+        this.m_grid[Math.floor(p_size / 3)][Math.floor(p_size / 2)] = new LandingSite(2, 100, 20, prices, "landingSite1");
+        this.m_grid[Math.floor(p_size / 2)][Math.floor(p_size / 3)] = new FuelSite(2, 60000, 50, 10, "fuelSite0");
+
+        for (var r = Math.floor(p_size / 10) + 5; r < Math.floor(p_size / 6) + 5; r++) {
+            this.m_grid[r][p_size - Math.floor(p_size / 8)] = new Land();
+        }
+        this.m_grid[Math.floor(p_size / 6) + 4][p_size - Math.floor(p_size / 8) -1] = new FuelSite(2, 10000, 20,10, "fuelsite1");
+
+
+        for (var c = 0; c < p_size / 2; c++) {
+            for (var r = p_size-1; r > p_size - (p_size / (4 * (c + 1))); r--) {
+                this.m_grid[r][c] = new Land();
+            }
+        }
+
 
     }
 

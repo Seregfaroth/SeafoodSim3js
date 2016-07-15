@@ -7,9 +7,17 @@ declare class AI {
     run(p_shipOwner: ShipOwner, p_map: Map): void;
     private buyOrSellShip(p_shipOwner, p_map);
     private runShips(p_shipOwner, p_map);
+    private actOnGoal(p_ship, p_map);
     pathFinding(p_map: Map, p_start: Point2, p_goal: Point2): Point2[];
-    findNearestLandingSite(p_start: Point2, p_map: Map): Point2;
-    findNearestFuelSite(p_start: Point2, p_map: Map): Point2;
+    pathToNearestLandingSite(p_start: Point2, p_map: Map): Point2[];
+    pathToNearestFuelSite(p_start: Point2, p_map: Map): Point2[];
+    pathToNearestFishingArea(p_start: Point2, p_map: Map): Point2[];
+    pathToFish(p_start: Point2, p_map: Map): Point2[];
+    private goFish(p_ship, p_map, p_path);
+    private goLand(p_ship, p_map, p_path?);
+    private goRefuel(p_ship, p_map, p_path?);
+    private canReach(p_ship, p_map, p_previousPath);
+    private findNewPath(p_ship, p_map);
 }
 declare class Fish {
     private m_age;
@@ -37,6 +45,8 @@ declare abstract class School {
     protected abstract move(p_map: Map): void;
 }
 declare class Cod extends School {
+    private m_movingRadius;
+    private m_origin;
     constructor(p_size: number, p_position: Point2);
     protected move(p_map: Map): void;
     protected recruit(p_map: Map): void;
@@ -50,7 +60,7 @@ declare class Site extends Tile {
     protected m_processPerDay: number;
     protected m_runningCost: number;
     protected m_id: string;
-    constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_runningCost: number, p_id: string);
+    constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_id: string);
     getID(): string;
     getShipCapacity(): number;
     getRunningCost(): number;
@@ -60,7 +70,7 @@ declare class Site extends Tile {
 }
 declare class FuelSite extends Site {
     private m_price;
-    constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_price: number, p_runningCost: number, p_id: string);
+    constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_price: number, p_id: string);
     getPrice(): number;
     provideFuel(p_desiredAmount: number): number;
     restock(): void;
@@ -69,7 +79,7 @@ declare class Government {
     private m_restrictions;
     private m_taxingRate;
     private m_score;
-    constructor();
+    constructor(p_restrictions: Restrictions);
     getScore(): Score;
     getTaxingRate(): number;
     setTaxingRate(rate: number): void;
@@ -82,7 +92,7 @@ declare class LandingSite extends Site {
     private m_untaxedValue;
     constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_prices: {
         [fishType: number]: number;
-    }, p_runningCost: number, p_id: string);
+    }, p_id: string);
     getPrices(): {
         [fishType: number]: number;
     };
@@ -101,8 +111,6 @@ declare class Map {
     private m_restrictions;
     private m_fishingPercentage;
     private m_ships;
-    private m_fuelRunningCost;
-    private m_landingRunningCost;
     constructor(p_size: number, p_noOfSchools: number, p_restrictions: Restrictions);
     getRestrictions(): Restrictions;
     getGrid(): Tile[][];
@@ -163,9 +171,11 @@ declare class Model {
 declare class Ocean extends Tile {
     private m_fishCapacity;
     private m_shipCapacity;
-    constructor(p_fishCapacity: number, p_shipCapacity: number);
+    private m_fishingArea;
+    constructor(p_fishCapacity: number, p_shipCapacity: number, p_fishingArea?: boolean);
     getFishCapacity(): number;
     getShipCapacity(): number;
+    isFishingArea(): boolean;
 }
 declare class Restrictions {
     private m_quotes;
@@ -205,6 +215,13 @@ declare class Score {
     getFinancialScore(): number;
     updateScore(p_map: Map, p_gov: Government): void;
 }
+declare enum shipState {
+    fishing = 0,
+    goingToFish = 1,
+    goingToRefuel = 2,
+    goingToLand = 3,
+    waiting = 4,
+}
 declare class Ship {
     private m_fuel;
     private m_cargo;
@@ -214,7 +231,11 @@ declare class Ship {
     private m_path;
     private m_fuelPerMove;
     private m_owner;
+    private m_state;
+    history: any[];
     constructor(p_owner: ShipOwner);
+    getState(): shipState;
+    setState(state: shipState): void;
     getFuel(): number;
     getCargo(): Fish[];
     getFuelCapacity(): number;

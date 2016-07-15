@@ -7,12 +7,12 @@ class Site extends Tile {
     protected m_runningCost: number;
     protected m_id: string;
 
-    public constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_runningCost: number, p_id: string) {
+    public constructor(p_shipCapacity: number, p_resourceCapacity: number, p_processPerDay: number, p_id: string) {
         super();
         this.m_shipCapacity = p_shipCapacity;
         this.m_resourceCapacity = p_resourceCapacity;
         this.m_processPerDay = p_processPerDay;
-        this.m_runningCost = p_resourceCapacity * 0.1;
+        this.m_runningCost = p_processPerDay * 0.5;
         this.m_id = p_id;
     }
     public getID(): string {

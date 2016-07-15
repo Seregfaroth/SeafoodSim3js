@@ -38,8 +38,10 @@ declare class EventHandler {
     updateQuoteValue: (owner: string, p_n: number) => void;
     setEffortLimit: (owner: string, p_n: number) => void;
     updateEffortLimitValue: (owner: string, p_n: number) => void;
-    setLandingDistrubution: (site: string, p_n: number) => void;
+    setLandingDistrubution: (p_site: string, p_n: number) => void;
     updateLandingValue: (site: string, p_n: number) => void;
+    setMaxNoShips: (p_n: number) => void;
+    updateMaxNoShipsValue(p_n: number): void;
     start: () => void;
     pause: () => void;
     fastForward: () => void;

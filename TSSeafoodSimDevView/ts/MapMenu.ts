@@ -61,34 +61,34 @@
         //Create tax slider
        
 
-        var taxLegend: HTMLElement = document.createElement("legend");
-        taxLegend.classList.add("menu-legend");
-        var taxLabel: HTMLElement = document.createElement("div");
-        taxLabel.innerHTML = "Taxing rate";
-        taxLabel.className = "legend-header";
-        taxLegend.appendChild(taxLabel);
-        menuDiv.appendChild(taxLegend);
+        var legend: HTMLElement = document.createElement("legend");
+        legend.classList.add("menu-legend");
+        var label: HTMLElement = document.createElement("div");
+        label.innerHTML = "Taxing rate";
+        label.className = "legend-header";
+        legend.appendChild(label);
+        menuDiv.appendChild(legend);
 
         var table: any = document.createElement("TABLE");
         table.classList.add("menu-text");
-        taxLegend.appendChild(table);
+        legend.appendChild(table);
         var row: HTMLTableRowElement = table.insertRow();
 
         var cell: HTMLTableCellElement = row.insertCell();
-        var taxValueDiv: HTMLDivElement = document.createElement("div");
-        cell.appendChild(taxValueDiv);
-        taxValueDiv.innerHTML = p_taxingRate*100+ "%";
+        var valueDiv: HTMLDivElement = document.createElement("div");
+        cell.appendChild(valueDiv);
+        valueDiv.innerHTML = p_taxingRate*100+ "%";
         cell.className = "slider-value-cell";
-        taxValueDiv.id = "taxValue";
+        valueDiv.id = "taxValue";
 
         var cell = row.insertCell();
-        var taxSlider: HTMLElement = document.createElement("div");
-        taxSlider.id = "taxSlider";
-        taxSlider.style.width = "70%";
-        taxSlider.style.cssFloat = "right";
-        taxSlider.style.margin = "10px";
+        var slider: HTMLElement = document.createElement("div");
+        slider.id = "taxSlider";
+        slider.style.width = "70%";
+        slider.style.cssFloat = "right";
+        slider.style.margin = "10px";
         cell.className = "slider-cell";
-        cell.appendChild(taxSlider);
+        cell.appendChild(slider);
         $("#taxSlider").slider();
         $("#taxSlider").slider("option", "min", 0);
         $("#taxSlider").slider("option", "max", 100);
@@ -212,6 +212,40 @@
             $("#landingSlider" + p_landingSites[i].getID()).slider("option", "max", 100);
             sliderValue.innerHTML = $("#landingSlider" + p_landingSites[i].getID()).slider("option", "value");
         }
+
+        //Create maximum number of ships slider
+        var legend: HTMLElement = document.createElement("legend");
+        legend.classList.add("menu-legend");
+        var label: HTMLElement = document.createElement("div");
+        label.innerHTML = "Maximum number of ships";
+        label.className = "legend-header";
+        legend.appendChild(label);
+        menuDiv.appendChild(legend);
+
+        var table: any = document.createElement("TABLE");
+        table.classList.add("menu-text");
+        legend.appendChild(table);
+        var row: HTMLTableRowElement = table.insertRow();
+
+        var cell: HTMLTableCellElement = row.insertCell();
+        var valueDiv: HTMLDivElement = document.createElement("div");
+        cell.appendChild(valueDiv);
+        valueDiv.innerHTML = "1";
+        cell.className = "slider-value-cell";
+        valueDiv.id = "maxNoShips";
+
+        var cell = row.insertCell();
+        var slider: HTMLElement = document.createElement("div");
+        slider.id = "noOfShipsSlider";
+        slider.style.width = "70%";
+        slider.style.cssFloat = "right";
+        slider.style.margin = "10px";
+        cell.className = "slider-cell";
+        cell.appendChild(slider);
+        $("#noOfShipsSlider").slider();
+        $("#noOfShipsSlider").slider("option", "min", 0);
+        $("#noOfShipsSlider").slider("option", "max", 50);
+        $("#noOfShipsSlider").slider("value", 1);
         
         //Create buttons
         var buttonsDiv: HTMLElement = document.createElement("legend");

@@ -3,8 +3,8 @@
     private m_taxingRate: number;
     private m_score: Score;
  
-    public constructor() {
-        this.m_restrictions = new Restrictions();
+    public constructor(p_restrictions: Restrictions) {
+        this.m_restrictions = p_restrictions;
         this.m_taxingRate = 0.2;
         this.m_score = new Score();
 

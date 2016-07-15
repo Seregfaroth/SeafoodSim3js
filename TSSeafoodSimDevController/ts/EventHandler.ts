@@ -39,6 +39,10 @@
                 handler.setLandingDistrubution(ls.getID(), ui.value);
             });
         });
+        $("#noOfShipsSlider").off("slide");
+        $("#noOfShipsSlider").on("slide", function (event, ui) { handler.updateMaxNoShipsValue(ui.value); });
+        $("#noOfShipsSlider").on("slidechange", function (event, ui) { handler.setMaxNoShips(ui.value); });
+        
     }
 
     public unBindFunctions(): void {
@@ -56,6 +60,8 @@
             $("#landingSlider" + ls.getID()).off("slide");
             $("#landingSlider" + ls.getID()).on("slide", function(event, ui) {return false; });
         });
+        $("#noOfShipsSlider").off("slide");
+        $("#noOfShipsSlider").on("slide", function (event, ui) { return false; });
     }
 
     public setTax = (p_n: number): void => {
@@ -80,14 +86,20 @@
     public updateEffortLimitValue = (owner: string, p_n: number): void => {
         $("#effortValue" + owner).text($("#effortSlider" + owner).slider("option", "value"));
     }
-    public setLandingDistrubution = (site: string, p_n: number): void =>{
-        this.m_controller.getModel().getGovernment().getRestrictions().setLandingDistrubution(site, p_n);
-        $("#landingValue" + site).text($("#landingSlider" + site).slider("option", "value"));
+    public setLandingDistrubution = (p_site: string, p_n: number): void =>{
+        this.m_controller.getModel().getGovernment().getRestrictions().setLandingDistrubution(p_site, p_n);
+        this.updateLandingValue(p_site, p_n);
     }
     public updateLandingValue = (site: string, p_n: number): void => {
         $("#landingValue" + site).text($("#landingSlider" + site).slider("option", "value"));
     }
-
+    public setMaxNoShips = (p_n: number): void => {
+        this.m_controller.getModel().getGovernment().getRestrictions().setMaxShips(p_n);
+        this.updateMaxNoShipsValue(p_n);
+    } 
+    public updateMaxNoShipsValue(p_n: number): void {
+        $("#maxNoShips").text($("#noOfShipsSlider").slider("option", "value"));
+    } 
     public start = (): void => {
         $("#fastForwardButton").removeClass("marked");
         $("#pauseButton").removeClass("marked");
@@ -101,7 +113,6 @@
         $("#fastForwardButton").removeClass("marked");
         $("#pauseButton").addClass("marked");
         this.bindFunctions();
-        debugger;
         this.m_controller.pause();
         
     }

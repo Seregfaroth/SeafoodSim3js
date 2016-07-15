@@ -1,21 +1,30 @@
 ﻿/// <reference path = "../../TSSeafoodSimDev/externals/wrappers.d.ts"/>
+enum shipState { fishing, goingToFish, goingToRefuel, goingToLand, waiting }
 class Ship {
     private m_fuel: number;
     private m_cargo: Fish[];
-    private m_fuelCapacity: number = 30;
+    private m_fuelCapacity: number = 150;
     private m_cargoCapacity: number = 10;
     private m_position: Point2;
     private m_path: Point2[] = [];
     private m_fuelPerMove: number = 1;
     private m_owner: ShipOwner;
+    private m_state: shipState;
+    public history: any[] = [];//For debugging  purpose
 
     public constructor(p_owner: ShipOwner) {
         this.m_position = p_owner.getShipStartPosition();
         this.m_cargo = [];
         this.m_fuel = this.m_fuelCapacity;
         this.m_owner = p_owner;
+        this.m_state = shipState.waiting;
     }
-
+    public getState(): shipState {
+        return this.m_state;
+    }
+    public setState(state: shipState): void {
+        this.m_state = state;
+        }
     public getFuel(): number {
         return this.m_fuel;
     }
@@ -37,7 +46,14 @@ class Ship {
     }
 
     public setPath(p_path: Point2[]) {
+        if (!this.m_position.compare(p_path[0])) {
+            throw new Error("path is not starting at ship position");
+        }
         this.m_path = p_path;
+        this.history.push("current + " + this.m_position.row + " , " + this.m_position.col);
+        this.history.push("path 0: " + p_path[0].row + ", " + p_path[0].col);
+        this.history.push(p_path.slice());
+        this.history.push("length:" + p_path.length);
     }
 
     public getPosition(): Point2 {
@@ -59,7 +75,10 @@ class Ship {
         }
         else if (this.moveTo(this.m_path[1], p_map)) {
             //Only take point out of path if ship can move to point
-             this.m_path.shift();
+            this.m_path.shift()
+            this.history.push(this.m_position);
+            this.history.push(this.m_fuel);
+            
         }
     }
     public hasReachedGoal(): boolean {
@@ -70,7 +89,7 @@ class Ship {
         var tile: Tile = p_map.getTile(p_position);
         var noOfShipsInTile: number = p_map.getNoOfShipsInTile(p_position);
         if (this.m_fuel >= this.m_fuelPerMove &&
-            ((tile instanceof Ocean && (<Ocean>tile).getShipCapacity() > noOfShipsInTile) ||
+            ((tile instanceof Ocean /*&& (<Ocean>tile).getShipCapacity() > noOfShipsInTile*/) ||
                 (tile instanceof Site && (<Site>tile).getShipCapacity() > noOfShipsInTile))) {
             this.m_position = p_position;
             this.m_fuel -= this.m_fuelPerMove;
@@ -144,7 +163,7 @@ class Ship {
                     break;
             }
         } while (!newPoint || !(p_map.getTile(newPoint) instanceof Ocean));
-        this.moveTo(newPoint);
+        this.moveTo(newPoint,p_map);
     //console.log("new postion: " + JSON.stringify(this.m_position));
     }
 
