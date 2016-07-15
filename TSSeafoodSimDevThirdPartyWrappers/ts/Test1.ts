@@ -28,7 +28,9 @@ class TKN_Camera {
     }
     set position(p_pos: Point3) {
         this.m_position = p_pos;
-        this.m_camera.position = new THREE.Vector3(p_pos.col, p_pos.row, p_pos.depth);
+        this.m_camera.position.x = p_pos.col;
+        this.m_camera.position.y = p_pos.row;
+        this.m_camera.position.z = p_pos.depth;
     }
     get camera(): THREE.Camera {
         return this.m_camera;
@@ -43,7 +45,7 @@ class TKN_Renderer {
     constructor() {
         console.log("Construct TKN_Rendeerer");
         this.m_renderer = new THREE.WebGLRenderer();
-        this.m_renderer.setSize(500, 500);
+        this.m_renderer.setSize(1000, 1000);
 
     }
 

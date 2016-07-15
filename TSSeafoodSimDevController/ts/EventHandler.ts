@@ -101,7 +101,9 @@
         $("#fastForwardButton").removeClass("marked");
         $("#pauseButton").addClass("marked");
         this.bindFunctions();
+        debugger;
         this.m_controller.pause();
+        
     }
 
     public fastForward = (): void => {
